@@ -43,6 +43,7 @@
 <body ng-app="App" ng-controller="myController">
 
 <div>
+    22
     <ul id="menu">
         <li ng-repeat="x in records" ng-click="isActive( x.id)"  ng-class="{active:state==x.id}">
             <img src="{{x.img}}">
@@ -62,7 +63,6 @@
             {'id': '2', name: '本月',img:"./imgs/router.png"},
             {'id': '3', name: '去年',img:"./imgs/router.png"}
         ]
-        主分
         $scope.isActive = function (i) {
             $scope.state = i;
         }
