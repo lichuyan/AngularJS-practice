@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css结合ng-class 2 (点击高亮)</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background-color: #F7F7F7;
+            font-family: Arial;
+        }
+        .mainDiv{
+            width: 980px;
+            margin: 50px auto;
+        }
+        .selected{
+            /*ng-class*/
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body ng-app="App" ng-controller="myController">
+<div class="mainDiv">
+    <table  class="table  table-hover">
+        <thead>
+        <tr>
+            <td>店名</td><td>招牌</td>
+        </tr>
+        </thead>
+        <tbody>
+        <!--点击后触发事件，找到对应函数，函数的数据对应到ng-class-->
+        <tr ng-repeat='restaurant in directory' ng-click='selectRestaurant($index)'
+            ng-class='{selected: $index==selectedRow}'>
+            <td>{{restaurant.name}}</td>
+            <td>{{restaurant.cuisine}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    var App = angular.module('App',[]);
+    App.controller('myController',['$scope',function ($scope) {
+
+        $scope.directory = [
+            {name:'The Handsome Heifer', cuisine:'BBQ'},
+            {name:'Green\'s Green Greens', cuisine:'Salads'},
+            {name:'House of Fine Fish', cuisine:'Seafood'}
+        ];
+
+        $scope.selectRestaurant = function(row) {
+            $scope.selectedRow = row;
+        };
+    }])
+
+</script>
+</body>
+</html>

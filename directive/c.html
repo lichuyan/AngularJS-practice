@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <!--控制器-->
+    <script src="./directive.js"></script>
+    <style>
+        .parent {
+            border: 1px solid #cdcdcd;
+            width: 500px;
+            padding: 20px;
+            background-color: beige;
+        }
+        .childspeak {
+            border: 1px solid #cdcdcd;
+            background-color: #ccdede;
+            padding: 10px;
+            margin: 10px;
+            width: 400px;
+        }
+        .announce {
+            font-size: small;
+            margin: 5px 0px;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body>
+<div ng-app="app">
+    <parent>
+        <child></child>
+        <child></child>
+    </parent>
+</div>
+
+</body>
+</html>

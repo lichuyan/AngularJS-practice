@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+    <script src="https://cdn.bootcss.com/angular-strap/2.3.12/angular-strap.min.js"></script>
+    <script src="https://cdn.bootcss.com/angular-strap/2.3.12/angular-strap.tpl.min.js"></script>
+    <title>Title</title>
+
+</head>
+<body>
+<div ng-app="myApp" ng-controller="myCtrl">
+    <p>付费方式:</p>
+    <div>
+        <select ng-init="select1=payWayList[0]" ng-model="select1" ng-change="payWayCHange()" ng-options="item.amode for item in payWayList">
+        </select>
+        <select  ng-init="select2=select1.gnum[0]" ng-model="select2" ng-options="data.payTime for data in select1.gnum">
+        </select>
+    </div>
+
+
+</div>
+
+<script>
+    var app = angular.module('myApp', []);
+    app.controller('myCtrl', function($scope) {
+
+        //json 数据
+        $scope.payWayList = [
+            {
+                "amode":"按月",
+                "gnum":[
+                    {
+                        "payTime":"购置月末",
+                        "price":"0"
+                    },
+                    {
+                        "payTime":"1个月",
+                        "price":"1"
+                    },
+                    {
+                        "payTime":"2个月",
+                        "price":"2"
+                    },
+                    {
+                        "payTime":"3个月",
+                        "price":"3"
+                    },
+                    {
+                        "payTime":"4个月",
+                        "price":"4"
+                    },
+                    {
+                        "payTime":"5个月",
+                        "price":"5"
+                    },
+                    {
+                        "payTime":"6个月",
+                        "price":"6"
+                    },
+                    {
+                        "payTime":"7个月",
+                        "price":"7"
+                    },
+                    {
+                        "payTime":"8个月",
+                        "price":"8"
+                    },
+                    {
+                        "payTime":"9个月",
+                        "price":"9"
+                    },
+                    {
+                        "payTime":"10个月",
+                        "price":"10"
+                    }
+                ]
+            },
+            {
+                "amode":"按年",
+                "gnum":[
+                    {
+                        "payTime":"1年",
+                        "price":"10"
+                    },
+                    {
+                        "payTime":"2年",
+                        "price":"19"
+                    },
+                    {
+                        "payTime":"3年",
+                        "price":"27"
+                    }
+                ]
+            },
+            {
+                "amode":"按需",
+                "gnum":[
+                    {
+                        "payTime":"1小时",
+                        "price":"0.00138889"
+                    }
+                ]
+            }
+        ];
+
+        $scope.gnumList = "";
+        //父级绑定事件改变seelct2的值
+        $scope.payWayCHange = function(select1){
+            $scope.select2=$scope.select1.gnum[0];
+        };
+
+
+
+    });
+</script>
+</body>
+</html>

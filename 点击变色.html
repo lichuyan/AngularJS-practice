@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <style>
+
+        #menu{
+            background-color: #9fcdff;
+            height: 40px;
+            list-style:none; /* 将默认的列表符号去掉 */
+            padding:0; /* 将默认的内边距去掉 */
+            margin:0; /* 将默认的外边距去掉 */
+        }
+        #menu li{
+            display: inline-block;
+            margin: 10px 20px;
+        }
+        #menu span{
+            font:16px verdana, arial, sans-serif; /* 设置文字大小和字体样式 */
+        }
+        #menu span:hover{
+            color: #ff6600; border-bottom: 2px solid #ff6600; /* 鼠标悬停*/
+        }
+        .active {
+            color: #ff6600; border-bottom: 2px solid #ff6600;
+        }
+
+    </style>
+</head
+>
+<body ng-app="App" ng-controller="myController">
+
+<div>
+    <ul id="menu">
+        <li ng-repeat="x in records" ng-click="isActive( x.id)"  ng-class="{active:state==x.id}">
+            <span> {{ x.name}}</span>
+        </li>
+    </ul>
+
+</div>
+
+
+
+<script>
+    var App = angular.module('App', []);
+    App.controller('myController', ['$scope', function ($scope) {
+        $scope.records = [
+            {'id': '1', name: '今天'},
+            {'id': '2', name: '本月' },
+            {'id': '3', name: '去年'}
+            ]
+
+        $scope.isActive = function (i) {
+            $scope.state = i;
+        }
+
+    }])
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+ 1) .table-condensed class，行内边距（padding）被切为两半，以便让表看起来更紧凑
+ 2) ng-form  用来在一个表单中嵌套  另外一个表单
+ 3) ng-table="demo.tableParams"  为表格提供的数组是tableParams

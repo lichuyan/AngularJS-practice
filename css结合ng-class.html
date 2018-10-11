@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>css结合ng-class</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+    <style>
+        .error{
+            /*ng-class*/
+            background-color: red;
+        }
+        .warning{
+            /*ng-class*/
+            background-color: orange;
+        }
+    </style>
+</head>
+<body ng-app="App" ng-controller="myController">
+<div>
+    <!--用类名:true/false来控制显示的样式-->
+    <div ng-class="{error:isError,warning:isWarning}">{{messageText}}</div>
+    <button ng-click="showError()">错误</button>
+    <button ng-click="showWarning()">警告</button>
+
+</div>
+
+
+<script>
+    var App = angular.module('App',[]);
+    App.controller('myController',['$scope',function ($scope) {
+
+        //初始，没有颜色
+        $scope.isError = false;
+        $scope.isWarning = false;
+
+        $scope.showError = function(){
+            $scope.messageText = "错误信息";
+            $scope.isError = true;
+            $scope.isWarning = false;
+        };
+
+        $scope.showWarning = function(){
+            $scope.messageText = "警告信息";
+            $scope.isError = false;
+            $scope.isWarning = true;
+        };
+
+
+    }])
+</script>
+</body>
+</html>

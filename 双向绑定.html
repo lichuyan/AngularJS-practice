@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body ng-app="App">
+
+<form ng-controller="myController">
+    开始：<input ng-change="compute()" ng-model="funding.estimate" >
+    计算：{{needed}}
+    <button ng-click="reset()">重置</button>
+    <br>
+    <br>
+    姓名：<input type="text" ng-model="funding.name" ng-change="compute()">
+</form>
+
+<script>
+    var App = angular.module('App', []);
+    App.controller('myController', ['$scope', function ($scope) {
+        // 搜索栏参数
+        $scope.funding = {
+            estimate: 0,
+            name: '小花'
+        };
+        $scope.compute = function () {
+            $scope.needed = $scope.funding.estimate * 20;
+        };
+        //$watch('funding.estimate',compute);
+
+        $scope.reset = function () {
+            $scope.funding.estimate = 0;
+        }
+
+    }])
+</script>
+</body>
+</html>
