@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts-3.js"></script>
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 100%;height:400px;"></div>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+var app={}
+    app.configParameters = {
+        pie1Process: {
+            min: 0,
+            max: 100
+        },
+        pie2Process: {
+            min: 0,
+            max: 100
+        },
+        pie3Process: {
+            min: 0,
+            max: 100
+        },
+    };
+
+    app.config = {
+        message: 'dat.gui',
+        pie1Process: 25,
+        pie2Process: 50,
+        pie3Process: 75,
+        pie1Color: '#3dd4de',
+        pie2Color: '#b697cd',
+        pie3Color: '#a6f08f',
+        onChange: function() {
+            var tempOption = {
+                title: {
+                    text: parseInt(app.config.pie2Process) + '%',
+                    textStyle: {
+                        color: app.config.pie2Color,
+                    }
+                },
+                series: [{
+                    data: [{
+                        value: parseInt(app.config.pie1Process),
+                        itemStyle: {
+                            normal: {
+                                color: app.config.pie1Color,
+                                shadowColor: app.config.pie1Color,
+                            }
+                        },
+                        label: {
+                            normal: {
+                                formatter: '{d}%',
+                                position: 'center',
+                                show: true,
+                                textStyle: {
+                                    fontSize: '35',
+                                    fontWeight: 'normal',
+                                    color: app.config.pie1Color
+                                }
+                            }
+                        },
+                    }, {
+                        value: 100 - parseInt(app.config.pie1Process),
+                        itemStyle: placeHolderStyle,
+
+                    }]
+                }, {
+                    data: [{
+                        value: parseInt(app.config.pie2Process),
+                        itemStyle: {
+                            normal: {
+                                color: app.config.pie2Color,
+                                shadowColor: app.config.pie2Color,
+                            }
+                        }
+                    }, {
+                        value: 100 - parseInt(app.config.pie2Process),
+                        itemStyle: placeHolderStyle,
+                    }]
+                }, {
+                    data: [{
+                        value: parseInt(app.config.pie3Process),
+                        label: {
+                            normal: {
+                                formatter: '{d}%',
+                                position: 'center',
+                                show: true,
+                                textStyle: {
+                                    fontSize: '35',
+                                    fontWeight: 'normal',
+                                    color: app.config.pie3Color
+                                }
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: app.config.pie3Color,
+                                shadowColor: app.config.pie3Color,
+                            }
+                        }
+                    }, {
+                        value: 100 - parseInt(app.config.pie3Process),
+
+                        itemStyle: placeHolderStyle,
+                    }]
+                }]
+            }
+            myChart.setOption(tempOption);
+        }
+    };
+
+
+    // 这里借鉴'5643我'和'小明的小可'两位大神的圆环图格式演示一下效果
+    var dataStyle = {
+        normal: {
+            label: {
+                show: false
+            },
+            labelLine: {
+                show: false
+            },
+            shadowBlur: 40,
+            shadowColor: 'rgba(40, 40, 40, 0.5)',
+        }
+    };
+
+    var placeHolderStyle = {
+        normal: {
+            color: 'rgba(44,59,70,1)', // 未完成的圆环的颜色
+            label: {
+                show: false
+            },
+            labelLine: {
+                show: false
+            }
+        },
+        emphasis: {
+            color: 'rgba(44,59,70,1)' // 未完成的圆环的颜色
+        }
+    };
+
+    option = {
+        title: {
+            text: '50%',
+            x: 'center',
+            y: 'center',
+            textStyle: {
+                fontWeight: 'normal',
+                color: '#b697cd',
+                fontSize: 35
+            }
+        },
+        tooltip: {
+            show: false,
+        },
+        toolbox: {
+            show: false,
+        },
+        // color : ['#3dd4de','#b697cd','#a6f08f'],
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        series: [{
+            name: 'Pie2',
+            type: 'pie',
+            clockWise: false,
+            radius: [80, 85],
+            itemStyle: dataStyle,
+            hoverAnimation: false,
+            center: ['50%', '50%'],
+            data: [{
+                value:50,
+                itemStyle: {
+                    normal: {
+                        color: '#b697cd',
+                        shadowColor: '#b697cd',
+                        shadowBlur: 10
+                    }
+                }
+            }, {
+                value: 50,
+                name: 'invisible',
+                itemStyle: placeHolderStyle,
+            }]
+        }]
+    }
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+</body>
+</html>
