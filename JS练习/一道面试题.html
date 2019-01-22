@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //setTimeout 会延迟执行，那么执行到 console.log 的时候，其实 i 已经变成 5 了
+//    for(var i=0;i<5;i++){
+//        setTimeout(function () {
+//            console.log(i)
+//        },i*1000)  // 这5个setTimeout的延迟分别是1到5秒。
+//    }
+    /*上面的代码会先输出一个5，接着每隔1秒输出1个5，一共5个5，
+    原因是i为全局变量，会先执行完循环（js是单线程机制，先执行同步代码，最后执行异步代码，setTimeout是异步调用），
+    此时i的值已经为5，之前每次循环放入异步队列中的函数就会依次打印出i的值，即连续打印5次5*/
+
+    for(var i=0;i<5;i++){
+        function foo(i) { // 父级函数
+            setTimeout(function () { // 内函数，形成一个闭包
+                console.log(i)  // 使用到了父函数的变量
+            },i*1000)
+        }
+        foo(i);
+    }
+ /* 此处利用闭包每次将i的值传入进去，*/
+
+</script>
+
+</body>
+</html>

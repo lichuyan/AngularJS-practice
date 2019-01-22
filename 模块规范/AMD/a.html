@@ -5,7 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<script type="module" src="aa.js"></script>
+<script type="text/javascript" src="require.js"></script>
+<script type="module" >
+    require(['./b'],function (math) {
+        math.add(2,3);
+        console.log("++++++",math.add(7,3))
+    });
+</script>
 
 </body>
 </html>
