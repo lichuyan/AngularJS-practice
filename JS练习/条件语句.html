@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>写好js条件语句的5条守则</title>
+</head>
+<body>
+<script>
+    /*原则1-----------------------多重判断用Array.includes*/
+
+    function test(redFruit) {
+        let fruits=['apple', 'strawberry', 'cherry', 'cranberries'];
+/*        fruits.forEach(function (item,index,arr) {
+            if(item===redFruit){
+                console.log("++++++++++",)
+            }
+        });*/
+
+        // 改进
+        if(fruits.includes(redFruit)){
+            console.log("++++++++++",)
+        }
+    }
+    test('apple');
+
+    /*原则2-----------------------1更少的嵌套，2尽早return*/
+
+    function test1(redFruit) {
+        let fruits=['apple', 'strawberry', 'cherry', 'cranberries'];
+        /*if(redFruit){
+            if(fruits.includes(redFruit)){
+                console.log("++++++++++",)
+            }
+        } else {
+            throw new Error('No frulit')
+        }*/
+
+        // 改进 尽早抛出错误
+        if(!redFruit) throw new  Error('No frulit');
+        // 条件不满足时，当不包含这种水果时停止继续执行
+        if(!fruits.includes(redFruit)) return;
+
+        // 在代码量较小的情况小还是第一种好，在这里保留第一种，因为直接，清晰
+
+    }
+//    test1();
+
+   /* 原则3------------------------ 默认参数*/
+
+   function test3(redFruit) {
+       let a=redFruit||"apple";
+       console.log("++++++++++++",a)
+
+   }
+   test3()
+
+    /* 原则4------------------------ 倾向于对象遍历而不是Switch语句*/
+    function test4(color) {
+        // 使用条件语句来寻找对应颜色的水果
+        switch (color) {
+            case 'red':
+                return ['apple', 'strawberry'];
+            case 'yellow':
+                return ['banana', 'pineapple'];
+            case 'purple':
+                return ['grape', 'plum'];
+            default:
+                return [];
+        }
+    }
+
+    test4(null); // []
+//    console.log("+++++",test4('yellow'))
+
+    // 改进
+
+    function test5(color){
+        const fruit={
+            'red': ['apple', 'strawberry'],
+            'yellow': ['banana', 'pineapple'],
+            'purple': ['grape', 'plum']
+        };
+        return fruit[color]||undefined;  // 默认值
+    }
+    console.log("+++++",test5('yellow'))// ["banana", "pineapple"]
+    console.log("+++++",test5())// [undefiend
+
+    /* 原则5------------------------对所有/部分 判断使用Array.every 一假即假:& Array.some 一真即真 */
+
+    function test6() {
+        const fruits = [
+            { name: 'apple', color: 'red' },
+            { name: 'banana', color: 'yellow' },
+            { name: 'grape', color: 'purple' }
+        ];
+        const isAllRed=fruits.every((item)=>{
+              return item.color=='red'
+        })
+        console.log("++++++++",isAllRed);  //false
+
+        const isAnyRed=fruits.some((item)=>{
+           return item.color=='red'
+        })
+        console.log("++++++++",isAnyRed);
+
+    }
+    test6();
+</script>
+
+
+</body>
+</html>
