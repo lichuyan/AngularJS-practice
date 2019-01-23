@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+   /* typeof 用来监测值类型，instanceof监测引用类型；typeof监测不出引用类型，因为都为object或者function*/
+    let sym=Symbol('dd');
+    console.log(typeof (sym)) // symbol
+
+    let a=123;
+    console.log(typeof (a));
+    console.log( a instanceof Number); //false
+
+    let obj={name:"dd"};
+
+    console.log(typeof (obj));// obj
+    console.log(obj instanceof Object); //输出 "true"
+
+    let arr=[1,2];
+    console.log(typeof (arr)); //obj
+    console.log(arr instanceof Array);  // true
+
+
+
+
+</script>
+
+</body>
+</html>

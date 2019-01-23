@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 父类
+    class Person {
+        constructor(name, age) {
+            this.name = name;
+            this.age = age;
+            this.tel = "124"
+        }
+        showInfo() {  // 普通方法绑定在实例（对象）上
+            console.log("++++++++++this", this)
+            console.log(`名字是${this.name},电话是${this.tel}`)
+        }
+        static show(){     // 静态方法绑定为类上
+            console.log("我是类的静态方法")
+        }
+    }
+
+    /*let p1=new Person("lichuyan",18);
+    p1.showInfo();  // 通过实例调用
+    Person.show();   // 通过类名调用*/
+
+//    子类
+    class Student extends Person{
+        constructor (name,age,tel,sex){
+            super(name,age,tel); // 调用子类的属性
+            this.sex=sex;
+        }
+        showInfo(){
+            super.showInfo();  // 调用父类的方法
+            console.log("我是子类的方法")
+        }
+    }
+    let stu=new Student("liyuan",19,'123','女');
+    stu.showInfo();  //
+    Student.show();
+</script>
+
+</body>
+</html>

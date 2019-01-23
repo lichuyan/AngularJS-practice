@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>js的类和继承</title>
+</head>
+<body>
+<script>
+    // js中使用函数来+原型模拟类  父类
+    function Person(name,age) {
+        this.name=name;
+        this.age=age;
+    }
+    Person.prototype.showInfo=function () {
+        console.log("+this",this)
+        console.log(this.name)
+    }
+//    let p1=new Person("xiaohua",23);
+//    p1.showInfo();
+
+    function Student(name,age,tel) {
+        Person.call(this,name,age); // 继承属性
+        this.tel=tel;
+    }
+    Student.prototype=new Person() // 继承方法
+
+
+    let stu=new Student('li',12,'123');
+    stu.showInfo();
+
+    // 子类
+</script>
+
+</body>
+</html>
