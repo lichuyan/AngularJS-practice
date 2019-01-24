@@ -1,0 +1,5 @@
+LESS和Sass之间的主要区别是他们的实现方式不同，
+LESS是基于JavaScript运行,所以LESS是在客户端处理。
+Sass是基于 Ruby 的，是在服务器端处理的。很多开发者不选择LESS是因为LESS输出修改过的CSS到浏览器需要依赖于Javascript引擎，而Javascript引擎需要额外的时间来处理代码。
+当然在其它方面也是有一点小差别，例如; 在变量上LESS使用@，而Sass使用$，
+同时还有一些作用域上的差别。输出格式上sass 提供4种输出选项：nested, compact, compressed 和 expanded，然而 less 并没有输出设置....

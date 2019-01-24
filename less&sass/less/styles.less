@@ -1,0 +1,30 @@
+// 变量的使用
+@background-color: #9fcdff; //背景颜色
+.box{
+  width: 500px;
+  height: 500px;
+  background-color: @background-color;
+}
+// 嵌套的使用及作用域
+@text-color: #000000;
+ul{
+  @text-color: #fff;
+  background-color: #03A9F4;
+  padding: 10px;
+  list-style: none;
+  li{
+    background-color:   @text-color;  // 作用域
+    border-radius: 3px;
+    margin: 10px 0
+  }
+}
+
+// &的使用  在类前面添加了&之后，编译之后的css变为且的关系，而没有使用&的css是父子的关系 ,&代替父.a.b
+.a{
+  .b{
+    color: #9fcdff;
+  }
+  &.b{
+    color: #ff6600;
+  }
+}

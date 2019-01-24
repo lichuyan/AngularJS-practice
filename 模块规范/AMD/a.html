@@ -7,6 +7,7 @@
 <body>
 <script type="text/javascript" src="require.js"></script>
 <script type="module" >
+//    加载模块后，回调
     require(['./b'],function (math) {
         math.add(2,3);
         console.log("++++++",math.add(7,3))
