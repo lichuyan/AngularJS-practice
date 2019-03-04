@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*应用场景一 --------作为函数返回*/
+    function F1() {
+        var a=100;
+        var printf=function () {   // 闭包
+            console.log(a)  // 里面的变量a用到了外面的函数的a
+        };
+        return printf;
+    }
+    var f1=F1();
+    var a=200;
+    f1();  // 作用域链找的是定时的父级作用域
+
+    /* 应用场景一 --------作为参数传递 */
+    function F2() {
+	    var b=100;
+	    var printf=function () {   // 闭包
+		    console.log(b)  // 里面的变量a用到了外面的函数的a
+	    };
+	    return printf;
+    }
+    var f2=F2();
+    function F3(fn) {
+        var b=200;
+        fn();
+    }
+    F3(f2)
+
+    /*创建10个<a>标签，点击的时候弹出对应的序号()(i)*/
+    var a;
+    for(var i=0;i<9;i++){
+    	a=document.createElement('a');
+    	a.innerHTML=i+'<br>';
+    	document.body.appendChild(a);
+        (function (i) {
+	        a.addEventListener('click',function (e) {
+		        e.preventDefault(); // 组织默认事件f
+		        alert(i)
+	        })
+        })(i);
+    }
+    /*----------------------------------------实际开发用来封装变量,收敛权限--判断用户是否第一次登陆----------------------------------*/
+    function isFirstLoad() {
+        var _list=[];
+        return function (id) {
+            if(_list.indexOf(id)>=0){
+            	return false;
+            }else {
+            	_list.push(id)
+            	return true
+            }
+        }
+    }
+
+    var firstLoad=isFirstLoad();
+    console.log("++++++++",  firstLoad(10))
+    console.log("++++++++",firstLoad(10))
+    console.log("++++++++",firstLoad(23))
+
+</script>
+</body>
+</html>
