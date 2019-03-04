@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*-------------------------------借助构造函数实现继承--缺点：原型链上的不会被继承-----------------------------*/
+    // 父类
+    function Parent(name) {
+        this.name=name;
+    }
+    Parent.prototype.sayName=function () {
+        console.log("++++++++",this.name)
+    }
+    // 子类
+    function Child(age) {
+    	Parent.call(this,'lichuyan'); // 把Parent里的this指向Child实例化对象
+        this.age=age;
+    }
+    var c1=new Child(12);
+    console.log("++++++++",c1)
+
+    /*-------------------------------借助原型链实现继承--缺点：一个实例影响到另一个实例-----------------------------*/
+
+    // 父类
+    function Parent2(name) {
+	    this.name="lichuyan";
+	    this.paly=[1,2,3];
+    }
+    Parent2.prototype.sayName=function () {
+	    console.log("++++++++",this.name)
+    }
+    // 子类
+    function Child2(age) {
+	    this.age=age;
+    }
+    Child2.prototype=new Parent2();
+    var c2=new Child2(34);
+    var c3=new Child2(78);
+    c3.paly.push(4);
+    console.log("++++++++",c2.paly)
+    console.log("++++++++",c3.paly);
+
+
+    /*-------------------------------组合--缺点：父类调用2次-----------------------------*/
+    // 父类
+    function Parent3() {
+	    this.name="lichuyan";
+	    this.paly=[1,2,3];
+    }
+    Parent3.prototype.sayName=function () {
+	    console.log("++++++++",this.name)
+    }
+    // 子类
+    function Child3(age) {
+    	Parent3.apply(this);
+	    this.age=age;
+    }
+    Child3.prototype=new Parent3();
+    var c4=new Child3(34);
+    var c5=new Child3(78);
+    c4.paly.push(4);
+    console.log("++++++++",c4);
+    console.log("++++++++",c4.paly);
+    console.log("++++++++",c5.paly);
+
+    /*-------------------------------组合优化1 缺点：无法判断c5是谁的直接实例化-----------------------------*/
+    // 父类
+    function Parent4() {
+	    this.name="lichuyan";
+    }
+    Parent4.prototype.sayName=function () {
+	    console.log("++++++++",this.name)
+    }
+    // 子类
+    function Child4(age) {
+	    Parent4.apply(this);
+	    this.age=age;
+    }
+    Child4.prototype=Parent4.prototype;
+    var c6=new Child4(34);
+    console.log("++++++++",c6);
+    console.log("++++++++",c6 instanceof Child4);   //true
+    console.log("++++++++",c6 instanceof Parent4);  // true
+
+    /*-------------------------------组合优化2 ---------------------------------------------*/
+    // 父类
+    function Parent5() {
+	    this.name="lichuyan";
+    }
+    Parent5.prototype.sayName=function () {
+	    console.log("++++++++",this.name)
+    }
+    // 子类
+    function Child5(age) {
+	    Parent4.apply(this);
+	    this.age=age;
+    }
+    Child5.prototype=Object.create(Parent5);
+    Child5.prototype.constructor=Child5;
+    var c7=new Child5(34);
+    console.log("++++++++",c7);
+    console.log("++++++++",c7 instanceof Child5);   //true
+    console.log("++++++++",c7 instanceof Parent5);  // false
+</script>
+
+</body>
+</html>
