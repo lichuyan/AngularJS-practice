@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="target">hello</div>
+<button onclick="change()">点击触发</button>
+
+<script>
+    /*自定义事件*/
+    let ev=document.getElementById('target');
+    let eve=new Event('custome');
+    ev.addEventListener('custome',function () {
+        alert("我被触发了");
+    })
+   function change() {6
+	    ev.dispatchEvent(eve);  // 触发自定义事件
+    }
+</script>
+</body>
+</html>

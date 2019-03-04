@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2列布局</title>
+    <style>
+        /*清除浏览器自带样式*/
+        html *{
+            padding: 0px;
+            margin: 0px;
+        }
+        .content div{
+            min-height: 100px;
+        }
+        .left{
+            width: 300px;
+            float: left;
+            background: #03A9F4;
+        }
+        .mid{
+            background: #ff6600;
+        }
+        .right{
+            float: right;
+            width: 300px;
+            background: #6c94be;
+        }
+        /*绝对定位*/
+        .content1 div{
+            min-height: 100px;
+            position: absolute;  /*3块都是绝对定位*/
+        }
+        .left1{
+            width: 300px;
+            left: 0px;
+            background: #03A9F4;
+        }
+        .mid1{
+            /*注意不写width，起到宽度自适应*/
+            left: 300px;
+            background: #ff6600;
+            right: 300px;
+        }
+        .right1{
+            right: 0px;
+            width: 300px;
+            background: #6c94be;
+        }
+
+        /*弹性布局*/
+        .content2 {
+            min-height: 100px;
+            display: flex;
+        }
+        .left2{
+            width: 300px;
+            background: #03A9F4;
+        }
+        .mid2{
+            flex:1;
+            background: #ff6600;
+        }
+        .right2{
+            width: 300px;
+            background: #6c94be;
+        }
+    </style>
+</head>
+<body>
+<!--float-->
+<!--<div class="content">-->
+    <!--<div class="left"></div>-->
+    <!--<div class="right"></div>-->
+    <!--<div class="mid">-->
+        <!--hello my name is middles content;-->
+    <!--</div>-->
+<!--</div>-->
+
+ <!--我是绝对定位-->
+<!--flebox-->
+<!--<div class="content1">-->
+    <!--<div class="left1"></div>-->
+    <!--<div class="mid1">-->
+        <!--hello my name is middles content;-->
+    <!--</div>-->
+    <!--<div class="right1"></div>-->
+<!--</div>-->
+
+<!--<br>-->
+
+我是弹性布局
+<!--flebox-->
+<div class="content2">
+    <div class="left2"></div>
+    <div class="mid2">
+        hello my name is middles content;
+    </div>
+    <div class="right2"></div>
+</div>
+
+</body>
+</html>

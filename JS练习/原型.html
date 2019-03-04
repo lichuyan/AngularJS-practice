@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*------------------------------------------------------------创建对象三种方式------------------------------------*/
+    let ob1={name:'lichuyan'};
+
+    function Foo(name) {
+        this.name=name;
+    }
+   var  ob2=new  Foo("xioahua");
+
+    let P={name:"dashu"};
+    let ob3=Object.create(P);
+    console.log("1111",ob1); //{name: "lichuyan"}
+    console.log("2222",ob2); //{name: "lichuyan"}
+    console.log("3333",ob3); //{}  原型链
+    console.log("3333",ob3.name);
+
+    /*---------------------------------------------------------------------------------*/
+    console.log("+++++++",ob2.__proto__);  /// 原型对象
+    console.log("+++++++",Foo.prototype);
+    console.log("+++++++",ob2.__proto__===Foo.prototype); // true
+    console.log("+++++++",Foo.prototype.constructor); // 构造函数Foo(){}
+
+    console.log("+++++++",ob2.__proto__.__proto__);// Object
+    console.log("+++++++",ob2.__proto__.__proto__.__proto__);// Object
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

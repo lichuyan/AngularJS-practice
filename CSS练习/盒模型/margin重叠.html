@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>margin重叠</title>
+    <style>
+        html *{
+            padding: 0px;
+            margin: 0px;
+        }
+        .father{
+            /*overflow: hidden;*/ /*加上这一句创建了BFC father 变为110px*/
+            background: #ff6600;
+        }
+        .child{
+            background: #9fcdff;
+            height: 100px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<!--father 为110px-->
+
+<div class="father">
+    <div class="child"></div>
+</div>
+</body>
+</html>
