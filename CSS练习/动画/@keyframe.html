@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .ball{
+            width:10px;
+            height:10px;
+            border-radius:50%;
+            background-color:#fff
+        }
+    </style>
+</head>
+<body>
+<div id="ball" class="ball" style="animaition: ball-run 10s infinite;"></div>
+
+
+<script>
+
+    getkeyframes=(name)=> {
+        var animation = {};
+        // 获取所有的style
+        var ss = document.styleSheets;
+        for (var i = 0; i < ss.length; ++i) {
+            const item = ss[i];
+            if (item.cssRules[0] && item.cssRules[0].name && item.cssRules[0].name === name) {
+                animation.cssRule = item.cssRules[0];
+                animation.styleSheet = ss[i];
+                animation.index = 0;
+            }
+        }
+        return animation;
+    }
+
+    const ballRunKeyframes = getkeyframes('ball-run');
+    // deleteRule方法用来从当前样式表对象中删除指定的样式规则
+    ballRunKeyframes.styleSheet.deleteRule(animation.index);
+    //重新定义ball从定位在(20,30)的位置运动到(400,500) 的位置
+    const runkeyframes =` @keyframes ball-run{
+    0%{
+        left: 20px;
+        top: 30px;
+    }
+    100%{
+        left: 400px;
+        top: 500px;
+    }
+}`;
+    // insertRule方法用来给当前样式表插入新的样式规则.
+    ballRunKeyframes.styleSheet.insertRule(keyFrames, animation.index);
+    // 此时已经修改好了ball-run 对应的keyframes了，但是在坑爹的IE中小球ball依然没有改变为他的运动方式，解决方案就是，从新刷新ball Dom中的animation的值
+    const ball = document.getElementById('ball');
+    // 随便给一个animation的名称
+    ball.setAttribute('style','animaition: ball-run1 10s infinite;');
+    setTimeout(_=>{
+        // 1ms后纠正animation的名称
+        ball.setAttribute('style','animaition: ball-run 10s infinite;');
+    },1)
+</script>
+
+
+</body>
+</html>

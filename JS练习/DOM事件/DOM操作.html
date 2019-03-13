@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .p1{
+            color: #ff6600;
+        }
+    </style>
+</head>
+<body>
+<p >hello</p>
+<p>everyone</p>
+<p>!!!</p>
+<script>
+    var pList=document.getElementsByTagName('p');
+    console.log("++++++++",pList);
+    var p=pList[0];
+    // property
+    p.className='p1'
+    console.log("++++++++",p);
+
+    // Attribute属性
+    p.getAttribute('data-name');
+    p.setAttribute('data-name','immoc');
+
+</script>
+</body>
+</html>

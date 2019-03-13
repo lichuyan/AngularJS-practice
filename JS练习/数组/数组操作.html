@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // slice复制数组   splice 添加
+    function add(arr,index,item) {
+        arr2= arr.slice(0)
+        arr2.splice(index,0,item);
+        return arr2;
+    }
+    var arr=[23,4,2,21,34];
+    var arr2=[];
+    console.log(add(arr,3,"lihcuan"));
+
+    // 去重
+
+    arry=[0,3,2,4,2,6,8,3,2,1];
+    list= method4 ();
+    function method4 (){
+        //将数组进行排序
+        arry.sort();
+        //定义结果数组
+        var arr=[];
+
+        for(var i = 0; i < arry.length; i++){    //从数组第二项开始循环遍历数组
+            //判断相邻两个元素是否相等，如果相等说明数据重复，否则将元素写入结果数组
+            if(arry[i] !== arry[i+1]){
+                arr.push(arry[i]);
+            }
+        }
+        return arr;
+    }
+    console.log("+++++++++",list)
+</script>
+</body>
+</html>
