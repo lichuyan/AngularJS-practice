@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+<!--js原型Ajax-->
+<script>
+	// var xhr = new XMLHttpRequest();
+	// xhr.open('get', './data.json', true);
+	// xhr.onreadystatechange = function () {
+	// 	if (xhr.readyState == 4) {
+	// 		if (xhr.status == 200) {
+	// 			alert(xhr.responseText)
+	// 		}
+	// 	}
+	// }
+	// xhr.send(null);
+
+	/* ajax 跨域方法 jsonp*/
+
+	$.ajax({
+		async : true,
+		url : "https://api.douban.com/v2/book/search",
+		type : "GET",
+		dataType : "jsonp", // 返回的数据类型，设置为JSONP方式
+		jsonp : 'callback', //指定一个查询参数名称来覆盖默认的 jsonp 回调参数名 callback
+		jsonpCallback: 'handleResponse', //设置回调函数名
+		data : {
+			q : "javascript",
+			count : 1
+		},
+		success: function(response, status, xhr){
+			console.log('状态为：' + status + ',状态是：' + xhr.statusText);
+			console.log(response);
+		}
+	});
+
+
+
+</script>
+
+</body>
+</html>

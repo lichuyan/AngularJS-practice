@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // js写冒泡
+    var arr=[2,3,4,1,4];
+    function bulleSort(arr) {
+    	var flag=true; // 表示一趟循环下来是否有交换
+    	var temp=[];
+        for (var i=1;i<=arr.length-1;i++){  // 第i次遍历
+            for(var j=0;j<arr.length-i;j++){
+            	if(arr[j]>arr[j+1]){
+            		temp=arr[j];
+		            arr[j]=arr[j+1];
+		            arr[j+1]=temp;
+		            flag=true;
+            		}
+            }
+            if(!flag){
+            	break;
+            	}
+        }
+        return arr
+    }
+    console.log(bulleSort(arr));
+
+  /*  继承*/
+    function  People(name,age){
+	    this.name=name;
+	    this.age=age;
+	    this.say=function(){
+		    alert("我的名字是:"+this.name+"我今年"+this.age+"岁！");
+	    };
+    }
+    function Child() {
+        // People.apply(this,['lichuyan',18]);   // 使用构造函数方法
+    }
+    Child.prototype=new People('LICHUYAN',34);
+    var c1=new Child();
+    c1.say();
+
+</script>
+
+</body>
+</html>
