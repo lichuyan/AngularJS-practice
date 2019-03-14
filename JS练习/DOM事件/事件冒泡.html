@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="div1">
+    <p id="p1">1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+</div>
+<div id="div2">
+    <p>5</p>
+    <p>6</p>
+</div>
+<div id="div3">
+    <a href="">1</a>
+    <a href="">2</a>
+    <a href="">3</a>
+    <a href="">4</a>
+    <a href="">5</a>
+</div>
+<script>
+    // 事件冒泡
+//    var p1=document.getElementById('p1');
+//    var bodu=document.body;
+//    p1.addEventListener('click',function (e) {   // p1的点击事件会向上传，body上也有点击事件，所以也就执行了。
+//        e.stopPropagation()  ; //  阻止冒泡
+//        alert('冒泡1');
+//    })
+//
+//    bodu.addEventListener('click',function () {
+//        alert('冒泡2');
+//    })
+
+    // 代理
+    var div3=document.getElementById('div3');
+    div3.addEventListener('click',function (e) {
+        var target=e.target;
+        if(target.nodeName==='A'){
+            alert(target.innerHTML)
+        }
+    })
+
+
+
+</script>
+
+</body>
+</html>
