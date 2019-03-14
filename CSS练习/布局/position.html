@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .static{
+            position: static;width: 100px;height: 100px;background: #9fcdff
+        }
+        .relative{
+            left: 100px;
+            top:100px;
+            position: relative;width: 100px;height: 100px;background: red
+        }
+        .absolute{
+            left: 100px;
+            top:100px;
+            position: absolute;
+            width: 100px;height: 100px;background: yellowgreen
+        }
+        .fixed{
+            z-index: 99;
+            position: fixed;width: 100px;height: 100px;background: yellow
+        }
+
+    </style>
+
+
+</head>
+<body>
+<div class="static" style=""></div>
+<div class="relative"style=""></div>
+<div class="absolute" style="">
+    <div class="absolute_a" style="height:30px;width:30px;left: 20px;top:20px;background: #03A9F4;position: absolute;">
+        </div>
+</div>
+<div class="fixed" style=""></div>
+
+</body>
+</html>

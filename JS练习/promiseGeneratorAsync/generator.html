@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 生成器 不会立即执行
+    function* gen() {
+    	yield "welcome";
+    	yield "to";
+    	return "lichuyan";
+    }
+    console.log(gen());
+    let g1=gen();
+    console.log(g1.next());
+    console.log(g1.next());
+    console.log(g1.next());
+
+</script>
+
+
+</body>
+</html>
