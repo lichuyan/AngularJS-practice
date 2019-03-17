@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    async  function fn() {
+        try {
+	        const xhr = new XMLHttpRequest();
+	        xhr.open("GET", "./data.json",true); // false 为同步 ，默认是false
+	        xhr.send();
+        	let f1=await console.log(xhr.responseText)
+        	let f2=await console.log("dddddddddd")
+        	let f3=await console.log("dddddddddd")
+        }catch (e){
+
+        }
+    }
+    console.log(fn())
+    fn().then(resul=>{
+    	console.log("+++++++++++++",resul)
+    })
+
+</script>
+</body>
+</html>

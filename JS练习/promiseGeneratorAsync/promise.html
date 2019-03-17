@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>promise</title>
+</head>
+<body>
+<script>
+    new Promise((resolve, reject) => {
+    	// 请求数据
+	    const xhr = new XMLHttpRequest();
+	    xhr.open("GET", "./data.json",false); // false 为同步 ，默认是false
+	    xhr.onload = () => resolve(xhr.responseText);
+	    xhr.onerror = () => reject(xhr.statusText);
+	    xhr.send();
+
+    })   // 处理结果代码
+        .then(result=>{
+
+            return   console.log("+++++++++++",result)
+
+        })
+        .then(result=>{
+        	return console.log("+++++++++++++第二个then")
+        })
+        .catch(err=>{
+	        console.log("+++++++++++",err);
+
+        })
+
+   /* -------------------关于Promise.all------------------------*/
+   let p1=new Promise((resolve, reject) => {
+   	resolve('aaa')
+   });
+    let p2=new Promise((resolve, reject) => {
+	    resolve('bbb')
+    });
+    let p3=new Promise((resolve, reject) => {
+	    resolve('ccc')
+    })
+    p3.catch(err=>{
+    	console.log("err".err)
+    })
+    Promise.all([p1,p2,p3]).then(result=>{
+    	console.log("+++++++++",result)
+    })
+
+</script>
+</body>
+</html>
