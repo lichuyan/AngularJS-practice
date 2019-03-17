@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>防抖</title>
+</head>
+<body>
+<button class="btn" >点我</button>
+<script>
+    var  btn=document.getElementsByClassName('btn')[0];
+
+
+    function debounce(fn, wait) {
+        var timeout = null;
+        return function() {
+            if(timeout !== null) clearTimeout(timeout);
+            timeout = setTimeout(fn, wait);  // 维护一个计时器，规定在delay时间后触发，但是在delay时间内再次被触发，就去取消之前的计时器重新设置
+            console.log("++++++++++",timeout) // 点击的次数 1，2，3。。。。
+        }
+    }
+    // 处理函数
+    function handle() {
+        console.log(Math.random());
+    }
+    // 滚动事件
+    btn.addEventListener('click', debounce(handle, 3000));
+</script>
+</body>
+</html>
