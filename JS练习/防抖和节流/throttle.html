@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节流</title>
+</head>
+<body>
+<button class="btn" >点我</button>
+
+<script>
+    var  btn=document.getElementsByClassName('btn')[0];
+
+    var throttle = function(func, delay) {
+        var prev = Date.now();
+        return function() {
+            var context = this;
+            var args = arguments;
+            var now = Date.now();
+            if (now - prev >= delay) {
+                func.apply(context, args);
+                prev = Date.now();
+            }
+        }
+    };
+    function handle() {
+        console.log(Math.random());
+    }
+
+    btn.addEventListener('click', throttle(handle, 2000));
+
+</script>
+
+</body>
+</html>

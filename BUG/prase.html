@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    let message=['{"name":"gaoling"}',
+        '{"name":"lala"}','{"name":"lichuyan"}'];
+    let temp=[];
+
+
+//必须是这种josn串格式，才能转josn对象
+
+let vv='{"name":"ssss"}';
+let dd=JSON.parse(vv);
+console.log("++++++++++++dd",dd)
+console.log("++++++++++++dd",dd.name)
+console.log("++++++++++++dd",dd['name'])
+
+
+    message.forEach((item)=>{
+        console.log("item",item);
+        console.log("item的类型",typeof  item);
+
+        console.log("item json串化" ,JSON.parse(item));
+        console.log("item的类型",JSON.parse(item)['name']);
+
+        temp.push(JSON.parse(item)['name'])
+    })
+ console.log("++++++++++++++",temp)
+</script>
+
+</body>
+</html>
