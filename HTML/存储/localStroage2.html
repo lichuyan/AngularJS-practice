@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .active {
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div>
+    <button ng-click="click()">获取本地存储的值</button>
+    <button ng-click="clickDel()">删除本地存储</button>
+</div>
+
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+        $scope.click=function(){
+            var name=localStorage.getItem("name");
+            var age=localStorage.getItem("age");
+            var obj=localStorage.getItem("obj");
+            var arr=localStorage.getItem("arr");
+            var all=localStorage.valueOf();
+            console.log("+++++++++++++localstorages所有存储",all)
+            console.log("+++++++++++++localstorages所有存储",localStorage.hasOwnProperty("name"))
+            console.log("+++++++++++++++++",name);
+            console.log("+++++++++++++++++",age);
+            console.log("+++++++++++++++++",obj);
+            console.log("+++++++++++++++++json",JSON.parse(obj));
+            console.log("+++++++++++++++++",arr);
+            console.log("+++++++++++++++++数组",arr.split(','));
+
+            localStorage.removeItem("name")
+             name={};
+	        console.log("+++++++++++++++++",name);
+
+
+	        console.log("========================",localStorage.getItem("add"));
+        }
+
+        $scope.clickDel=function(){
+            localStorage.clear();
+        }
+
+
+    });
+</script>
+
+</body>

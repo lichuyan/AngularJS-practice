@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/angular.js/1.4.6/angular.min.js"></script>
+    <style type="text/css">
+        .active {
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+<div>
+    <label>姓名:</label>
+    <input type="text" value="name" ng-model="name">
+
+    <label>年龄:</label>
+    <input type="text" value="age" ng-model="age">
+    <button ng-click="click()">保存的本地</button>
+</div>
+
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller("myCtrl", function ($scope) {
+         // 测试是否浏览器
+        if(typeof(Storage)!=="undefined")
+        {
+            console.log("yes");
+        } else {
+            console.log("no");
+        }
+
+        $scope.name = "原明旗";
+        $scope.age= "26";
+        $scope.obj={
+            "name" : "原明旗",
+            "age" :"26"
+        };
+        $scope.arr=[12,34,45,34];
+
+        var obj2 = JSON.stringify($scope.obj); // 将对象转换为字符串
+        var arr2 = $scope.arr.join(','); // 将数组转换为字符串
+
+        $scope.click=function(){
+            console.log("++++++++++++obj", $scope.obj );
+            console.log("++++++++++++obj2", obj2 );
+            console.log("++++++++++++arr2", arr2 );
+            localStorage.setItem("age",  $scope.age);
+            localStorage.setItem("name",  $scope.name);
+            localStorage.setItem("obj", obj2);
+            localStorage.setItem("arr", arr2);
+        }
+
+
+    });
+</script>
+
+</body>
