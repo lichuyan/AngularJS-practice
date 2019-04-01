@@ -29,4 +29,20 @@
 
 
 </body>
+
+<script>
+    let arr2=[]
+    let arr3={}
+    arr=[{"heart_id":12},{"heart_idw":13}, {"heart_id":14}, {"heart_id":15}]
+   arr.forEach((item ,index)=>{
+
+   if(item.hasOwnProperty("heart_id")){
+	   console.log("++++++++++",item)
+	   arr2.push(item.heart_id)
+   }
+   })
+    arr3.heart_id=arr2
+    console.log("++++++++++",arr3)
+</script>
+
 </html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function validParentheses(str) {
+		var arr=str.split('');
+		var newArr=[];
+		for(var i=0;i<arr.length;i++){  // 顺序读取字符串
+
+			if(arr[i]==='('||arr[i]==='['||arr[i]==='{'){   // 遇到左括号进栈
+				newArr.push(arr[i]);
+			}
+
+			if(arr[i]===']'){   // 如果遇到有括号，出栈，看栈顶元素是否匹配
+				if( newArr.pop()==='['){
+					continue;
+				}else {
+					return false;
+				}
+			}
+
+			if(arr[i]===')'){
+				if( newArr.pop()==='('){
+					continue;
+				}else {
+					return false;
+				}
+			}
+			if(arr[i]==='}'){
+				if( newArr.pop()==='{'){
+					continue;
+				}else {
+					return false;
+				}
+			}
+		}
+		console.log('============',newArr);
+		return newArr.length===0?true:false  // 最后栈空则匹配成功
+	}
+
+	var str='([{}])';
+	console.log(validParentheses(str))  // true
+</script>
+
+</body>
+</html>

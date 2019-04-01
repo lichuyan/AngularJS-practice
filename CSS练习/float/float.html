@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .parent{
+            zoom: 2;
+            border: 1px solid royalblue;
+        }
+        .parent:after{
+            display: block;
+            clear: both;
+            content: "";
+        }
+        .child{
+            width: 100px;
+            height: 100px;
+            background: #ff6600;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<body>
+<div class="parent">
+    <div class="child">我是孩子</div>
+</div>
+
+</body>
+
+</body>
+</html>

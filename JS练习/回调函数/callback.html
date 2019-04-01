@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+function addSqua(num1,num2,callback) {
+    var sum=num1+num2;
+    return callback(sum);
+}
+
+let num=addSqua(1,2,function squa(num) {
+    return num*num;
+});
+console.log("++++++++++++++++",num);
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+
+<body>
+<script>
+    // test
+	var reg=/^\({3}\){3}$/;
+	var str='(((})))';
+	console.log("=========",reg.test(str));
+
+	// match
+	'hello(lichuyan is 18)'.match(/\((.+)\)/g);
+	console.log(RegExp.$1); // dsfasjfj3124123
+
+    var str2='hello(lichuyan is 18)'.replace(/\((.+)\)/g,'xiaohua');
+    console.log('strww',str2)
+</script>
+
+</body>
+</html>
