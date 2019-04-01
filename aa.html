@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>-->
+</head>
+<body>
+
+
+    <audio src="aa.mp3" id="myaudio" controls="controls" loop="false" hidden="true">
+
+    </audio>
+    <input type="button" onclick="autoPlay()" value="播放" />
+    <input type="button" onclick="closePlay()" value="关闭" />
+
+<script>
+
+
+
+    function autoPlay() {
+        var myAuto = document.getElementById('myaudio');
+        myAuto.play();
+    }
+    function closePlay() {
+        var myAuto = document.getElementById('myaudio');
+        myAuto.pause();
+        myAuto.load();
+    }
+
+</script>
+</body>
+</html>

@@ -4,22 +4,32 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        #box {
-            width: 300px;
-            height: 300px;
-            background: #ddd;
-            display: flex;
-            /*justify-content: center; !*水平居中*!*/
-            /*align-items: center;  !*垂直居中*!*/
-            flex-direction: column;
-            justify-content: center;
+        /*#box {*/
+            /*width: 300px;*/
+            /*height: 300px;*/
+            /*background: #ddd;*/
+            /*display: flex;*/
+            /*!*justify-content: center; !*水平居中*!*!*/
+            /*!*align-items: center;  !*垂直居中*!*!*/
+            /*flex-direction: column;*/
+            /*justify-content: center;*/
+        /*}*/
+
+        #box{
+            background: #ff6600;
+            display: grid;
+            grid-template-rows: 300px auto  300px;
+
         }
+
 
     </style>
 </head>
 <body>
 <div id="box">
-    <div id="child">我是测试id</div>
+    <div id="top"></div>
+    <div id="mid">我是测试id</div>
+    <div id="bottom"></div>
 </div>
 
 </body>
