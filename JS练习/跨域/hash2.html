@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    //模拟一个简单的参数处理操作
+    switch(location.hash){
+        case '#paramdo':
+            callBack();
+            break;
+        case '#paramset':
+            //do something……
+            break;
+    }
+
+
+    function callBack() {
+        try {
+            parent.location.hash = 'somedata';
+        } catch (e) {
+            // ie、chrome的安全机制无法修改parent.location.hash，
+            // 所以要利用一个中间的cnblogs域下的代理iframe
+            var ifrproxy = document.createElement('iframe');
+            ifrproxy.style.display = 'none';
+            ifrproxy.src = 'http://localhost:63342/AngularJS-practice/JS练习/跨域/hash3.html';    // 注意该文件在"a.com"域下
+            document.body.appendChild(ifrproxy);
+        }
+    }
+</script>
+
+</body>
+</html>

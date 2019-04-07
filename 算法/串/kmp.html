@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function index_KMP(str,subStr) {
+        var next=[];
+       var strLen=str.length;  // 主串长度
+       var subStrLen=subStr.length; // 子串长度
+       var i=0;
+       var j=0;
+        get_next(subStr,next);  // 获取next数组值
+        console.log(next);
+
+        while (i<strLen&&j<subStrLen){
+            if(str[i]!==subStr[j]){   // 2个独立的过程，走1后，j发生变化，也可能走2
+                j=j=next[j-1];
+            }
+
+            if(str[i]===subStr[j]){
+                j++;
+            }
+
+            if(j==subStrLen){
+                return i-subStrLen+1;
+            }
+            i++;   // 主轴不动，i++；子轴动，改变j的位置
+        }
+        return -1;
+
+    }
+
+    function get_next(subStr,next){
+
+        var i=1; // next数组下标
+        var k=0; // next 值
+        next[0]=0;
+        var a=0;
+
+        for(var i=1;i<subStr.length;i++){
+
+            while (k>0 && subStr[k]!=subStr[i]){
+                k=next[k-1];
+            }
+
+            if(subStr[k]===subStr[i]){
+                k++;
+            }
+            next[i]=k;
+        }
+     return next
+    }
+    var str='acabaabaabcacaabc';
+    var subStr='abaabcac';
+    console.log( index_KMP(str,subStr))
+
+
+</script>
+
+</body>
+</html>

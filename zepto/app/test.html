@@ -4,8 +4,17 @@
     <meta charset="UTF-8">
     <script src="../src/zepto.js"></script>
     <title>Title</title>
+    <style>
+        .box{
+            width:200px;
+            height: 200px;
+            background: green;
+        }
+    </style>
 </head>
 <body>
+<button id="btn">点击变颜色</button>
+<div class="box">hello</div>
 <p id="p1">测试</p>
 <div>
     <span>test</span>
@@ -13,11 +22,23 @@
     <span>test</span>
 </div>
 <script type="text/javascript">
+    $(function () {
+        $('#btn').on('click',function () {
+            $('.box').css({
+                background: 'red',
+            })
+        })
+
+    })
+
+    console.log("=============",$)
 	var $p1 = $('#p1');
 	console.log($p1);
 
 	var $span = $('span');
 	console.log($span);
+
+
 </script>
 </body>
 </html>

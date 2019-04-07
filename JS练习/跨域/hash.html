@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // 创建一个隐藏的iframe；
+    function startRequest(){
+        var ifr = document.createElement('iframe');
+        ifr.style.display = 'none';
+        ifr.src = 'http://localhost:63342/AngularJS-practice/JS练习/跨域/hash2.html#paramdo';
+        document.body.appendChild(ifr);
+    }
+    console.log('location',location);
+
+    function checkHash() {
+        try {
+            var data = location.hash ? location.hash.substring(1) : '';
+            if (console.log) {
+                console.log('Now the data is '+data);
+            }
+        } catch(e) {};
+    }
+    setInterval(checkHash, 2000);
+
+</script>
+
+</body>
+</html>

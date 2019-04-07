@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 树的遍历
+    var tree = {
+        value: 1,
+        left: {
+            value: 2,
+            left: {
+                value: 4
+            }
+        },
+        right: {
+            value: 3,
+            left: {
+                value: 5,
+                left: {
+                    value: 7
+                },
+                right: {
+                    value: 8
+                }
+            },
+            right: {
+                value: 6
+            }
+        }
+    }
+    // 树的先序遍历
+    var preOrder = function (node) {
+        if (node) {
+//            console.log(node.value);
+            preOrder(node.left);
+            preOrder(node.right);
+        }
+    }
+    preOrder(tree);
+
+
+    // 层次遍历  用到队列--通过入队列和出队列
+    var levelOrder=function (node) {
+        if(!node){
+            throw new Error('Empty Tree')
+        }
+
+        var que = [];
+        que.push(node);
+        while(que.length !== 0) {
+            node = que.shift();
+            console.log(node.value);
+            if(node.left) que.push(node.left)
+            if(node.right) que.push(node.right)
+        }
+    }
+    levelOrder(tree);
+
+    // 树的深度
+
+    function deep(tree) {
+        if(!tree) return 0;
+        else {
+            let m=deep(tree.left);
+            let n=deep(tree.right);
+            return (m>n?m:n)+1;
+
+        }
+    }
+    console.log('树的深度是', deep(tree))  // 4
+
+
+
+
+
+</script>
+
+</body>
+</html>

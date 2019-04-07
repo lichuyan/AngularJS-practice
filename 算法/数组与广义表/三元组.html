@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+// 矩阵转置；
+    function reverse(arr) {
+        var  newArr=[]; // 声明一维数组
+        var  row=arr.length; // M的行数 3
+        var  col=arr[0].length;  // M的列数 2
+
+        for(var i=0;i<col;i++){
+            newArr[i]=[]; // 声明2纬数组。每个2纬数组里面的一个元素都是一个数组
+            for (var j=0;j<row;j++){
+                newArr[i][j]=arr[j][i];  // 数组可以做到随机访问
+            }
+        }
+
+        return newArr;
+    }
+
+    var arr=[
+        ['a','b'],
+        ['c','d'],
+        ['e','f']
+    ];
+    console.log(reverse(arr));
+
+    // 矩阵相乘，A（m*n）B(n*k) ==>c(m*k)
+    function mutmat(A,B) {
+       var m=A.length; // A的行数
+       var k=B[0].length; // B的列数
+
+       var n=A[0].length; // A的列数即B的行数
+       var c=[];
+       for(var i=0;i<m;i++){
+           c[i]=[];
+           for(var j=0;j<k;j++){
+               c[i][j]=0;
+               for(var h=0;h<n;h++){
+                   c[i][j]+=A[i][h]*B[h][j];
+               }
+           }
+       }
+
+       console.log(c)
+    }
+    A=[
+        [1,2,3],
+        [4,5,6],
+    ];
+    B=[
+        [1,2,3],
+        [4,5,6],
+        [7,8,9],
+    ];
+   mutmat(A,B)
+
+</script>
+
+</body>
+</html>

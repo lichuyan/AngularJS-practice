@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function backExp(str) {
+        var temp=str.split('');
+        var arr=[]; // 存放输出结果
+        var opeArr=[]; // 运算符栈
+        var rex=/\d/;
+        for(var i=0;i<temp.length;i++){
+            if(rex.test(temp[i])){   // 是数字,直接输出
+                arr.push(temp[i])
+            }else {                   // 是符号，判断优先级
+                if(opeArr.length===0||temp[i]==='('){   // 如果第一次，或者是左括号，符号直接入栈。
+                    opeArr.push(temp[i])
+
+                }else {   // 判断优先级，来确定读取的符号什么时候入栈。
+
+                    if( !compare(temp[i],opeArr[opeArr.length-1])){  // >符号直接入栈
+                        opeArr.push(temp[i])
+                    }else {    // <=出栈，直到 >符号，入栈
+//                        while (!compare(temp[i],opeArr[opeArr.length-1])){
+//                            opeArr.pop();
+//                        }
+                        opeArr.pop();
+                    }
+
+                }
+
+                console.log(opeArr)
+            }
+        }
+        return arr;
+    }
+    function compare(a,b){
+
+        if(((/\*/).test(a)||(/\//).test(a))&&((/\+/).test(a)||(/\-/).test(a))){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    var str="3*(7-2)";
+    console.log( backExp(str));
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function test(n,str,str1) {
+        while (n>0){
+
+            var count=0;
+            var temp=str.split('');
+            var arr=[];
+            arr.push(temp[0]);
+            for(var i=1;i<temp.length;i++){
+
+                if(arr[arr.length-1]===temp[i]){
+
+
+
+                    arr.pop();
+                    count++;
+                }else {
+                    arr.push(temp[i]);
+                }
+
+            }
+            if(count%2===0){
+                return 'Oh,no'
+            }else {
+                return 'Yes,you can win!'
+            }
+
+
+            n--;
+        }
+
+
+    }
+
+
+    var n=2;
+    var str="12332";
+    var str1="112233";
+
+    console.log( test(n,str,str1));
+
+</script>
+
+</body>
+</html>

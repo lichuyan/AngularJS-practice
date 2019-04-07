@@ -5,7 +5,7 @@ var Zepto = (function() {
 		document = window.document,
 		elementDisplay = {}, classCache = {},
 		cssNumber = { 'column-count': 1, 'columns': 1, 'font-weight': 1, 'line-height': 1,'opacity': 1, 'z-index': 1, 'zoom': 1 },
-		fragmentRE = /^\s*<(\w+|!)[^>]*>/,
+		fragmentRE = /^\s*<(\w+|!)[^>]*>/,  // 取出html代码中第一个html标签（或注释），如取出 <p>123</p><h1>345</h1> 中的 <p>
 		singleTagRE = /^<(\w+)\s*\/?>(?:<\/\1>|)$/,
 		tagExpanderRE = /<(?!area|br|col|embed|hr|img|input|link|meta|param)(([\w:]+)[^>]*)\/>/ig,
 		rootNodeRE = /^(?:body|html)$/i,
@@ -27,7 +27,7 @@ var Zepto = (function() {
 		simpleSelectorRE = /^[\w-]*$/,
 		class2type = {},
 		toString = class2type.toString,
-		zepto = {},
+		zepto = {}, // 创建一个zepto变量
 		camelize, uniq,
 		tempParent = document.createElement('div'),
 		propMap = {
@@ -153,6 +153,7 @@ var Zepto = (function() {
 	// to the array. Note that `__proto__` is not supported on Internet
 	// Explorer. This method can be overriden in plugins.
 	zepto.Z = function(dom, selector) {
+		// dom是个数组
 		dom = dom || []
 		dom.__proto__ = $.fn
 		dom.selector = selector || ''
@@ -170,15 +171,16 @@ var Zepto = (function() {
 	// special cases).
 	// This method can be overriden in plugins.
 	zepto.init = function(selector, context) {
-		var dom
-		// If nothing given, return an empty Zepto collection
-		if (!selector) return zepto.Z()
+		var dom   // 返回的是个数组
+		if (!selector) return zepto.Z()  // 1. selector 为空
 		// Optimize for string selectors
-		else if (typeof selector == 'string') {
-			selector = selector.trim()
-			// If it's a html fragment, create nodes from it
-			// Note: In both Chrome 21 and Firefox 15, DOM error 12
-			// is thrown if the fragment doesn't begin with <
+		else if (typeof selector == 'string') {    // 2. selector 是字符串，其中又分好几种情况
+            // 字符串的情况，一般有两种：
+            // 第一，一段 html 代码，旨在通过zepto生成dom对象
+            // 第二，一段查询字符串，旨在通过zepto查找dom对象
+            // 将查询结果存储到 dom 变量中
+			selector = selector.trim()   //  去空格
+
 			if (selector[0] == '<' && fragmentRE.test(selector))
 				dom = zepto.fragment(selector, RegExp.$1, context), selector = null
 			// If there's a context, create a collection on that context first, and select
@@ -188,12 +190,12 @@ var Zepto = (function() {
 			else dom = zepto.qsa(document, selector)
 		}
 		// If a function is given, call it when the DOM is ready
-		else if (isFunction(selector)) return $(document).ready(selector)
+		else if (isFunction(selector)) return $(document).ready(selector)  // 3. selector 是函数
 		// If a Zepto collection is given, just return it
 		else if (zepto.isZ(selector)) return selector
 		else {
 			// normalize array if an array of nodes is given
-			if (isArray(selector)) dom = compact(selector)
+			if (isArray(selector)) dom = compact(selector)   // 4. 其他情况，例如 selector 是数组、对象等
 			// Wrap DOM nodes.
 			else if (isObject(selector))
 				dom = [selector], selector = null
@@ -386,7 +388,7 @@ var Zepto = (function() {
 	$.fn = {
 		// Because a collection acts like an array
 		// copy over these useful array functions.
-		forEach: emptyArray.forEach,
+		forEach: emptyArray.forEach,  // [].push=Arrary.protottype.forEach()
 		reduce: emptyArray.reduce,
 		push: emptyArray.push,
 		sort: emptyArray.sort,
