@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+
+	const  a=12;
+	// a=13
+	console.log(a); // 报错，不可修改
+
+
+    // const 都引用类型不起作用
+    const obj1={
+    	'name':'ddd'
+    };
+    obj1.name='eee';
+    console.log(obj1);   // 成功修改
+
+
+	var obj={
+		"a":12
+	};
+	Object.freeze(obj);// 冻结对象
+	obj.a=13;
+	// console.log(obj);  //冻结后，报错，不可修改
+
+
+    const arr=[1,2,3];
+    Object.freeze(arr)
+    console.log(arr.push(4))  // 数组不可修改了
+
+
+
+</script>
+</body>
+</html>

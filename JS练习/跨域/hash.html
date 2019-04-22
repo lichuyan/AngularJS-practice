@@ -4,28 +4,21 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+我是hash1
 <body>
+<iframe id="iframe" src="http://www.domain2.com/b.html" style="display:none;"></iframe>
 <script>
+	var iframe = document.getElementById('iframe');
 
-    // 创建一个隐藏的iframe；
-    function startRequest(){
-        var ifr = document.createElement('iframe');
-        ifr.style.display = 'none';
-        ifr.src = 'http://localhost:63342/AngularJS-practice/JS练习/跨域/hash2.html#paramdo';
-        document.body.appendChild(ifr);
-    }
-    console.log('location',location);
+	// 向b.html传hash值
+	setTimeout(function() {
+		iframe.src = iframe.src + '#user=admin';
+	}, 1000);
 
-    function checkHash() {
-        try {
-            var data = location.hash ? location.hash.substring(1) : '';
-            if (console.log) {
-                console.log('Now the data is '+data);
-            }
-        } catch(e) {};
-    }
-    setInterval(checkHash, 2000);
-
+	// 开放给同域c.html的回调方法
+	function onCallback(res) {
+		alert('data from c.html ---> ' + res);
+	}
 </script>
 
 </body>

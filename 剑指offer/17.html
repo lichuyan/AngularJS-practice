@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	/* function TreeNode(x) {
+    this.val = x;
+    this.left = null;
+    this.right = null;
+} */
+	// 根左右的遍历方式
+	function HasSubtree(pRoot1, pRoot2)
+	{
+		// write code here
+		var result=false;
+		if(pRoot1==null||pRoot2==null){
+			return false;
+		}
+		if(pRoot1.val===pRoot2.val){
+			// /以这个根节点为为起点判断是否包含pRoot2
+			result=doesp1eeHavep2(pRoot1,pRoot2);
+		}
+		// 如果找不到,去左子树上找
+		if(!result){
+		result = HasSubtree(pRoot1.left,pRoot2);
+	}
+
+		// 如果还找不到,去右子树上找
+		if(!result){
+		result = HasSubtree(pRoot1.right,pRoot2);
+	}
+		return result;
+	}
+
+	function doesp1eeHavep2(pRoot1,pRoot2){
+		// 如果Tree2已经遍历完了都能对应的上，返回true
+		if(pRoot2===null){
+			return true;
+		}
+		if(pRoot1 == null){
+			return false;
+		}
+		//如果其中有一个点没有对应上，返回false
+		if (pRoot1.val != pRoot2.val) {
+			return false;
+		}
+		//如果根节点对应的上，那么就分别去子节点里面匹配
+		return doesp1eeHavep2(pRoot1.left,pRoot2.left) && doesp1eeHavep2(pRoot1.right,pRoot2.right);
+	}
+</script>
+</body>
+</html>

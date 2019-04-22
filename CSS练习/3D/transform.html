@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container{
+            margin: 50px;
+            padding: 10px;
+            border: 2px solid pink ;
+            width: 200px;
+            height: 200px;
+            position: relative;
+            perspective: 500px;
+        }
+        #cube{
+            width: 200px;
+            height: 200px;
+        }
+        #cube div{
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            line-height: 200px;
+            font-size: 50px;
+            text-align: center;
+        }
+        .front{
+            background: pink;
+            transform:translateZ(100px);
+            /*transform: translateX(100px) translateY(100px) rotate(25deg);*/
+        }
+
+        .back{
+            background: pink;
+            transform:translateZ(-100px);
+            /*transform: translateX(100px) translateY(100px) rotate(25deg);*/
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div id="cube">
+
+        <div class="front">1</div>
+        <div class="back">2</div>
+    </div>
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>

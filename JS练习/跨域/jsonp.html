@@ -7,21 +7,21 @@
 </head>
 <body>
 <script>
-   var flightHandler=function (data) {
+
+   var onBack=function (data) {
        console.log(data)
    }
-
-   // 提供jsonp服务的url地址（不管是什么类型的地址，最终生成的返回值都是一段javascript代码）
-   var url = "http://flightQuery.com/jsonp/flightResult.aspx?code=CA1998&callback=flightHandler";
-
+   // 传参并指定回调执行函数为flightHandler
+   var url = "http://www.domain2.com:8080/login?user=admin&callback=onBack";
 
    // 创建script标签，设置其属性
    var script=document.createElement('script');
    script.setAttribute('src',url);
 
-
-   // 把script标签加入head，此时调用开始,当远程数据一返回的时候，随着动态脚本的执行，这个demo函数就会被执行。
+   // 把script标签加入head，此时调用开始,当远程数据一返回的时候，随着动态脚本的执行，flightHandler函数就会被执行。
    document.getElementsByTagName('head')[0].appendChild(script);
+
+
 
 </script>
 

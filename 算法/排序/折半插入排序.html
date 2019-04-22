@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    Array.prototype.halfSort=function () {
+
+    	for(var i=1;i<this.length;i++){  // 每一个元素都要查找她的位置
+		    var low=0;
+		    var high=i-1;
+    		var temp=this[i];
+		    while (low<=high){
+			    var mid=Math.floor((high+low)/2);
+			    if(temp>this[mid]){
+				    low=mid+1; // 插入的位置在高半区
+			    }else {
+				    high=mid-1;  // 插入的位置在低半区
+			    }
+		    }
+
+		    for(var j=i-1;j>=high+1;j--){
+		    	this[j+1]=this[j];
+            }
+            this[high+1]=temp;
+        }
+        return this;
+    }
+    let arr = [12,23,43,45,67,78];
+    console.log( arr.halfSort());
+</script>
+
+
+</body>
+</html>

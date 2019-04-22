@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function IsPopOrder(pushV, popV)
+	{
+		// write code here
+        if(pushV.length===0||popV.length===0){
+        	return false;
+        }
+		var arr=[]; // 构造一个辅助栈
+        var j=0;
+        for(var i=0;i<pushV.length;i++){
+        	arr.push(pushV[i]);
+        	while (arr.length!==0&& arr[arr.length-1]===popV[j]) {
+        		arr.pop();
+        		j++;
+             }
+        }
+		return arr.length===0?true:false;
+	}
+
+	console.log(IsPopOrder([1,2,3,4,5],[4,3,5,1,2]))
+</script>
+</body>
+</html>

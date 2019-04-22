@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <input type="text" id="a">
+    <span id="b"></span>
+</div>
+<script>
+1	// vue实现双向数据绑定的原理就是利用了 Object.defineProperty() 这个方法重新定义了对象获取属性值(get)和设置属性值(set)的操作来实现的-数据劫持、vue是通过Object.defineProperty()来实现数据劫持
+	var obj={};
+	Object.defineProperty(obj,'txt',{
+		get:function () {
+            console.log('get val'+ obj);
+            return obj;
+		},
+        set:function (newVal) {
+            console.log('set val'+newVal);
+            document.getElementById('a').value=newVal;
+            document.getElementById('b').innerHTML=newVal;
+        }
+    });
+	document.addEventListener('keyup',function (e) {
+        obj.txt=e.target.value;
+	});
+	console.log( obj.txt)
+</script>
+
+</body>
+</html>

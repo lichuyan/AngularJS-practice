@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function Find(target, array)
+	{
+		// write code here
+		var m=array.length; // m行
+		var n=array[0].length; // n列
+		for(var i=0;i<m;i++){
+			var low=0;
+			var high=n-1
+			while(low<=high){
+				var mid=Math.floor((low+high)/2);
+				if(array[i][mid]===target){
+					return true;
+				}
+				if(target>array[i][mid]){
+					low=mid+1;
+				}
+				if(target<array[i][mid]){
+					high=mid-1;
+				}
+
+			}
+		}
+		return false;
+	}
+	arr=[[1,2,8,9],[2,4,9,12],[4,7,10,13],[6,8,11,15]]
+	console.log(Find(2,arr))
+
+
+    function test() {
+		console.log(arguments);
+        var args=Array.prototype.slice.call(arguments);
+
+	  /*  var args = [];
+	    for (var i = 1; i < arguments.length; i++) {
+		    args.push(arguments[i]);
+	    }*/
+	    console.log(args);
+    }
+
+    test(2,3,5,5)
+</script>
+
+</body>
+</html>

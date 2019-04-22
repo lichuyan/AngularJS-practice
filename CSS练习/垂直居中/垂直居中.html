@@ -4,32 +4,25 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        /*#box {*/
-            /*width: 300px;*/
-            /*height: 300px;*/
-            /*background: #ddd;*/
-            /*display: flex;*/
-            /*!*justify-content: center; !*水平居中*!*!*/
-            /*!*align-items: center;  !*垂直居中*!*!*/
-            /*flex-direction: column;*/
-            /*justify-content: center;*/
-        /*}*/
-
-        #box{
-            background: #ff6600;
-            display: grid;
-            grid-template-rows: 300px auto  300px;
-
+        .parent{
+            background: green;
+            /*position: relative;*/
         }
-
-
+        .child{
+            /*width: 100px;*/
+            height: 100px;
+            background: #ff6600;
+            position:absolute ;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+        }
     </style>
 </head>
 <body>
-<div id="box">
-    <div id="top"></div>
-    <div id="mid">我是测试id</div>
-    <div id="bottom"></div>
+
+<div class="parent">
+    <div class="child">ccc</div>
 </div>
 
 </body>

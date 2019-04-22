@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .c1{
+            border: dashed 1px red;
+            height: 300px;
+            width: 300px;
+        }
+
+        .c2{
+            height: 300px;
+            width: 300px;
+            border: 30px solid transparent; /*实线，透明颜色*/
+            border-image:url('1.png') 30 repeat;
+        }
+
+        .c3{
+            height: 300px;
+            width: 0px;
+            border-bottom: solid 30px red;
+            border-left: solid 30px transparent;
+            border-right: solid 30px transparent;
+            border-radius: 36px;
+        }
+    </style>
+</head>
+<body>
+<div class="c1"></div>
+<br>
+<div class="c2"></div>
+<br>
+<div class="c3"></div>
+</body>
+</html>

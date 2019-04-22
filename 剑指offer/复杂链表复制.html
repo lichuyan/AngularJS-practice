@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	/*function RandomListNode(x){
+    this.label = x;
+    this.next = null;
+    this.random = null;
+}*/
+	/*function RandomListNode(x){
+    this.label = x;
+    this.next = null;
+    this.random = null;
+}*/
+	function Clone(pHead)
+	{
+		// write code here
+		if(pHead==null){
+			return null;
+		}
+		var currNode = pHead;  // 赋值一份pHead
+		//1、复制每个结点，如复制结点A得到A1，将结点A1插到结点A后面；
+		while(currNode ){
+			var node = new RandomListNode(currNode.label); // 创建一个新的孤立的节点s，其内容是A
+			node.next = currNode.next;  // 先连接后面的指针
+			currNode.next = node;
+			currNode = node.next
+		}
+
+		//2、重新遍历链表，复制老结点的随机指针给新结点，如A1.random = A.random.next;
+		currNode = pHead;
+		while(currNode){
+			var node = currNode.next;  // 新增的家的A1
+			if(currNode.random){
+				node.random = currNode.random.next;
+			}
+			currNode = node.next;
+		}
+
+		//3、拆分链表，将链表拆分为原链表和复制后的链表  --每次隔一个节点连一个
+		currNode = pHead;
+		var pCloneHead = pHead.next;
+		var tmp;
+		while(currNode.next){
+			tmp = currNode.next;
+			currNode.next =tmp.next;
+			currNode = tmp;
+		}
+		return pCloneHead;
+	}
+</script>
+
+</body>
+</html>
