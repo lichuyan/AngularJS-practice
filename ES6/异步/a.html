@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>async</title>
+</head>
+<body>
+<script>
+    // 定时器
+    function timer(params) {
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
+                 resolve('resolve');
+//                reject('reject');
+            }, params);
+        })
+    }
+
+    // async/await
+    async function fn(params) {
+        try {
+            var value = await timer(params);
+            var  value2=await  1;
+            return [a,b]=[value,value2]
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    fn(1000).then((v)=>{
+        console.log(v)
+    })//执行
+</script>
+
+</body>
+</html>
