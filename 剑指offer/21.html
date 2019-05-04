@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function VerifySquenceOfBST(sequence)
+	{
+		// write code here
+		if(sequence == null ||sequence.length===0){
+			return 'NO';
+		}
+		if(sequence.length===1){
+			return 'Yes';
+		}
+
+		return bs(sequence,0,sequence.length-1);
+	}
+	function bs( seq ,start,end){
+
+		// 遍历完数组的一部分，没报错，返回true
+		if(start>end){
+			return 'Yes';
+		}
+
+		var i=end; // 跟节点
+		// i从最后往前倒，一直找到第一个比当前根节点小的数，从这个数开始将字符串分为前后两部分
+		while (i>start&&seq[i-1]>seq[end]){
+			i--;
+		}
+		//前办部门如果有比根节点大的数，返回false
+		for(var j=0;j<i-1;j++){
+			if(seq[j]>seq[end]){
+				return  'NO';
+			}
+		}
+		//遍历数组的前半部分和后半部分
+		return  bs(seq,start,i-1)&&bs(seq,i,end-1);
+
+	}
+
+	console.log(VerifySquenceOfBST([7,4,6,5]))
+</script>
+</body>
+</html>

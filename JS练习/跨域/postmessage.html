@@ -10,27 +10,19 @@
 <!--依靠iframe网页框架来传输数据-->
 <div >我是父页面</div>
 
-
 <iframe id="child" src="http://localhost:63342/AngularJS-practice/JS练习/跨域/bb.html"></iframe>
-
 <script>
     var send = document.getElementById('send');
-
     // 父传给子
     send.addEventListener('click',function(){
-
         var iframe=document.getElementById('child').contentWindow; // 其他窗口的一个引用；
         iframe.postMessage('hello bb','http://localhost:63342')  // 源（协议，主机，端口）
-
-    })
-
+    });
    // 父接收子
     window.addEventListener('message', function(ev) {
         var data = ev.data;
         console.info('message from child:', data);
     }, false);
-
-
 </script>
 
 </body>

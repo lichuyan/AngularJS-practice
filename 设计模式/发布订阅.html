@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 这段话可以看出上面的例子是发布订阅模式。订阅者A和发布者B是通过pubsub这个对象关联起来的，他们没有直接的交流。
+	var pubsub = (()=>{
+		var topics = {};
+		function subscribe(topic,fn){   // 订阅者
+			if(!topics[topic]){
+				topics[topic] = [];
+			}
+			topics[topic].push(fn);
+			console.log(topics)
+		}
+		function publish(topic,...args){  // 发布者
+            console.log(topic)
+            console.log(...args)
+			if(!topics[topic])
+				return;
+			for(let fn of topics[topic]){
+				fn(...args);
+			}
+		}
+		return {
+			subscribe,
+			publish
+		}
+	})();
+
+	pubsub.subscribe('test',function(a,b){  //订阅者A订阅了test事件
+		console.log(a,b);
+	});
+
+	pubsub.publish('test','123','HH');   //123  HH（发布者B发布了test事件）
+</script>
+
+</body>
+</html>

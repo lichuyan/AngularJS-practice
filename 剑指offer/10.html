@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function rectCover(number)
+	{
+		// write code here
+		var res=0;
+		var f1=2;
+		var f2=3;
+
+		if(number<=3){
+			return number;
+		}else{
+			for (var i=4;i<=number;i++){
+				res=f1+f2;
+				f1=f2;
+				f2=res;
+			}
+			return res
+		}
+	}
+</script>
+
+</body>
+</html>

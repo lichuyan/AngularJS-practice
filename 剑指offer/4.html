@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	/* function TreeNode(x) {
+      this.val = x;
+      this.left = null;
+      this.right = null;
+  } */
+	function reConstructBinaryTree(pre, vin)
+	{
+		// write code here
+		var result=null;  // 一定是个null
+		if(pre.length>1){
+			var root=pre[0];
+			// 下一次的中序
+			var vinRootIndex=vin.indexOf(root);
+			var vinleft=vin.slice(0,vinRootIndex);
+			var vinRight=vin.slice(vinRootIndex+1,vin.length);
+			// 下一次的前序
+			pre.shift(); // pre发生改变啦
+			var preLeft=pre.slice(0,vinleft.length);
+			var preRight=pre.slice(vinleft.length,pre.length);
+			result={
+				val:root,
+				left: reConstructBinaryTree(preLeft, vinleft),
+				right: reConstructBinaryTree(preRight, vinRight)
+			}
+		}else{
+			if(pre.length ===1){
+				result={
+					val:pre[0],
+					left:null,
+					right:null
+				}
+			}
+		}
+		return result;
+	}
+    var pre=[1,2,4,7,3,5,6,8];
+    var vin=[4,7,2,1,5,3,8,6];
+
+
+	console.log(reConstructBinaryTree(pre, vin))
+</script>
+
+</body>
+</html>

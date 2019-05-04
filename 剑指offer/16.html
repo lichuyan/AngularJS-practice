@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	/*function ListNode(x){
+    this.val = x;
+    this.next = null;
+}*/
+	function Merge(pHead1, pHead2)
+	{
+		// write code here
+		if(pHead1===null){
+			return pHead2;
+		}
+		if(pHead2===null){
+			return pHead1;
+		}
+		var p=pHead1; // p来跟踪pHead1的最小节点
+		var q=pHead2; // q来跟踪pHead2的最小节点
+
+		var C=null;
+		if(pHead1.val<=pHead2.val){
+			C=pHead1;
+			p=p.next;
+		}else{
+			C=pHead2;
+			q=q.next;
+		}
+		var r=C;
+
+		while(p&&q){
+			if(p.val<=q.val){
+				r.next=p;
+				p=p.next;
+				r=r.next;
+			}else{
+				r.next=q;
+				q=q.next;
+				r=r.next;
+			}
+		}
+
+		if(p!==null){
+			r.next=p;
+		}
+		if(q!==null){
+			r.next=q;
+		}
+
+		return C;
+	}
+</script>
+
+</body>
+</html>

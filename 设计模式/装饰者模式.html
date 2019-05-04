@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+ /*   function  log(target ,name,descriptor) {
+        var oldValue=descriptor.value;
+	    descriptor.value=function () {
+            console.log(`calling ${name} with `,arguments);
+            return oldValue.apply(this,arguments)
+	    }
+	    return descriptor;
+    }
+
+    class Math{
+    	@log
+        add(a,b){
+    		return a+b
+        }
+    }
+
+    const  math=new Math();
+    const result=math.add(2,3);
+    console.log(result)*/
+
+
+    @testDecorator
+    class ClassA {
+    }
+
+    function testDecorator(target) {
+	    target.addedParam = "I am decorator";
+    }
+
+    console.log(ClassA.addedParam);
+</script>
+
+</body>
+</html>

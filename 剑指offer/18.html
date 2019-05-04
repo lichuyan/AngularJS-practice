@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function printMatrix(matrix)
+	{
+		// write code here
+		var row=matrix.length; // 行数
+		var cow=matrix[0].length; // 列数
+		var arr=[];
+
+		// 定义四个关键变量，表示左上和右下的打印范i++围
+		var left=0;
+		var right=cow-1;
+		var top=0;
+		var buttom=row-1;
+
+		while(left<=right&&top<=buttom){
+			for(var i=left;i<=right;i++) {
+				arr.push(matrix[top][i]);
+			}
+
+			for(var i=top+1;i<=buttom;i++){
+				arr.push(matrix[i][right]);
+			}
+			if (top != buttom)
+				for (var i = right - 1; i >= left; i--)  arr.push(matrix[buttom][i]);
+
+			if (left != right)
+				for (var i = buttom  - 1; i >= top; i--)  arr.push(matrix[i][left]);
+			left++;
+			right--;
+			top++;
+			buttom--;
+		}
+		return arr;
+	}
+
+
+	arr=[
+		[1 ,2 ,3 ,4],
+        [5,6,7,8],
+        [9,10,11,12],
+        [13,14,15,16]
+    ]
+
+    arr1=[12,3,144,4,5];
+	console.log('---',Math.min.apply(this,arr1))
+
+    console.log(arr1.sort(function (a,b) {
+	    return a-b;
+    }));
+    console.log(arr1);
+
+
+	console.log(printMatrix(arr));
+</script>
+
+</body>
+</html>

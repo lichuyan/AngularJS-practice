@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	/*function ListNode(x){
+    this.val = x;
+    this.next = null;
+}*/
+	function FindKthToTail(head, k)
+	{
+		// write code here
+		if(head==null||k<=0){
+			return null;
+		}
+		var p=head;
+		var q=head;
+		// q多走k-1步；
+		for(var i=1;i<k;i++){
+			if(q.next!=null){
+				q=q.next;
+			}else{
+				return null;
+			}
+		}
+
+		while(q.next!==null){
+			p=p.next;
+			q=q.next;
+		}
+		return p;
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	// 树的遍历
+	var tree = {
+		value: 1,
+		left: {
+			value: 2,
+			left: {
+				value: 4
+			}
+		},
+		right: {
+			value: 3,
+			left: {
+				value: 5,
+				left: {
+					value: 7
+				},
+				right: {
+					value: 8
+				}
+			},
+			right: {
+				value: 6
+			}
+		}
+	}
+
+	function PrintFromTopToBottom(root)
+	{
+		// write code here
+		var queue=[];
+		var data=[];
+		if(root===null)
+			return  data;
+
+		queue.push(root);  // 所有节点入队列
+        console.log(queue)
+		while(queue.length!==0){
+			var node=queue.shift();  // 数组模拟队列操作
+             console.log(node.value)
+
+			// data.push(node.value);
+            console.log(node.left)  // undefined
+			if(node.left!=null){
+				queue.push(node.left)
+			}
+			if(node.right!=null){
+				queue.push(node.right);
+			}
+
+		}
+		return data;
+	}
+
+	console.log(PrintFromTopToBottom(tree))
+</script>
+
+</body>
+</html>

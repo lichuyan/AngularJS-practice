@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<!--下面是一个二叉树-->
+<div id='root'>
+        <span>123
+            <a href="#">
+                sdsd
+            </a>
+            <div>sdsd
+                <a>这是一个a标签</a>
+            </div>
+        </span>
+        <span>456
+            <p>这是一个p标签</p>
+        </span>
+        <span>456
+            <p>这是一个p标签</p>
+        </span>
+</div>
+</body>
+<script>
+
+	// 深度优先搜多遍历---递归法
+    function DFS(node,nodeList) {
+
+	    if(node){
+        	console.log(node);
+        	var children=node.children;
+        	for(var i=0;i<children.length;i++){
+		        DFS(children[i],nodeList);
+            }
+        }
+        return nodeList;
+    }
+    var nodeList=[]; // 存放结果数组
+    var root=document.getElementById('root');
+
+    console.log( '深度优先搜索',DFS(root,nodeList))
+
+    // 广度优先搜多遍历---递归法
+    function BFS(node,nodes) {
+    	console.log(nodes)
+	    var i = 0;
+	    if (node!=null) {
+		    nodes.push(node);
+		    BFS(node.nextElementSibling);
+		    node = nodes[i++];
+		    BFS(node.firstElementChild);
+	    }
+	    return nodes;
+    }
+    var nodes=[];
+    console.log( '广度优先搜索',BFS(root,nodes))
+
+
+
+
+
+</script>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>二进制中1的个数</title>
+</head>
+<body>
+<script>
+
+    // 其他进制转换为十进制
+    console.log(parseInt('0xAF'));    //175，十六进制
+    console.log(parseInt('AF',16));    //175，第二参数指定十六进制，可以去掉 0x 前导
+    console.log(parseInt('AF'));    //NaN，理所当然
+    console.log(parseInt('101010101',2));    //314，二进制转换
+    console.log(parseInt('70',8)) ;   //56，八进制转换
+
+    // 十进制转为2进制
+
+    var m=12;
+    console.log('10-->2',m.toString(2))
+
+
+    function NumberOf1(n)
+    {
+	    var count =0;
+	    while(n != 0){
+		    count++;
+		    n = n & (n - 1);
+	    }
+	    return count;
+    }
+
+    console.log('1的个数',NumberOf1(-10))
+
+</script>
+
+</body>
+</html>

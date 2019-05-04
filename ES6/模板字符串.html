@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+	// 定义一个字符串;
+	let year = 3, pos = "前端";
+	let str = "我已经有${year}年${pos}开发经验了";
+
+
+	let name = 'lichuyan';
+	let age = 27;
+	let desc = "${name}今年${age}岁了";
+
+	function replace(content){
+		return content.replace(/\$\{([^}]+)\}/g,function(matched,childItem,index){
+			console.log(matched); // ${name}  ${age}
+			console.log(childItem);  // name  age
+//            console.log(index);  0 9
+			return eval(childItem);
+		})
+	}
+	console.log(replace(desc));
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function jumpFloor(number)
+	{
+		// write code here
+		var fn1=1;
+		var fn2=2;
+		var res=0;
+		if(number<=2){
+			return number;
+		}
+		if(number>=3){
+			for(var i=3;i<=number;i++){
+				res=fn1+fn2;
+				fn1=fn2;
+				fn2=res;
+			}
+			return res;
+		}
+	}
+	console.log(jumpFloor(2))
+</script>
+
+</body>
+</html>
