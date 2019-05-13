@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function PrintMinNumber(numbers)
+    {
+        // write code here
+       numbers.sort(function (a,b) {   // 数组排序
+           console.log('a',a)
+           console.log('b',b)
+	       var str1=a+''+b; // 字符串连接 ，将数组转为字符串连接
+	       var str2=b+''+a;
+	       for(var i=0;i<str1.length;i++){   // 字符串排序。
+		       if(str1.charAt(i)>str2.charAt(i)){
+			       return 1;
+		       }
+		       if(str1.charAt(i)<str2.charAt(i)){
+			       return -1;
+		       }
+	       }
+	       return 1;
+       });
+       var result='';
+       result=numbers.join('');
+       // for(var i=0;i<numbers.length;i++){
+       // 	  result+=numbers[i];
+       // }
+       return result;
+    }
+
+    console.log(PrintMinNumber([3,32,321]));
+</script>
+</body>
+</html>

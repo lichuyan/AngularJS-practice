@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function NumberOf1Between1AndN_Solution(n)
+	{
+		// write code here
+		var result;
+		var number=[];
+		for(var i=0;i<n.length;i++){
+			number.push(n[i]);
+        }
+
+        for(var i=0;i<number.length;i++){
+	        var left=0;
+	        var right=0;
+           for(var j=0;j<i;j++){
+           	left=left*10+number[j];
+           }
+           console.log(left)
+        }
+        console.log(number)
+	}
+
+	console.log(NumberOf1Between1AndN_Solution('13015'))
+
+</script>
+</body>
+</html>

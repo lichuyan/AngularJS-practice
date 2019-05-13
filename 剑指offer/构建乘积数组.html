@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function multiply(array)
+	{
+		if(array==null||array.length==0){
+			return [];
+		}
+		var B = [1];
+		//计算下三角连乘
+		for(var i=1;i<array.length;i++){
+			B[i] = B[i-1] * array[i-1];
+		}
+		var temp=1;
+       //计算上三角
+		for(var  j = length-2; j >= 0; j--){
+            temp *= array[j+1];
+            B[j] *= temp;
+	   }
+	   return B;
+	}
+
+	console.log(multiply([1,2,3,4,5]))
+
+</script>
+
+</body>
+</html>

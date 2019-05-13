@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	var flag = false; //判断输入是否合法
+	function StrToInt(str)
+	{
+		// write code here
+		var num=0; // 最终返回的结果
+		var k=0;
+		var minus=false;  // 判断正负
+		// 不合法输入
+		if (str == null || str.length==0) {
+			flag = true;
+			return 0;
+		}
+		//  合法输入
+		if(str.length!==0||str!=null){
+			if(str[0]==='+'){
+				k++;
+            }else {
+				if(str[0]=='-'){
+					k++;
+					minus=true; // 值是负号
+                }
+            }
+			for(var i=k;i<str.length;i++){
+				if(str[i]>='0'&&str[i]<='9'){
+					num=num*10+(str[i]-'0'); // 转成整数
+                    // 判断num是否上溢和下溢
+
+				}else {
+					// 不合法输入
+					return 0;
+				}
+			}
+			if(i===str.length){
+				flag=true // 全局判断是否合法
+            }
+
+			if(minus){
+				num=0-num;
+            }
+        }
+        return num; // 不合法的输出0
+	}
+
+	console.log(StrToInt('++--'))
+</script>
+</body>
+</html>

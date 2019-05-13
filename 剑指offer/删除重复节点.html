@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	/*function ListNode(x){
+    this.val = x;
+    this.next = null;
+   }*/
+	function deleteDuplication(pHead)
+	{
+		// write code here
+		var newHead = new ListNode('head'); // 因为头结点可能重复，删除掉。
+        newHead.next=pHead; // 给头节点，加一个新的节点
+		var p=newHead;
+		var q=p.next;
+
+        while (q!=null){
+        	while((q.next!=null) && (q.val==q.next.val)){
+        		q=q.next;
+            }
+
+	        //没移动---邻接不重复
+	        if(p.next == q) {
+		        p = q;
+		        q = q.next;
+
+	        }
+	        //移动了--邻接重复
+	        else {
+		        q = q.next;
+		        p.next = q;
+	        }
+        }
+		return newHead.next;
+	}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	/*function TreeLinkNode(x){
+    this.val = x;
+    this.left = null;
+    this.right = null;
+    this.next = null;
+}*/
+	function GetNext(pNode)
+	{
+		// write code here
+
+		if(pNode==null){
+			return null;
+        }
+        // 右节点存在，--》从右孩子出发，向左走，直到叶子节点。
+        if(pNode.right!=null){
+	         pNode=pNode.right;
+			 while (pNode.left!=null){
+				 pNode=pNode.left;
+             }
+             return pNode;
+        }
+        // 若右节点不存在
+        while (pNode.next!=null){ // 父不为空
+            if(pNode.next.left==pNode) {   // 是父的左；
+            	return pNode.next; // 返回父；
+            }
+            pNode=pNode.next; //不是父的左，一直找，直到找到左。
+        }
+        return null;
+	}
+</script>
+</body>
+</html>

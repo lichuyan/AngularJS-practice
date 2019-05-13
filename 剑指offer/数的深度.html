@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function TreeDepth(pRoot)
+	{
+		// write code here
+        if(pRoot==null) return 0;
+
+		var left=TreeDepth(pRoot.left);
+		var right=TreeDepth(pRoot.right);
+		return left>right?left+1:right+1;
+	}
+
+
+	function deep(tree) {
+		if(!tree) return 0;
+		else {
+			let m=deep(tree.left);
+			let n=deep(tree.right);
+			return (m>n?m:n)+1;
+
+		}
+	}
+</script>
+</body>
+</html>

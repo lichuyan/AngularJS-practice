@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function MoreThanHalfNum_Solution(numbers)
+	{
+		// write code here  ：如果有符合条件的数字，则它出现的次数比其他所有数字出现的次数和还要多。
+		var len=numbers.length;
+		if(len==0)  return 0;
+
+		var  result = numbers[0];
+		var  times = 1; // 次数
+
+		// 遍历结束后，所保存的数字即为所求。然后再判断它是否符合条件即可。
+		for(var i=1;i<len;++i)
+		{
+			if(times == 0)
+			{
+				// 如果某数字的出现次数为0，那么我们就用下一个数字替换之，然后重置出现次数为1.最后剩下的数字肯定就是出现次数超过数组长度一半的数字.
+				result = numbers[i];
+				// console.log(result);
+				times = 1;
+			}
+			if(numbers[i] == result)
+			{
+				++times; // 相同则加1
+			} else {
+				--times; // 不同则减1
+			}
+		}
+
+console.log(result)
+		// 判断result是否符合条件，即出现次数大于数组长度的一半
+		times = 0;
+		for(var i=0;i<len;++i)
+		{
+			if(numbers[i] == result) ++times;
+		}
+
+		return (times > len/2) ? result : 0;
+	}
+
+	console.log(MoreThanHalfNum_Solution([1,2,3,2,2,3,5,2,4,0]))
+
+</script>
+
+</body>
+</html>

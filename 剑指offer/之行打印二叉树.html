@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	// 树的遍历
+	var tree = {
+		val: 1,
+		left: {
+			val: 2,
+			left: {
+				val: 4
+			}
+		},
+		right: {
+			val: 3,
+			left: {
+				val: 5,
+				left: {
+					val: 7
+				},
+				right: {
+					val: 8
+				}
+			},
+			right: {
+				val: 6
+			}
+		}
+	}
+
+	function Print(pRoot) {
+		var res = [];
+		if(!pRoot){
+			return res;
+		}
+		var que = [];
+		que.push(pRoot);
+		var flag = false;
+		while(que.length > 0){
+			var vec = [];
+			var len = que.length;
+			for(var i = 0; i < len; i++){
+				var tmp = que.shift(); //front
+				vec.push(tmp.val);
+				if(tmp.left)
+					que.push(tmp.left);
+				if(tmp.right)
+					que.push(tmp.right);
+			}
+			if(flag){
+				vec.reverse();
+			}
+			res.push(vec);
+			flag = !flag;
+		}
+		return res;
+	}
+
+	console.log(Print(tree))
+</script>
+
+</body>
+</html>

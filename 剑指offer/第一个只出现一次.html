@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function FirstNotRepeatingChar(str)
+	{
+		// write code here
+		var result=[str[1]];
+		for(var i=0;i<str.length;i++){
+			if(str.indexOf(str[i])==str.lastIndexOf(str[i])){
+				// 返回指定字符串第一次出现的位置 返回指定字符串最后一次出现的位置（从右向左的第一个，就是正常的最后一个）
+				return i;
+			}
+		}
+		return -1
+	}
+    console.log(FirstNotRepeatingChar('10000000000000111102000000'))
+</script>
+</body>
+</html>

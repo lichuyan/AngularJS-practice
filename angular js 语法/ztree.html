@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+<div class="UserTree">
+    <ul id="treeDemo" class="ztree"></ul>
+</div>
+
+<script>
+	var zNodes;
+	var zTree;
+	$(function () {
+		$.ajax({
+			cache: true,
+			type: "get",
+			url: "/User/NextLeve",
+			async: false,
+			success: function (data) {
+				zNodes = data;
+			},
+			error: function (data) {
+				alert("error");
+			}
+		});
+		zTree = ZTreeCustom.init($("#treeDemo"), setting, zNodes);
+		zTree.expandAll(false);
+	})
+	var setting = {
+		view: {
+			nameIsHTML: true
+		},
+		data: {
+			simpleData: {
+				enable: true
+			},
+			keep: {
+				parent: true
+			}
+		},
+		open: false,
+		callback: {
+			onClick: nodeClick,
+			onExpand: function (event, treeId, treeNode) {
+				addSubNode(treeNode);
+			}
+		}
+	};
+	function showIconForTree(treeId, treeNode) {
+		return !treeNode.isParent;
+	};
+	function searchM() {
+		var username = $("#txtName").val()
+	}
+	function nodeClick(event, treeId, treeNode, clickFlag) {
+		addSubNode(treeNode);
+	}
+	function addSubNode(treeNode) {
+		if (!treeNode.isParent) return;
+		var s = treeNode.children;
+		if (s != undefined)
+			return;
+		$.ajax({
+			cache: true,
+			type: "get",
+			url: "/User/NextLeve",
+			data: { userId: treeNode.id },
+			async: true,
+			success: function (data) {
+				zTree.addNodes(treeNode, data);
+			},
+			error: function (data) {
+				alert("error");
+			}
+		});
+	}
+</script>
+</body>
+</html>

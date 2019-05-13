@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function GetLeastNumbers_Solution(input, k) {
+		// write code here
+		var list = [];
+		if(input==null || input.length<=0 || input.length<k){
+			return list;
+		}
+		//构建最大堆，从n/2开始
+		for(var len=k/2-1; len>=0; len--){
+			// 堆的调整过程
+			adjustMaxHeapSort(input,len,k-1);
+		}
+        // 从第k个元素开始分别与最大堆的最大值做比较，如果比最大值小，则替换并调整堆。
+		// 最终堆里的就是最小的K个数。
+
+		for(var i=k; i<input.length; i++){
+			if(input[i]<input[0]){
+				var tmp;
+				tmp=input[0];
+				input[0]=input[i];
+				input[i]=tmp;
+				adjustMaxHeapSort(input,0,k-1);
+			}
+		}
+		for(var j=0; j<k; j++){
+			list.push(input[j]);
+		}
+		return list;
+	}
+
+	function adjustMaxHeapSort(input, pos, length) {
+
+		var  child;
+		for(var temp=input[pos]; 2*pos+1<=length; pos=child){
+			child=2*pos+1;
+			if(child<length && input[child]<input[child+1]){
+				child++;
+			}
+			if(input[child]>temp){
+				input[pos]=input[child];
+			}else{
+				break;
+			}
+		}
+		input[pos]=temp;
+	}
+
+	console.log(GetLeastNumbers_Solution([1, 2, 4, 5, 2, 12, 3], 4))
+</script>
+</body>
+</html>

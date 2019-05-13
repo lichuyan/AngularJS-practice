@@ -34,9 +34,13 @@
     // 树的先序遍历
     var preOrder = function (node) {
         if (node) {
-//            console.log(node.value);
-            preOrder(node.left);
-            preOrder(node.right);
+           console.log(node.value);
+	        if(node.left){
+		        preOrder(node.left);
+	        }
+	        if(node.right){
+		        preOrder(node.right);
+	        }
         }
     }
     preOrder(tree);
@@ -72,7 +76,6 @@
         }
     }
     console.log('树的深度是', deep(tree))  // 4
-
 
 
 

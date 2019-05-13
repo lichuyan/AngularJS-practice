@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<audio id="myaudio" src="./alarm.mp3" preload="preload"  autoplay="autoplay" ></audio>
+
+<button onclick="a()">点击</button>
+<button onclick="b()">取消</button>
+
+</body>
+<script>
+
+	var flag=true;
+	var audio;
+
+    function a() {
+	    audio = document.getElementById("myaudio");//获取ID 
+	        /*setTimeout(function () {
+		        // if (audio.paused) { //判读是否播放  
+		        // audio.paused=false;
+		        audio.load();//加载
+		        audio.play(); //没有就播放 
+	        }, 5000);*/
+	    audio.load();//加载
+	    audio.play(); //没有就播放 
+    }
+    a();
+
+
+    function b() {
+	    audio.pause();// 暂停
+    }
+
+</script>
+</html>
