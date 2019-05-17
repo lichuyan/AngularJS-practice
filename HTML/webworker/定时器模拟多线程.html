@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       span{
+           display: block;
+       }
+    </style>
+</head>
+<body>
+<div id="app">
+
+</div>
+
+<script>
+	/*var app = document.getElementById("app");
+	var Fragment = document.createDocumentFragment();
+	for (var i = 0; i < 100; i++) {
+		var span = document.createElement("span");
+		span.innerHTML = i;
+		app.appendChild(span);
+	}
+	var app=document.getElementById("app");*/
+
+
+/*	var j=1;
+	/!**
+	 * 渲染方式
+	 *
+	 * @number {number} 数量
+	 * *!/
+	function showDom(number){
+		console.log('渲染'+(j++)+"次");
+		for(var i=0;i<number;i++){
+			var span=document.createElement("span");
+			span.innerHTML = i;
+			app.appendChild(span);
+		}
+	}
+	/!**
+	 * 渲染大数据量的dom节点
+	 *
+	 * @count {number} 总数量
+	 *
+	 * *!/
+	function init(count){
+		if(typeof count!=="number") {
+			console.warn(count+"类型不是：Number");
+			return;
+		}
+		if(count>500){
+			setTimeout(function(){
+				showDom(500);
+				init(count-500);
+			},200);
+		}else{
+			showDom(count);
+		}
+	}
+	init(4000);*/
+
+
+	/**
+	 * 分时函数
+	 * @ary {Arry} 数据
+	 * @callback {Function} 回掉函数，一个参数，当前数据项
+	 * @count {Number} 数量
+	 *
+	 * */
+	var j=1;
+	function timeChunk(ary,callback,count){
+		var objTs=Object.prototype.toString,//检测类型
+			t;//定时器
+		if(objTs.call(ary)!=="[object Array]"){
+			return console.warn(ary+"---》应该是Arry类型");
+		}
+		if(objTs.call(callback)!=="[object Function]"){
+			return console.warn(callback+"---》应该是回掉函数");
+		}
+		if(objTs.call(count)!=="[object Number]"){
+			return console.warn(count+"---》应该是Number类型");
+		}
+		//开始执行函数
+		function start(){
+			console.log('渲染'+(j++)+"次");
+			for(var i=0;i<Math.min(count||1,ary.length);i++){
+				callback(ary.shift());
+			}
+		}
+		return function(){
+			t=setInterval(function(){
+				if(ary.length===0){
+					return clearInterval(t);
+				}
+				start();
+			},200);
+		}
+	}
+	//后端返回数据
+
+	var ayy=[];
+	for (var a=0;a<50000;a++) {
+		ayy.push(a);
+	}
+	//开始使用 分时函数
+	var init=timeChunk(ayy,function(i){
+		var span=document.createElement("span");
+		span.innerHTML = i;
+		app.appendChild(span);
+	},5000);
+
+	//开始渲染大数据
+	init();
+
+	// 可以看出利用上述方式可以简单轻松实现渲染大量数据，给用户的感觉是，当前数据很多，我需要一步一步渲染。
+    // 比之前一下子渲染几千条数据导致GUI渲染引擎卡顿、甚至停滞强多啦。
+</script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // 闭包，扩展行不高
+    function mul(x) {
+        return function (y) {
+            return function (z) {
+                return x*y*z
+            }
+        }
+    }
+    console.log(mul(3)(3)(4))
+</script>
+
+</body>
+</html>
