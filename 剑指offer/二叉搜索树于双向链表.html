@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	/* function TreeNode(x) {
+    this.val = x;
+    this.left = null;
+    this.right = null;
+} */
+	function Convert(pRootOfTree)
+	{
+		// write code here
+		if(pRootOfTree==null){
+			return null;
+		}
+		if(pRootOfTree.left==null&&pRootOfTree.right==null){
+			return  pRootOfTree;
+		}
+
+		// 1.将左子树构造成双链表，并返回链表头节点
+		var left=Convert(pRootOfTree.left);
+		var p=left;
+		// 2.定位至左子树双链表最后一个节点
+		while(p!=null&&p.right!=null){
+			p = p.right;
+		}
+
+		// 3.如果左子树链表不为空的话，将当前root追加到左子树链表
+		if(left!=null){
+			p.right = pRootOfTree;
+			pRootOfTree.left = p;
+		}
+		// 4.将右子树构造成双链表，并返回链表头节点
+		var right=Convert(pRootOfTree.right);
+		// 5.如果右子树链表不为空的话，将该链表追加到root节点之后
+		if(right!=null){
+			right.left = pRootOfTree;
+			pRootOfTree.right = right;
+		}
+
+		return left!=null?left:pRootOfTree;
+	}
+</script>
+
+</body>
+</html>

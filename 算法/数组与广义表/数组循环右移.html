@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function test(arr,k) {
+        var first=arr.slice(0,arr.length-k);
+        var second=arr.slice(arr.length-k);
+
+        first.reverse();
+        second.reverse();
+        return first.concat(second).reverse();
+        // return second.concat(first);
+    }
+    console.log(test([1,2,3,4,5,6],2))
+</script>
+
+</body>
+</html>

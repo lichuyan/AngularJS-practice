@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+/*	function FindGreatestSumOfSubArray(array)
+	{ // 动态规划
+		if(array.length==0) return 0;
+		var sum = array[0], tempsum = array[0]; //注意初始值 不能设为0 防止只有负数
+		for(var i = 1; i < array.length; i++) //从1开始 因为0的情况在初始化时完成了
+		{
+			tempsum = (tempsum < 0) ? array[i] : tempsum + array[i];
+			sum = (tempsum > sum) ? tempsum : sum;
+		}
+		return sum;
+	}*/
+
+	function FindGreatestSumOfSubArray(array)
+	{ // 动态规划
+		if(array.length==0) return 0;
+
+		var tempsum = 0,sum = 0; //注意初始值 不能设为0 防止只有负数
+		for(var i = 0; i < array.length; i++) //从1开始 因为0的情况在初始化时完成了
+		{
+			if(tempsum<=0){
+				tempsum=array[i];
+            }else {
+				tempsum+=array[i]
+            }
+            if(tempsum>sum){
+
+
+				console.log('dd');
+				sum=tempsum;
+            }
+		}
+		return sum;
+	}
+
+
+
+
+	// console.log(FindGreatestSumOfSubArray([-7,-3,-2,-8,-15,-8,-9,-3]))
+	console.log(FindGreatestSumOfSubArray([1,-2,3,10,-4,7,2,-5]))
+</script>
+
+</body>
+</html>

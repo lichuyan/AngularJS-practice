@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       div{
+           white: 100px;
+           height: 100px;
+       }
+    </style>
+</head>
+<body>
+<div></div>
+<button>按钮1</button>
+<button>按钮2</button>
+<button>按钮3</button>
+<button>按钮4</button>
+<script>
+	// 传参做存储，不传参做执行
+	function curry(_fn) {  // fn 是被柯里化的哈数  // curry是柯里化工具函数
+		var arg = [];
+		var fn = _fn;
+		return function () {  // 返回一个闭包函数
+			if (arguments.length > 0) {  // 传来了参数
+				arg = arg.concat(Array.prototype.slice.call(arguments)); // 转数组，将一个一个参数保存下来
+				// return  ;
+				return fn.apply(null, arg) ;
+			}else {
+				return fn.apply(null, arg)  //  // 没传参数时，把arg参数塞给_fn,并调用这个函数 :
+            }
+
+		}
+	}
+
+	function getSum() {
+		var arr = Array.prototype.slice.call(arguments);  //类数组转数组
+		var sum = arr.reduce(function (a, b) {
+			return a + b;
+		})
+		return sum;
+	}
+
+	var fn = curry(getSum);  //fn是个函数
+	fn(1);  // 向里面累加参数
+	fn(2);
+	fn(1, 1, 1);
+	// 上面是每一步做的，只有当你不传参时才去触发函数fn
+	console.log(fn(2));
+
+	/*/!* 4个按钮都点亮，机器才运行。*!/
+	 var btns=document.querySelectorAll('button');
+	 var div=document.querySelector('div');
+
+	 var fn=curry(setDivBg);
+	 for(var i=0;i<btns.length;i++){  // 4个按钮添加事件
+	 	btns[i].addEventListener('click',function (e) {
+		    fn(this);// 将btn传过去
+	    });
+     }
+
+
+
+	// 柯里化函数
+	function curry(_fn) {
+		var arg = [];
+		var fn = _fn;
+		return function (item) {  // 返回一个闭包函数
+			if (item) {  // 有参数传来，累计参数
+				if(arg.indexOf(item)>=0){
+					arg.splice(arg.indexOf(item),1) // 删除重复的值
+                }else {
+					arg.push(item); // 没有才添加进来
+                }
+				fn.apply(null, arg)  // 把arg塞给fn
+				return;
+			}
+			return fn.apply(null, arg)  // 把arg塞给fn
+		}
+	}
+	function setDivBg() {
+		arg = Array.prototype.slice.call(arguments); // 转数组
+        if(arg.length<4){
+	        div.style.backgroundColor='white';
+	        div.textContent='';
+	        return
+        }
+		div.style.backgroundColor='red';
+        var str=arg.reduce(function (p1,p2) {
+            return p1+p2.textContent+', '
+        })
+	 	div.textContent=str;
+	}
+*/
+
+    function sum(x,y) {
+    	console.log(x);
+    	console.log(y);
+        return x+y;
+    }
+    var fn=sum.bind(null,1);
+    console.log(fn(2));
+
+
+
+
+	//my_bind方法不仅可以绑定对象，还可以传参
+	Function.prototype.my_bind = function(context){
+	    console.log('context',context);  // {name : 'kong'};
+		var args = Array.prototype.slice.call(arguments, 1); //  因为argumets=[{name:kong},7,8]   args [7, 8]
+		var self = this;  // self 是被柯里化的函数 --test(){}---一因为test调用的。
+		console.log('self',self);
+		return function(){
+			var innerArgs = Array.prototype.slice.call(arguments); //innerArgs [9]
+			var finalArgs = args.concat(innerArgs); 	//finalArgs [7, 8, 9]
+			return self.apply(context, finalArgs);
+		}
+	};
+    // 注意：这里my_bind函数中args表示的是在bind时传入的预定义参数，这里即为7和8，分别表示m和n，
+    // return中的innerArgs表示的是调用a的时候传入的参数，这里表示9，即o，
+    // 最后用concat连接两个数组，即为finalArgs，所以最后执行的是a(7, 8, 9)，this指向b，实现了一个完善点的bind方法
+
+
+	//测试
+	function test(m, n, o,w){
+		return this.name + ' ' + m + ' ' + n + ' ' + o+' '+w;  // this,只bind（）第一个参数
+	}
+
+	var b = {name : 'kong'};
+    var fn=test.my_bind(b, 7, 8);
+	console.log(fn(9));		//kong 7 8 9
+
+
+
+
+</script>
+
+</body>
+</html>

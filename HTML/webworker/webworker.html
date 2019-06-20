@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="a">
+
+</ul>
+
+<h2>主线程</h2>
+
+<!--<p>3秒后返回数据 :<output id="result" style="color: #ff6600"></output></p>-->
+<p>计时器 :<output id="result" style="color: #ff6600"></output></p>
+<button onclick="startWorker()">开始工作</button>
+<button onclick="stopWorker()">停止工作</button>
+
+<script>
+    function startWorker() {
+	    if(typeof(Worker)!=="undefined")
+	    {
+		    // 是的! Web worker 支持!
+		    // 创建一个新的 web worker 对象，然后运行 "demo_workers.js" 中的代码：
+		    w=new Worker("demo_workers.js");
+		    console.log('w',w);
+		    w.postMessage(3000); // 向子线程发送数据
+
+		    w.onmessage=function(event){
+		    	console.log('event',event)
+			    document.getElementById("result").innerHTML=event.data;
+		    };
+
+	    } else
+	    {
+		    //抱歉! Web Worker 不支持
+            document.getElementById('result').innerHTML='抱歉，你的浏览器不支持web worker '
+	    }
+    }
+    
+    function stopWorker() {
+	    w.terminate();
+	    w = undefined;
+    }
+
+</script>
+
+</body>
+</html>

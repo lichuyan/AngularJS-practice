@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function GetNumberOfK(data, k)
+	{
+		// write code here
+        low=0;
+        high=data.length-1;
+		var index=-1;
+		var mid;
+
+		while (low<=high){
+			mid=Math.floor((low+high)/2);
+			// mid=Math.floor((low+high)>>1)
+			if(data[mid]==k){
+				index= mid;
+				break;
+			}else {
+				if(data[mid]>k){
+					high=mid-1;
+				}else {
+					low=mid+1;
+				}
+			}
+		}
+		if(index===-1){
+			return 0;
+		}
+		low = index-1;
+		high = index+1;
+
+		while(low>=0 && data[low]==k)   // 找到k出现的第一个位置
+			--low;
+		while(high<data.length && data[high]==k) // 找到k出现的最后一个位置
+			++high;
+		return high-low-1;
+	}
+
+	console.log(GetNumberOfK([1,2,3,4,4,4,4,5,6,7,8],4))
+</script>
+</body>
+</html>

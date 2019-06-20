@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	/*	function Permutation(str)
+        {
+            var strArr = str.split("").sort();  //字母先进行排序
+            var result = [];
+            for(var i = 0; i < strArr.length; i++){
+                //当相邻元素相同时，则跳过此次循环
+                if((i > 0) && (strArr[i] == strArr[i - 1])) continue;
+                //截取前面部分
+                var front  = strArr.slice(0, i);
+                //截取后面部分
+                var end = strArr.slice(i + 1);
+
+                console.log( strArr[i]);
+                console.log(front.concat(end));
+                excuteFind(result, strArr[i], front.concat(end));
+            }
+            return result;
+        }*/
+
+	/*function excuteFind(result, mid, strArr){
+		if(strArr.length == 0) {
+			result.push(mid);
+		}else{
+			for(var i = 0; i < strArr.length; i++){
+				if((i > 0) && (strArr[i] == strArr[i - 1])) continue;
+				var front = strArr.slice(0, i);
+				var end = strArr.slice(i + 1);
+				excuteFind(result, mid + strArr[i], front.concat(end));
+			}
+		}
+	}*/
+
+    // 递归法
+
+	function Permutation(str) {
+		var  result = [];
+		if (str.length===0) {
+			return result;
+		}
+		Permutation1(str,result,0);
+		result.sort();
+        return result;
+	}
+	function Permutation1(str,result,begin){
+
+		if(begin==str.length-1){  // 递归结束条件：索引已经指向str最后一个元素时,解空间的一个叶子节点
+            // if(result.indexOf(str)==-1){
+	            // 如果result中不存在str，才添加；避免aa和aa重复添加的情况
+            	result.push(str);
+            // }
+        }else {
+			// 第一次循环i与begin相等，相当于第一个位置自身交换，关键在于之后的循环，
+			// 之后i != begin，则会交换两个不同位置上的字符，直到begin==str.size()-1，进行输出；
+			for(var  i=begin;i<str.length;i++)
+			{
+				swap(str[i],str[begin]);
+				Permutation1(str,result,begin+1);  // 遍历其后面的所有字符；
+				swap(str[i],str[begin]); // 复位，用以恢复之前字符串顺序，达到第一位依次跟其他位交换的目的
+			}
+        }
+
+    }
+	function swap(first,second){
+		var temp=first;
+		first=second;
+		second=temp;
+    }
+	console.log(Permutation('123'))
+
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+
+<head>
+    <title>jQueryAjax</title>
+</head>
+
+<body ng-app="App"  ng-controller="myController">
+
+<ul>
+    <!--<li>Milk</li>-->
+</ul>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+
+<script>
+	var App = angular.module('App', []);
+	App.controller('myController', ['$scope', function ($scope) {
+		// 搜索栏参数
+		// jQuery.support.cors = true;
+		records=[];
+		fun();
+
+		function fun() {
+
+			$.ajax({
+				type: "get",
+				url: "http://192.168.0.163:9999/test",
+				async: true,
+				dataType: "json",
+				success: function (data) {
+					records=data.data;
+				},
+				error: function (err) {
+					console.log(err);
+				}
+			});
+		}
+
+	}])
+
+
+
+</script>
+
+</body>
+
+</html>

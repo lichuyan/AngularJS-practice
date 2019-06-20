@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	function hasPath(matrix, rows, cols, path)
+	{
+		// write code here
+		if (path.length === 0) {
+			return true;
+		}
+		if (rows * cols < path.length) {
+			return false;
+		}
+
+		// 由于不能重复进入矩阵的格子，定义一个和字符矩阵大小一样的布尔矩阵。初始化status
+        var status=[];
+        for(var i=0;i<rows;i++){
+	        status[i]=[];
+        	for(var j=0;j<cols;j++){
+		        status[i][j]=false
+            }
+        }
+		//找到第一个符合的path的
+		for (let i = 0; i < rows; i++) {
+			for (let j = 0; j < cols; j++) {
+				console.log(matrix[i*cols+j] )
+				if (matrix[i*cols+j] === path[0]) {
+					if (path.length === 1) {
+						return true;
+					}
+					status[i][j] = true;
+					if (find(matrix, rows, cols, i, j, path.slice(1), status)) {
+						return true;
+					}
+					status[i][j] = false;
+				}
+			}
+		}
+        return false;
+	}
+	function find(matrix,rows,cols,row,col,path,status){
+		if(row > 0 && matrix[(row-1)*cols + col] === path[0] && status[row-1][col] === false){
+			if(path.length === 1){
+				return true;
+			}
+			status[row-1][col] = true;
+			if(find(matrix,rows,cols,row-1,col,path.slice(1),status)){
+				return true;
+			}
+			status[row-1][col] = false;
+		}
+		if(row < rows-1 && matrix[(row+1)*cols + col] === path[0] && status[row+1][col] === false){
+			if(path.length === 1){
+				return true;
+			}
+			status[row+1][col] = true;
+			if(find(matrix,rows,cols,row+1,col,path.slice(1),status)){
+				return true;
+			}
+			status[row+1][col] = false;
+		}
+		if(col > 0 && matrix[row*cols + col -1] === path[0] && status[row][col-1] === false){
+			if(path.length === 1){
+				return true;
+			}
+			status[row][col-1] = true;
+			if(find(matrix,rows,cols,row,col-1,path.slice(1),status)){
+				return true;
+			}
+			status[row][col-1] = false;
+		}
+		if(col < cols-1 && matrix[row*cols + col +1] === path[0] && status[row][col+1] === false){
+			if(path.length === 1){
+				return true;
+			}
+			status[row][col+1] = true;
+			if(find(matrix,rows,cols,row,col+1,path.slice(1),status)){
+				return true;
+			}
+			status[row][col+1] = false;
+		}
+		return false;
+	}
+
+	var matrix=[['a','b','c','e'],['s','f','c','s'],['a','d','e','e']];
+	console.log(hasPath(['a','b','c','e','s','f','c','s','a','d','e','e'],3,4,['b','c','c','e','d']))
+</script>
+
+</body>
+</html>

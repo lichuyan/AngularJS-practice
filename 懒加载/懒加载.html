@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片懒加载</title>
+    <style>
+        img {
+            display: block;
+            width: 200px;
+            height: 300px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<img data-src="./1.png" alt="">
+<img data-src="./2.png" alt="">
+<img data-src="./3.png" alt="">
+<img data-src="./4.png" alt="">
+<img data-src="./5.png" alt="">
+<img data-src="./6.png" alt="">
+<img data-src="./7.png" alt="">
+<img data-src="./8.png" alt="">
+<img data-src="./9.png" alt="">
+<img data-src="./1.png" alt="">
+<img data-src="./2.png" alt="">
+
+</body>
+<script>
+
+    var imgs = document.querySelectorAll('img');
+
+    //offsetTop是元素与offsetParent的距离，循环获取直到页面顶部
+    function getTop(e) { // 图片距离顶部的高度:
+        var T = e.offsetTop;
+        while(e = e.offsetParent) {
+            T += e.offsetTop;
+        }
+        return T;
+    }
+var count=0;
+    function lazyLoad(imgs) {
+        console.log(count++)
+        var H = document.documentElement.clientHeight;//获取可视区域高度
+        var S = document.documentElement.scrollTop || document.body.scrollTop; // 获取滚动条的高度
+        for (var i = 0; i < imgs.length; i++) {
+            if (H + S > getTop(imgs[i])) {  // 加载图片的判断条件:图片距离顶部的距离 < 浏览器滚动条滚动的高度 + 浏览器窗口的高度
+                imgs[i].src = imgs[i].getAttribute('data-src');
+            }
+        }
+    }
+
+
+    // 简单的节流函数  --滚动条节流 resize事件也需要添加滚动事件
+    function throttle(func, wait, mustRun) {
+        var timeout,
+            startTime = new Date();
+
+        return function () {
+            var context = this,
+                args = arguments,
+                curTime = new Date();
+
+            clearTimeout(timeout);
+            // 如果达到了规定的触发时间间隔，触发 handler
+            if (curTime - startTime >= mustRun) {
+                func.apply(context, args);
+                startTime = curTime;
+                // 没达到触发间隔，重新设定定时器
+            } else {
+                timeout = setTimeout(func, wait);
+            }
+        };
+    }
+
+        window.onload = window.onscroll = function () { //onscroll()在滚动条滚动的时候触发  // 记得加节流
+            // lazyLoad(imgs)
+        throttle(lazyLoad(imgs),500,2000)
+    }
+</script>
+</html>

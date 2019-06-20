@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+	//s, pattern都是字符串
+	function match(s, pattern)
+	{
+		var reg = new RegExp('^'+pattern +'$','g');// 正则表达式里放变量，只能用构造函数
+
+		console.log( reg)
+		console.log(typeof  reg)
+		return reg.test(s);
+	}
+
+	console.log(match('aaa','ab*ac*a'))
+
+
+</script>
+</body>
+</html>
