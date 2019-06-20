@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function test(a,b,c,d) {
+        console.log(arguments);
+        console.log(arguments.callee);
+//        console.log(caller);
+    }
+    test(1,2,3,4)
+
+    function a(n) {
+        if(n<=1){
+            return 1;
+        }
+//        var result=n*a(n-1);
+        var result=n*arguments.callee(n-1);
+        return  result
+    }
+    console.log(a(4));  //24
+
+
+    function outer(){
+        inner();
+    }
+    function inner(){
+        console.log(inner.caller);
+        b()
+    }
+    function b() {
+        console.log(b.caller)
+    }
+    outer();
+</script>
+
+</body>
+</html>

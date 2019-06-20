@@ -4,22 +4,54 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        div
+      /*  div
         {
             width:100px;
             height:100px;
             background:yellow;
             transition:width 2s,background 1s ;
-            -moz-transition:width 2s; /* Firefox 4 */
-            -webkit-transition:width 2s; /* Safari and Chrome */
-            -o-transition:width 2s; /* Opera */
+            -moz-transition:width 2s; !* Firefox 4 *!
+            -webkit-transition:width 2s; !* Safari and Chrome *!
+            -o-transition:width 2s; !* Opera *!
         }
-
         div:hover
         {
             width:300px;
             background: blue;
+        }*/
+
+        div{
+            width:100px;
+            height:100px;
+            background:yellow;
+            animation: run 1s ;
         }
+        @keyframes run {
+           0%{
+               width:100px;
+               background:yellow;
+            }
+            20%{
+                width:300px;
+                background:yellow;
+            }
+            50%{
+                width:600px;
+                background:lavenderblush;
+            }
+            80%{
+                width:900px;
+                background:red;
+            }
+            100%{
+                width:100px;
+                background:yellow;
+            }
+
+        }
+
+
+
     </style>
 </head>
 <body>
@@ -27,22 +59,9 @@
 
 <p>请把鼠标指针放到黄色的 div 元素上，来查看过渡效果。</p>
 
-
 </body>
 
 <script>
-    let arr2=[]
-    let arr3={}
-    arr=[{"heart_id":12},{"heart_idw":13}, {"heart_id":14}, {"heart_id":15}]
-   arr.forEach((item ,index)=>{
-
-   if(item.hasOwnProperty("heart_id")){
-	   console.log("++++++++++",item)
-	   arr2.push(item.heart_id)
-   }
-   })
-    arr3.heart_id=arr2
-    console.log("++++++++++",arr3)
 </script>
 
 </html>

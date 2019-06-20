@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS多物体动画</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+        }
+        ul,li{
+            list-style: none;
+        }
+        ul li{
+            width: 200px;
+            height: 100px;
+            background: yellow;
+            margin-bottom: 20px;
+        }
+    </style>
+
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<script>
+    window.onload = function () {
+        var aLi = document.getElementsByTagName('li');
+        for(var i = 0;i<aLi.length;i++){
+            aLi[i].timer = null;
+            aLi[i].onmouseover = function () {
+                startMove(this,400);
+            }
+            aLi[i].onmouseout = function (){
+                startMove(this,200);
+            }
+
+        }
+    }
+    //var timer = null;
+
+    function startMove(obj,iTarget) {
+        clearInterval(obj.timer);
+        obj.timer = setInterval(function () {
+            var speed = (iTarget-obj.offsetWidth)/8;
+            speed = speed >0?Math.ceil(speed):Math.floor(speed);
+            if(obj.offsetWidth == iTarget){
+                clearInterval(obj.timer);
+            } else {
+                obj.style.width = obj.offsetWidth +speed+'px';
+            }
+        },30)
+
+    }
+</script>
+</body>
+</html>
+
