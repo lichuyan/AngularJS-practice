@@ -1,0 +1,10 @@
+ul {
+  li{
+    a{
+      color: black;
+      &:hover{
+        color: #03A9F4;
+      }
+    }
+  }
+}

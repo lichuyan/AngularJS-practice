@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2个栈实现一个队列</title>
+</head>
+<body>
+<script>
+    var stack=[];
+    var stack2=[];
+
+    function push(item) {
+        stack1.push(item)
+    }
+
+    function pop() {
+        if(stack2.length===0){ // stack值还没进入到stack2；
+            if(stack.length!==0){
+                for (var i=0;i<stack.length;i++){
+                    stack2.push(stack[i])
+                }
+                stack2.pop();
+            }else {
+                return null;
+            }
+        }else {   // 已经进入到stack2中了
+            stack2.pop();
+        }
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>节流</title>
+    <button id="btn">
+        点我
+
+    </button>
+</head>
+<body>
+<script>
+    function throttle(fn,delay) {
+        var preTime=Date.now();
+       /* var preTime2=new  Date().getTime();*/
+        return function () {
+            var _this=this;
+            var agrs=[].slice.call(arguments);
+            var nowTime=new Date().getTime();
+            if(nowTime-preTime>=delay){
+//                fn.apply(_this,agrs);
+                fn.apply();
+                preTime=new Date().getTime();
+            }
+        }
+    }
+
+    // 防抖主要是控制handle的
+    function handle() {
+        console.log(Math.random())
+    }
+    var btn=document.getElementById('btn')
+    btn.addEventListener('click',throttle(handle,2000))
+</script>
+
+</body>
+</html>

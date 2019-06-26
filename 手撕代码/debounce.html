@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <button id="btn">
+        点我
+
+    </button>
+</head>
+<body>
+<script>
+    function debounce(fn,delay) {
+        var timer=null;
+        return function () {
+            if(timer!==null) clearTimeout(timer);
+            timer=setTimeout(fn,delay);
+        }
+    }
+    // 防抖主要是控制handle的
+    function handle() {
+        console.log(Math.random())
+    }
+    var btn=document.getElementById('btn')
+    btn.addEventListener('click',debounce(handle,3000))
+</script>
+
+</body>
+</html>

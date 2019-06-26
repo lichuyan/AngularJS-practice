@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        input{
+            width:300px;
+            height:30px;
+            border:1px solid lightgray;
+            margin-top: 150px;
+            margin-left: 200px;
+            padding-left: 5px;
+        }
+        ul{
+            width:307px;
+            list-style: none;
+            margin-left: 200px;
+            display: none;
+        }
+        li{
+            height:30px;
+            border: 1px solid lightgray;
+            line-height: 30px;
+            padding-left: 5px;
+        }
+    </style>
+
+</head>
+<body>
+<input type="text" id="inputSearch">
+<ul id="ulList">
+    <li>123</li>
+</ul>
+
+<script>
+    function callbackD(response){
+        var oUl = document.getElementById('ulList');
+        var html='';
+        if(response.s.length !=0){
+            oUl.style.display='block';
+            for(var i = 0;i<response.s.length;i++){
+                html+='<li>'+response.s[i]+'</li>'
+            }
+        }
+        oUl.innerHTML = html;
+    }
+</script>
+<script>
+    window.onload = function(){
+        //获取dom元素
+        var oData = document.getElementById('inputSearch');
+        var oUl = document.getElementById('ulList');
+
+        //键盘按下后抬起触发事件(onkeyup)
+        oData.onkeyup = function(){
+            if(oData.value != ''){
+                //创建标签(createElement)
+                var script = document.createElement("script");
+                //添加地址
+                script.src='http://unionsug.baidu.com/su?wd='+this.value+'&p=3&cb=callbackD';
+                //添加给body的(成为body包涵的孩子)
+                document.body.appendChild(script);
+            }else{
+                oUl.style.display='none';
+            }
+        }
+    };
+</script>
+</body>
+</html>
