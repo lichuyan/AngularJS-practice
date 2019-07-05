@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script>
+    /*实现add（1）（2）（3）--闭包-扩展性差*/
+    function add(a) {
+        return function (b) {
+            return function (c) {
+                return a+b+c;
+            }
+        }
+    }
+
+    console.log( add(1)(2)(3));
+
+    /*柯理化在js的应用 1bind函数 2reduce函数*/
+    Function.prototype._bind=function (obj) {
+        var args=[].slice.call(arguments,1);
+        var self=this;
+        return function () {
+            var innerArgs=[].slice.call(arguments);
+            var finalArgs=args.concat(innerArgs);
+            return self.apply(obj,finalArgs)
+        }
+    }
+
+    var obj={name:'lichuyan'};
+    function test(m,n,o) {
+        return this.name+' '+Number(m+n+o); // this是指obj
+    }
+
+    var fn=test._bind(obj,1,2);
+    console.log(fn(9));
+
+
+   /* reduece函数*/
+   function curry(fn) {
+       var arg=[];
+       var fn=fn;
+       return function () {
+           if(arguments.length>0){
+               arg=arg.concat([].slice.call(arguments));
+               return fn.apply(null,arg)
+           }
+           /*else {
+              return fn.apply(null,arg)
+           }*/
+       }
+   }
+   function getSum() {
+       var arr=[].slice.call(arguments);
+       var sum=arr.reduce((pre,next)=>{
+           return pre+next;
+       })
+       return sum
+   }
+
+   let fn2=curry(getSum);
+   fn2(1,2);
+   fn2(2);
+   fn2(3);
+   console.log(fn2(2))
+
+
+</script>
+
+</body>
+</html>

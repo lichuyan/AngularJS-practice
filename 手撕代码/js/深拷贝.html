@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function deepCopy() {
+        /*--------------------------------数组一层拷贝-------------------------------------*/
+        var arr = [1, 2, 3, 4];
+        /*方法一 ：直接遍历*/
+        var newArr = [];
+        /* for(var i=0;i<arr.length;i++){
+             newArr.push(arr[i]);
+         }*/
+
+        /*方法二：slice()*/
+        /*  newArr=arr.slice();*/
+
+        /*方法三：concat()*/
+        /* newArr=arr.concat();*/
+        /* return newArr;*/
+
+
+        /*--------------------------------对象一层拷贝-------------------------------------*/
+        var obj = {
+            'name': 'qq',
+            'age': 13
+        };
+        var newObj = {};
+        /*方法一 ：直接遍历*/
+        /*for(var item in obj){
+            newObj[item]=obj[item]
+        }*/
+
+        /*方法二 ：--对象身上直接加扩展运算符*/
+        /*  newObj={...obj};*/
+
+        /*方法三 ：es6中的object.assign()用于对象的复制*/
+        /* newObj=Object.assign({},obj);*/
+        return newObj;
+
+    }
+
+    console.log(deepCopy())
+
+
+    /*--------------------------------对象和数组的多级层拷贝-------------------------------------*/
+    var obj = [
+        {
+            'name': 'qq',
+            'age': 13
+        }, {
+            'name': 'qq',
+            'age': 13
+        }];
+
+    // 方法一：递归
+    function copy(obj) {
+        var newObj=(obj instanceof Array)?[]:{};
+        for(var item in obj){
+            if(typeof obj[item]==='object'){
+                newObj[item]=copy( obj[item]);
+            }else {
+                newObj[item]= obj[item];
+            }
+        }
+        return newObj;
+    }
+    console.log(copy(obj))
+
+   /* 方法二：先串化再json化*/
+   console.log(JSON.parse(JSON.stringify(obj)))
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box{
+            color: #ff6600;
+        }
+    </style>
+</head>
+<body>
+
+<div id="box" style="left: 0">2</div>
+<script>
+    // 只能获取内置样式
+    var box=document.getElementById('box');
+    console.log(box.style.left);
+
+    // 3种方式都行，只支持ie
+   /* console.log( box.currentStyle.left);*/
+
+    // 所有浏览器
+    console.log(window.getComputedStyle(box).color)
+
+    // 元素在视图的绝对定位的位置，再计算
+    console.log(box.getBoundingClientRect().left)
+
+    // 最常用的
+    console.log(box.offsetHeight)
+</script>
+</body>
+</html>

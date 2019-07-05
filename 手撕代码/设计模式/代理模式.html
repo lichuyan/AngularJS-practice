@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="content" >
+    <a id="p1">1</a>
+    <a id="p2">2</a>
+    <a id="p3">3</a>
+</div>
+<!---------------------------代理模式--------------------------------->
+<script>
+//    是什么：代理模式，让使用者和目标对象分开，通过代理授权来授权和控制是，起到中介作用。
+//    常见场景：事件代理+es6的代理
+     // 明星
+    var star={
+        name:'lichuayan',
+        age:'18',
+        tel:'123'
+    }
+    // 经济人
+    var argent=new Proxy(star,{
+        get:function (target,key) {
+            if(key!=='tel'){
+                return target[key]
+            }
+            if(key==='tel'){
+                return '经济人电话：123333'
+            }
+        },
+        set:function (target,key,newVal) {
+            if(key==='money'){
+                if(newVal>=600){
+                    console.log('预约成功');
+                }else {
+                    console.log('价格太低');
+                }
+            }
+        }
+    })
+
+    console.log(argent.name);
+    console.log(argent.age);
+    console.log(argent.tel);
+    argent['money']=68;
+
+    /*使用场景二：事件代理---------------*/
+ var div=document.getElementById('content');
+ div.addEventListener('click',function (e) {
+     if(e.target.nodeName==='A'){
+         console.log(e.target.innerHTML)
+     }
+ })
+
+
+</script>
+
+
+
+</body>
+</html>

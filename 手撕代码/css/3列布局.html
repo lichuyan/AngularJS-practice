@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+       /* 方式一：浮动元素*/
+      /*  .layout div{
+            height: 300px;
+        }
+        .left{
+            background: red;
+            float: left;
+            width: 200px;
+        }
+
+        .right{
+            background: green;
+            float: right;
+            width: 300px;
+        }
+        .mid{
+            background: greenyellow;
+        }*/
+
+       /* 方式二：绝对定位*/
+      /* .layout div{
+           height: 300px;
+       }
+       .left{
+           background: red;
+           position: absolute;
+           left: 0;
+           width: 200px;
+       }
+       .mid{
+           background: greenyellow;
+           position: absolute;
+           left: 200px;
+           right: 300px;
+       }
+       .right{
+           background: green;
+           position: absolute;
+           right: 0;
+           width: 300px;
+       }*/
+
+
+       /* 方式三： grid布局*/
+      /* .layout {
+           display: grid;
+           width: 100%;
+           grid-template-rows:300px;
+           grid-template-columns: 200px auto 300px;
+       }
+       .left{
+           background: red;
+       }
+       .mid{
+           background: greenyellow;
+       }
+       .right{
+           background: green;
+       }*/
+
+
+       /* 方式四： flex布局*/
+       .layout {
+           display: flex;
+       }
+       .left{
+           background: red;
+           width: 200px;
+       }
+       .mid{
+           background: greenyellow;
+           flex: 1;
+       }
+       .right{
+           background: green;
+           width: 300px;
+       }
+
+
+
+       /* 方式五： table*/
+       .layout {
+           display: table;
+           width: 100%;
+       }
+
+       .layout div {
+           display: table-cell;
+       }
+
+       .left{
+           background: red;
+           width: 200px;
+       }
+       .mid{
+           background: greenyellow;
+
+       }
+       .right{
+           background: green;
+           width: 300px;
+       }
+
+
+    </style>
+</head>
+<body>
+<div class="layout">
+    <!--<div class="left"></div>-->
+    <!--<div class="right"></div>-->
+    <!--<div class="mid">hello word</div>-->
+
+    <div class="left"></div>
+    <div class="mid">hello word</div>
+    <div class="right"></div>
+</div>
+
+</body>
+</html>

@@ -27,9 +27,9 @@
 
     // 防抖主要是控制handle的
     function handle() {
-        console.log(Math.random())
+        console.log(Math.random());
     }
-    var btn=document.getElementById('btn')
+    var btn=document.getElementById('btn');
     btn.addEventListener('click',throttle(handle,2000))
 </script>
 

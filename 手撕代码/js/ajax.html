@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function load() {
+      var xhr=new XMLHttpRequest();
+      //
+      xhr.open('get','./data.json',true); // 设置请求方式
+      xhr.onreadystatechange=function () { // 成功时的回调
+          if(xhr.readyState=='4'&&xhr.status=='200'){
+              console.log(xhr.responseText);
+
+          }
+      };
+     xhr.send(null); // 发送请求
+    }
+    load();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var pubsub=(()=>{
+        topics={};
+        function subscribe(topic,fn){  // 订阅者来这里订阅消息
+            if(!  topics[topic]){  // 已经订阅过
+                topics[topic]=[];
+            }
+            topics[topic].push(fn);
+        }
+
+        function public(topic,...agrs){  // 发布者往这里发布消息
+            if(! topics[topic]){  // 已经发布过
+                return ;
+            }
+            for(let fn of  topics[topic]){
+                fn(...agrs)
+            }
+        }
+        return {
+            subscribe,
+            public
+        }
+    })();
+
+    pubsub.subscribe('test',function (a,b) {
+        console.log(a)
+        console.log(b)
+    })
+    pubsub.public('test',1,2);
+*/
+    class Pubsub {
+        constructor() {
+            this.topics = {};
+        }
+
+        subscribe(topic, fn) {  // 订阅者来这里订阅消息
+            if (!this.topics[topic]) {  // 已经订阅过
+                this.topics[topic] = [];
+            }
+            this.topics[topic].push(fn);
+        }
+
+        public(topic, ...agrs) {  // 发布者往这里发布消息
+            if (!this.topics[topic]) {  // 已经发布过
+                return;
+            }
+            for (let fn of   this.topics[topic]) {
+                fn(...agrs)
+            }
+        }
+    }
+
+    var pubsub=new Pubsub();
+
+    pubsub.subscribe('test', function (a, b) {
+        console.log(a)
+        console.log(b)
+    })
+    pubsub.public('test', 1, 2);
+
+
+</script>
+
+</body>
+</html>

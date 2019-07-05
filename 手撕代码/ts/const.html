@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function _const(data,value) {
+        Object.defineProperty(window,data,{
+            get:function () {
+                return value;
+            },
+            set:function (newValue) {
+                if(newValue!==value){
+                    throw new Error('ERROR');
+                }else {
+                    return newValue
+                }
+            }
+        })
+    }
+    _const('a',2);
+    console.log(a);
+    a=4;
+</script>
+
+</body>
+</html>

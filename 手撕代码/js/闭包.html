@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   var Person=(function () {
+       var num=0;
+       return  function  (name) {
+           num++;
+           this.name=name;
+           console.log(num+' '+this.name)
+       }
+
+   })();
+
+    var user1=new Person('LICHUAN');// user1={name:lichuayn}
+    var user2=new Person('henumll');
+    console.log(user1.name)
+    console.log(user1.num)// user1里没有num
+</script>
+
+</body>
+</html>

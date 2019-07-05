@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var arr=[1,3,2,4,23,23,56,342,45,67];
+    function selctSort(arr) {
+        for(var i=1;i<arr.length;i++){  // 表示第i次排序
+            var maxIndex=0;
+            for(var j=0;j<=arr.length-i;j++){  // 在无序区里找到最大的
+               if(arr[j]>arr[maxIndex]){
+                   maxIndex=j;
+               }
+            }
+            [arr[arr.length-i],arr[maxIndex]]=[arr[maxIndex],arr[arr.length-i]]
+        }
+        return arr;
+    }
+
+    console.log(selctSort(arr))
+</script>
+
+</body>
+</html>

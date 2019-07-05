@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<input type="text" id="a">
+<p id="b"></p>
+<body>
+<script>
+    // vue双向数据绑定-利用数据劫持+发表订阅模式’。利用 Object.defineProperty来劫持当前对象，修改它的属性描述，
+    // 当数据发送变化时，发布消息给订阅者，触发相应的监听回调。
+    // 缺点：只能监听对象的属性，不能监听数组，且监听的是每个对象的每个属性，嵌套时，需深度遍历
+    /*var obj={};
+    Object.defineProperty(obj,'txt',{
+        get:function () {
+            return obj;
+        },
+        set:function (newValue) {
+            document.getElementById('a').value=newValue;
+            document.getElementById('b').innerHTML=newValue;
+        }
+    })
+
+    window.addEventListener('keyup',function (e) {
+        obj.txt=e.target.value;
+    })
+*/
+    /*改进---代理模式*/
+    var obj={};
+    // newObj就是我们的代理，通过这个代理去访问obj
+    var  newObj=new Proxy(obj,{
+        get:function (target,key) {
+            if(key in target){
+                return target[key]
+            }
+        },
+        set:function (target,key,newValue) {
+            console.log(target)
+            console.log(key)
+            if(key==='txt'){
+               /* document.getElementById('a').value=newValue;*/
+                document.getElementById('b').innerHTML=newValue;
+            }
+
+        }
+    })
+
+    window.addEventListener('keyup',function (e) {
+        newObj.txt=e.target.value;
+    })
+    
+</script>
+
+</body>
+</html>

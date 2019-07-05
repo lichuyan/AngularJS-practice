@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var arr=[1,2,[3,4,[5,6,7]],8,9,[10,11]];
+    function flat(arr) {
+        // 方法一：遍历数组+递归
+        /*var newArr=[];
+        for(var i=0;i<arr.length;i++){
+            if(Array.isArray(arr[i])){
+                newArr=newArr.concat(flat(arr[i]));
+            }else {
+                newArr.push(arr[i])
+            }
+        }*/
+
+        // reduce+递归
+        return arr.reduce((pre,next)=>{
+            return  pre.concat(Array.isArray(next)? flat(next):next)
+        },[])
+
+        // some+es6 扩展运算符
+       /* while (arr.some(item=>Array.isArray(item))){
+            arr=[].concat(...arr);
+        }*/
+
+
+    }
+    console.log(flat(arr));
+
+</script>
+
+</body>
+</html>

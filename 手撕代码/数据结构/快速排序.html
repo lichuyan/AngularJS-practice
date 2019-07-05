@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function quickSort(arr,start,end) {
+        if (null == arr ||arr.length < 2) {
+            return;
+        }
+
+        if(start<end){
+            var pos=getPosition(arr,start,end); // 确定枢纽插入的位置
+            quickSort(arr,0,pos-1); // 递归的对temp元素左边进行排序
+            quickSort(arr,pos+1,end); // 递归的对temp元素右边进行排序
+            return arr;
+        }
+    }
+    function getPosition(arr,start,end) {
+        var temp=arr[start];
+        while (start<end){ // 从右向左扫描，找的第一小于temp的元素
+            while (start<end&&arr[end]>=temp){
+                end--;
+            }
+            arr[start]=arr[end]; //把右边值发到左边
+
+            while (start<end&&arr[start]<=temp){
+                start++;
+            }
+            arr[end]=arr[start]; //赋值
+        }
+        arr[start]=temp; // 确定枢纽值，完成一次排序。
+        return start;
+    }
+    var arr=[4,2,3,1,5];
+    console.log(quickSort(arr,0,arr.length-1));
+
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*方式一:绝对定位+margin：负边距*/
+     /*.layout{
+     }
+     .child{
+         background: red;
+         position: absolute;
+         height: 300px;
+         width: 300px;
+         top:50%;
+         left: 50%;
+         margin-top:-150px;
+         margin-left:-150px;
+     }
+*/
+       /* .layout{
+        }
+        .child{
+            background: red;
+            position: absolute;
+
+            top:50%;
+            left: 50%;
+            tansform:translate(-50%,-50%);
+        }*/
+
+        /*.layout{
+        }
+        .child{
+            background: red;
+            position: absolute;
+            height: 200px;
+            width: 200px;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto auto;
+        }
+*/
+      /*  .layout{
+         !*   width: 400px;*!
+            height: 400px;
+            background: #ccc;
+            line-height: 400px;
+            text-align: center;
+            font-size: 0;
+        }
+        .child{
+            background: red;
+            font-size: 14px;
+            color: #fff;
+        }
+*/
+      /*  .layout{
+            width: 400px;
+            height: 400px;
+            background: #ccc;
+            display: table-cell;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .child{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+*/
+        .layout{
+            width: 400px;
+            height: 400px;
+            background: #ccc;
+            display:flex;
+            justify-content:center;
+            align-items: center;
+        }
+        .child{
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+<div class="layout">
+    <div class="child">133</div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var arr=[1,2,4,5];
+    var a=arr instanceof  Array;
+    console.log(a);
+
+    console.log(Array.isArray(arr));
+    console.log(arr.constructor===Array);
+    console.log(Object.prototype.toString.call(arr))// [Object,Array]
+</script>
+
+</body>
+</html>

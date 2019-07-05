@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // 改写历史遗留问题；
+    function _typeof(obj) {
+        var s=Object.prototype.toString.call(obj);
+        return s.slice(8,-1).toLowerCase();
+    }
+    console.log('typeof的改写');
+    console.log(_typeof([1,2]));
+
+
+    // 写出instanceOf原理  右边值的prototype是否在左边值的—_proto_上  继承
+    function _insatanceof(leftValue,rightValue) {
+        if(typeof rightValue !=='function'){
+            return new TypeError('右边值不是函数')
+        }
+        var rightProto=rightValue.prototype;
+        leftValue=leftValue && leftValue.__proto__;
+        while (true){
+            // leftvalue 的原型链找完了
+            if(leftValue==null){
+                return false;
+            }
+            if(leftValue===rightProto){
+                return true;
+            }
+            leftValue=leftValue.__proto__;
+        }
+    }
+
+    console.log('instanceof的改写');
+    console.log(_insatanceof([1],Array));
+
+
+</script>
+
+</body>
+</html>

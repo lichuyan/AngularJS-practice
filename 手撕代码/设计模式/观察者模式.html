@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    // 目标类
+    class Subject{
+        constructor(){
+            this.state=0; // 更新的内容
+            this.observers=[]; // 所有的观察者
+        }
+        getState(){
+            return this.state;
+        }
+        setState(state){
+            this.state=state;
+            this.notifyObservers();
+        }
+        add(observer){
+            if(!this.observers.includes(observer)){
+                this.observers.push(observer)
+            }
+        }
+        delete(observer){
+           var index=this.observers.indexOf(observer);
+           if(index!==-1){
+               this.observers.splice(index,1);
+           }
+        }
+        notifyObservers(){
+            this.observers.forEach((observer)=>{
+                observer.update(this.getState())
+            })
+        }
+    }
+
+    // 观察者
+    class Observers{
+        constructor(name,subject){
+            this.name=name;
+        }
+        update(data){
+            console.log(data)
+        }
+    }
+
+    let s=new Subject();
+    let o1=new Observers('o1');
+    let o2=new Observers('o2');
+
+    s.add(o1);
+    s.add(o2);
+    s.delete(o2);
+
+    s.setState('hello word');
+    s.setState('hello 22');
+
+
+
+</script>
+</body>
+</html>

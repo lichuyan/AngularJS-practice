@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*----------------------- Observable----------------------------*/
+
+    /*   function test() {
+           return new Observable((observer)=>{
+               observer.next(123);
+           })
+       }
+       var a=test().subscribe(value=>{
+           console.log(value);
+       });
+        a.unsubscribe();*/
+
+
+
+
+/*----------------------- Promise----------------------------*/
+ function test() {
+        return new Promise((reslove,reject)=>{
+            /*reslove(123);*/
+            reject('error');
+        })
+    }
+ /*test()
+     .then(value=>{
+         console.log(value);})
+     .catch(error=>{
+         console.log(error)})*/
+
+   async function a() {
+       try {
+           var result=await  test();
+       }catch (er){
+           console.log(er)
+       }
+    }
+    a();
+
+</script>
+
+</body>
+</html>

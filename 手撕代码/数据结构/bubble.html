@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function bubble(arr) {
+        if (null == arr ||arr.length < 2) {
+            return;
+        }
+        for(var i=1;i<arr.length;i++) { // 进行n-1次排序
+            var flag=false;
+            for(j=0;j<arr.length-i;j++){
+                if(arr[j]>arr[j+1]){
+                    flag=true;
+                    [arr[j],arr[j+1]]=[arr[j+1],arr[j]]
+                }
+            }
+            if(!flag){ // 如果本次遍历没有发现位置调整，break跳出循环，结束排序。
+                break;
+            }
+        }
+        return arr;
+    }
+
+    var arr=[4,2,3,1,5];
+    console.log(bubble(arr));
+</script>
+
+</body>
+</html>

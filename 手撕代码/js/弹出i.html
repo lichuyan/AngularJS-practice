@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   // 方法一：利用自执行函数，封闭作用域
+    /*function add() {
+        var ul=document.createElement('ul');
+        for(var i=1;i<=5;i++){
+            var li=document.createElement('li');
+            li.innerHTML=i;
+            ul.appendChild(li);
+            (function (i) {
+                li.addEventListener('click',function (e) {
+                    alert(i)
+                })
+            })(i)
+        }
+        document.body.appendChild(ul)
+    }*/
+
+    // 利用闭包
+  /* function add() {
+       var ul=document.createElement('ul');
+       for(var i=1;i<=5;i++){
+           var li=document.createElement('li');
+           li.innerHTML=i;
+           ul.appendChild(li);
+
+           li.addEventListener('click',(function(i){
+               return  function(){
+                   alert(i)
+               }
+           })(i))
+       }
+       document.body.appendChild(ul)
+   }*/
+
+
+   // 利用块级作用域
+   function add() {
+       var ul=document.createElement('ul');
+       for(let i=1;i<=5;i++){
+           var li=document.createElement('li');
+           li.innerHTML=i;
+           ul.appendChild(li);
+
+           li.addEventListener('click',function(e){
+               alert(i);
+           })
+       }
+       document.body.appendChild(ul)
+   }
+  add();
+
+
+</script>
+
+</body>
+</html>

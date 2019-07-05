@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var arr=[1,2,3,3,3,4,2,3,2,3,1];
+    function unique(arr) {
+        // 方法一 es6 Set
+        /*var newArr=[];
+        newArr=[...new Set(arr)];*/
+
+        // 方法二 先排序后去重
+      /*  arr.sort(function (a,b) {
+            return a-b;
+        });
+        var newArr=[arr[0]];
+        for(var i=1;i<arr.length;i++){
+            if(arr[i]!==newArr[newArr.length-1]){
+                newArr.push(arr[i]);
+            }
+        }*/
+
+       // 方法三：includes
+        /*var newArr=[arr[0]];
+        for(var i=1;i<arr.length;i++){
+            if(!newArr.includes(arr[i])){
+                newArr.push(arr[i]);
+            }
+        }*/
+
+        // 方法四：indexof
+       /* var newArr=[arr[0]];
+        for(var i=1;i<arr.length;i++){
+            if(newArr.indexOf(arr[i])===-1){
+                newArr.push(arr[i]);
+            }
+        }*/
+
+       /*方法五： 不借助js语法---原生*/
+        /*var newArr=[arr[0]];
+        for(var i=1;i<arr.length;i++){
+            var repeat=false;
+            for(var j=0;j<newArr.length;j++){
+                if(arr[i]===newArr[j]){
+                    repeat=true;
+                    break;
+                }
+            }
+            if(!repeat){
+                newArr.push(arr[i]);
+            }
+        }*/
+
+       /* 方法六：利用对象的key*/
+        var newArr=[];
+        var obj={};
+        for(var i=0;i<arr.length;i++){
+            obj[arr[i]]=1;
+        }
+        for(var item in obj){
+            newArr.push(parseInt(item))
+        }
+
+        /*for(var i=0;i<arr.length;i++){
+            obj[arr[i]]++;
+        }*/
+        console.log(obj)
+
+
+
+        return newArr;
+    }
+   console.log(unique(arr));
+</script>
+
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*var lines=readline().split(" ");
+    var N= parseInt(lines[0]);
+    var start = parseInt(lines[1]);
+    var nums=lines.slice(2);
+    nums[N]=-1;
+    var count=0;
+    var position=N;
+    getResult(positon,nums,start-1);
+
+    function  get(ss,start){
+        var mark=false;
+        for(var i=0;i<ss.length&&!mark;i++){
+            if(start===ss[i]){
+                mark=ture;
+            }
+        }
+        return mark;
+    }
+    function getResult(positon,nums,start) {
+        var N=nums.length-1;
+        var m=0;
+        var result=[];
+        for(var i=0;i<N;i++){
+            result[i]=-1;
+        }
+        for(var i=0;i<N;i++){
+            if(nums[i]>Math.abs(positon-i)&&Math.abs(positon-i)){
+                result[m]=i;
+                m++;
+            }
+        }
+        count++;
+        var tempcont=count;
+        if(get(result,start)){
+
+        }else {
+            if(count>N){
+                count--;
+            }else {
+                for(var i=0;result.length&&result[i]>=0;i++){
+                    count=tempcont;
+                    getResult(result[i],nums,start)
+                }
+            }
+        }
+    }*/
+    var str= 'i am is a dog';
+    var s='is'
+    var reg=new RegExp('\\b'+s+'\\b','g');
+    var a=str.match(reg)
+    console.log(a)
+
+
+
+
+
+</script>
+</body>
+</html>

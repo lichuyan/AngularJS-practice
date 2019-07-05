@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    class Parent{
+        constructor(name,age){
+            this.name=name;
+            this.age=age;
+        }
+        getName(){
+            return this.name;
+        }
+    }
+
+    class Child extends Parent{
+        constructor(name,age,tel){
+            super(name,age);
+            this.tel=tel;
+        }
+        // 这里是改写了父类的方法
+        getName(){
+            return super.getName();
+           /* return 'hell'+this.name*/
+        }
+    }
+
+    var child=new Child('lichuyan',12,'123');
+    console.log(child.name);
+    console.log( child.tel);
+    console.log(child.getName())
+
+
+
+</script>
+
+</body>
+</html>

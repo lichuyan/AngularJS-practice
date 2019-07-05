@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function newAjax() {
+        return new Promise((reslove,reject)=>{
+            var xhr=new XMLHttpRequest();
+            xhr.open('get','./data.json',true);
+            xhr.onreadystatechange=function () {
+                if(xhr.readyState===4&&xhr.status===200){
+                    reslove(xhr.responseText);
+                }else {
+                    if(xhr.readyState==4&&xhr.status!==200){
+                        reject('error');
+                    }
+                }
+            };
+            xhr.send(null);
+        })
+    }
+
+    newAjax().then(res=>{
+        console.log(res);
+    }).catch(err=>{
+        console.log(err);
+    })
+
+    function loadImg() {
+        return new Promise((resolve,reject)=>{
+            var ulr='./niu.jpg';
+            var img=document.createElement('img');
+            /*img=new Image();*/
+            document.body.appendChild(img);
+            img.onload=function () {
+                resolve(img);
+            };
+            img.onerror=function () {
+                reject('error');
+            };
+            img.src=ulr;
+        })
+    }
+    loadImg().then((res)=>{
+        console.log(res);
+    }).catch(err=>{
+        console.log(err);
+    })
+</script>
+
+</body>
+</html>

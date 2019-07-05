@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn"></button>
+<script>
+    var btn=document.getElementById('btn');
+    var eve=new Event('a');
+    // es8以下，用attachEvent
+    btn.addEventListener('a',function (e) {
+        console.log(e)
+    })
+    btn.dispatchEvent(eve)
+</script>
+</body>
+</html>

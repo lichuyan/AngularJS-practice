@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<script>
+  /*  什么是伪数组：
+    1.本质是个object对象
+    2.有length，有下标
+    3.长度不可变
+    4.不可以使用数组的方法*/
+  var p=document.getElementsByTagName('p');
+  console.log(p);
+
+ /* var arr=[].slice.call(p);*/
+  /*var arr=[...p];*/
+  var arr=Array.from(p);
+  console.log(arr);
+
+
+
+</script>
+
+</body>
+</html>
