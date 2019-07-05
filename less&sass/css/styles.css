@@ -1,0 +1,21 @@
+.box {
+  width: 500px;
+  height: 500px;
+  background-color: #9fcdff;
+}
+ul {
+  background-color: #03A9F4;
+  padding: 10px;
+  list-style: none;
+}
+ul li {
+  background-color: #ffffff;
+  border-radius: 3px;
+  margin: 10px 0;
+}
+.a .b {
+  color: #9fcdff;
+}
+.a.b {
+  color: #ff6600;
+}
