@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // promise结合generator
+    function _promise() {
+        return new Promise((resolve,reject)=>{
+            const flag=true;
+            if(flag){
+                resolve('lihcuyan')
+            }else {
+                reject('error')
+            }
+        })
+    };
+
+
+    function *gen() {
+        yield 'welcome';
+        yield 'to';
+        yield  _promise();
+            return 'hello'
+    }
+    // 调用生成器，不会立即执行，而是返回指向内部函数的指针对象，必须调用遍历器对象的next方法，使指针指向希下一个状态
+    let g1=gen();
+    /*console.log(g1.next()); // {value:welcome,done:false}
+    console.log(g1.next());
+    console.log(g1.next());
+    console.log(g1.next()); // {value:welcome,done:true}
+*/
+    // 手动调用太麻烦 改进-for of  要把上面代码注释掉
+    for (let value of g1){
+        console.log(value) // 注意return的不会返回   welcome to  Promise{lichuyan}
+    }
+
+
+    /*封装一个each方法可以遍历所有数据结构------------generator*/
+    let each=(data)=>{
+        let iterator=data[Symbol.iterator](); // 有序结合都有[Symbol.iterator]属性，属性值是个函数，执行函数返回一个迭代器对象。
+        console.log(iterator);
+        let item={done:false};
+        while (!item.done){
+            item=iterator.next(); //迭代器对象有next方法  {value:welcome,done:true}
+            if(!item.done){
+                console.log(item.value);  // 1 2 3
+            }
+        }
+    }
+
+    var arr=[1,2,3];
+    each(arr);
+
+</script>
+</body>
+</html>

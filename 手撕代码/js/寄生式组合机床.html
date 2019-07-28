@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+    function Person(uName) {
+        this.userName = uName;
+        this.skills = ['php', 'javascript'];
+    }
+
+    Person.prototype.showUserName = function () {
+        return `hell my name is ${this.userName}`;
+    }
+
+    function Teacher(uName,work) {
+        Person.call(this, uName);
+        this.work=work;
+    }
+
+    Teacher.prototype=Object.create(Person.prototype);
+    Teacher.prototype.constructor=Teacher;
+
+    var tea=new Teacher('lichuan','techer');
+
+    console.log(tea.userName);
+    console.log(tea.work);
+    console.log(tea.skills);
+
+    // 子类改写父类方法
+    tea.showUserName=function () {
+        console.log('我在改写父类方法')
+    };
+    console.log(tea.showUserName());
+
+    console.log(tea instanceof Teacher);
+    console.log(tea instanceof Person);
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .img{
+           /* 它们依次代表倒影方向、元素与倒影之间的距离以及加在倒影上的遮罩图像*/
+            /* 最后加个图片遮罩吧。
+        这里的图片遮罩没有用图片，而是用了CSS3中的linear-gradient属性值，它就是用于线性渐变，*/
+            -webkit-box-reflect: below 5px -webkit-linear-gradient(transparent 60%,rgba(0,0,0,.3));
+            box-reflect:below 5px linear-gradient(transparent 60%,rgba(0,0,0,.3));
+        }
+
+    </style>
+</head>
+<body>
+    <img  class="img" src="./3.jpg" alt="" />
+</body>
+
+
+</html>

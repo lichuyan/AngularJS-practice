@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    /*劫持一下alert()函数，为它增添一点小小的功能：
+     JavaScript劫持的本质就是重写。但是在重写的时候，我们应该注意的是要把原来的方法进行保存，这样就不会担心原来的方法被覆盖掉而不能调用。
+    通过替换js函数的实现来达到劫持这个函数调用的目的，
+    * */
+   /* let _alert= alert;
+    window.alert = (t) => {
+        if (confirm('How are you?')) _alert(t)
+    }
+
+    alert('Help me...!!!')*/
+
+    // 劫持confirm()函数 --黑客劫持
+    // 首先我们定义了一个hijack函数，它会先把原函数给保存下来，然后执行自定义函数，而原函数将会在自定义函数内部进行调用
+    /*const hijack = (obj, method, fun) => {
+        let orig = obj[method]   // 把原函数给保存下来
+        obj[method] = fun(orig)  // 执行自定义函数
+    }
+
+    hijack(window, 'confirm', (orig) => {
+        return (text) => {
+            alert('HELP ME PLZ!!!');
+            if (orig.call(this, text)) {
+                alert('YOU SEEMS FINE AND I AM LEAVING, GOOD BYE!')
+            } else {
+                alert('HOLD ON! I AM COMING!!')
+            }
+        }
+    })
+
+    confirm('3')*/
+
+
+   /* function log(msg) {
+        var arg=[].slice.call(arguments);
+        arg.unshift('(app)');
+        console.log(arg.join(''))
+    }
+    log('hello')*/
+
+    var log=window.console.log;
+    window.console.log=function (msg) {
+        if(typeof msg==='object'){
+            msg=JSON.stringify(msg);  // 串化
+        }
+        log(`(app)${msg}`);
+    };
+    var obj=[{name:'lichuayan'},{name:'li'}];
+
+    console.log(obj)
+
+</script>
+
+</body>
+</html>

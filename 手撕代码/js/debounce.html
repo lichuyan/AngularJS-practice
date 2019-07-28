@@ -3,22 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <button id="btn">
+    <button id="btn" >
         点我
-
     </button>
 </head>
 <body>
 <script>
-    function debounce(fn,delay) {
+  /*  function debounce(fn,delay) {
         var timer=null;
         return function () {
             if(timer!==null) clearTimeout(timer);
             timer=setTimeout(fn,delay);
         }
+    }*/
+    function debounce(fn,delay) {
+        var timer=null;
+        return function () {
+            var context = this; // 修复this指向；
+            var args = arguments;// 修复event对象
+            if(timer!==null) clearTimeout(timer);
+            timer=setTimeout(function () {
+                fn.apply(context,args)
+            },delay);
+        }
     }
     // 防抖主要是控制handle的
-    function handle() {
+    function handle(event) {
+        console.log(this); // this指向btn了
+        console.log(event); // this指向btn了
         console.log(Math.random())
     }
     var btn=document.getElementById('btn')

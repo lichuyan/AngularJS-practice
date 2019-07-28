@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .box{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: red;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box" id="drag"></div>
+<script>
+    var box = document.querySelector('.box');
+    box.onmousedown = function(e){
+        var event = e || window.event;
+        var target = event.target || event.srcElement;
+        var disX = event.clientX - target.offsetLeft;
+        var disY = event.clientY - target.offsetTop;
+        document.onmousemove = function(event){
+            // 注意：这里要有自己的事件对象
+            target.style.left = event.clientX - disX + 'px';
+            target.style.top = event.clientY - disY + 'px';
+            document.onmouseup = function(){
+                document.onmousedown = null;
+                document.onmousemove = null;
+            }
+        }
+    }
+
+
+</script>
+
+</body>
+</html>

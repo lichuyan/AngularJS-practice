@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <input type="text" id="a">
+    <p id="b"></p>
+</section>
+<script>
+    var obj={
+        txt:''
+    };
+    /*Object.defineProperty(obj,'txt',{
+        get(){
+            return obj;
+        },
+        set(newValue){
+            document.getElementById('a').value=newValue;
+            document.getElementById('b').innerHTML=newValue;
+        }
+    })
+    document.getElementById('a').addEventListener('keyup',function (e) {
+        // 当  obj.txt值 发送变化时 就会去调用set方法，赋值给
+        obj.txt=e.target.value;
+    })
+    */
+
+    var newObj=new Proxy(obj,{  // 代理模式 newObj去代理obj
+        get(target,key){
+            return target[key];
+        },
+        set(target,key,val){
+            document.getElementById('a').value=val;
+            document.getElementById('b').innerHTML=val;
+        }
+    })
+
+    document.getElementById('a').addEventListener('keyup',function (e) {
+        // 当  obj.txt值 发送变化时 就会去调用set方法，赋值给
+        newObj.txt=e.target.value;
+    })
+</script>
+</body>
+</html>

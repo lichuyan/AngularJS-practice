@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">
+    点我
+
+</button>
+<script>
+
+    function throttle(fn,delay) {
+        let  timeout=null; // 设置一个定时器
+        return function () {
+           var  context = this;
+           var  args = arguments;
+            // 如果定时器不存在，就去执行
+            if(timeout==null){
+                timeout=setTimeout(function () {
+                    fn.apply(context,args);
+                    timeout=null; // 目标函数执行后设置保存定时器ID变量为空
+                },delay)
+            }
+        }
+    }
+
+    // 防抖主要是控制handle的
+    function handle() {
+        console.log(Math.random());
+    }
+    var btn=document.getElementById('btn');
+    btn.addEventListener('click',throttle(handle,2000))
+
+</script>
+
+</body>
+</html>

@@ -27,6 +27,29 @@
         myAuto.pause();
         myAuto.load();
     }
+    [].sort();
+
+    var weakMap = new WeakMap()
+
+    function foo () {
+        var a = new Array(1000).fill('aaa')
+        var b = new Array(1000).fill('bbb')
+
+        weakMap.set(a, 'a')
+        weakMap.set(b, 'b')
+
+        return function () {
+            console.log(JSON.parse(JSON.stringify(a)))
+        }
+    }
+
+    var bar = foo()
+
+    bar()
+
+    setInterval(function () {
+        console.log(weakMap)
+    }, 1000)
 
 </script>
 </body>

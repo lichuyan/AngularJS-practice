@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var tree = {
+        val: 1,
+        left: {
+            val: 2,
+            left: {
+                val: 4
+            }
+        },
+        right: {
+            val: 3,
+            left: {
+                val: 5,
+                left: {
+                    val: 7
+                },
+                right: {
+                    val: 8
+                }
+            },
+            right: {
+                val: 6
+            }
+        }
+    };
+    function revers(tree) {
+        if(tree==null){
+            return null;
+        }
+        var temp=tree.left;
+        tree.left=tree.right;
+        tree.right=temp;
+
+        revers(tree.left);
+        revers(tree.right);
+        return tree;
+    }
+
+    console.log(revers(tree));
+</script>
+</body>
+</html>

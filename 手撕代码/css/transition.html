@@ -9,13 +9,40 @@
             width:30px;
             border-radius: 50%;
             background: #ff6600;
-            transition: height 1s,width 1s,background 1s
+            position: absolute;
+            left: 0;
+            transition:left 4s ;
         }
-        #box:hove{
-            height: 50px;
-            width:50px;
-            background: #9fcdff;
+        #box:hover{
+            left:600px;
         }
+
+       /* #box{
+            height: 30px;
+            width:30px;
+            border-radius: 50%;
+            background: #ff6600;
+            position: absolute;
+            left: 0;
+            animation: run 10s  ease-in-out infinite;
+        }
+        @keyframes run {
+            0%{
+                transform: translateX(0);
+            }
+            25%{
+                transform: translateX(200px);
+            }
+            50%{
+                transform:  translateX(400px);
+              }
+            75%{
+                transform:translateX(600px);
+            }
+            100%{
+                transform:translateX(800px);
+            }
+        }*/
     </style>
 </head>
 <body>

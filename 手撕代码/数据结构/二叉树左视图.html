@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var tree = {
+        val: 1,
+        left: {
+            val: 2,
+            left: {
+                val: 4
+            }
+        },
+        right: {
+            val: 3,
+            left: {
+                val: 5,
+                left: {
+                    val: 7
+                },
+                right: {
+                    val: 8
+                }
+            },
+            right: {
+                val: 6
+            }
+        }
+    };
+
+    /*【解决思路】首先，“每行第一个数”，让我们想到这是层序遍历的变形。
+     用 size 记录当层的结点数，循环访问时用 child 记录下一层的结点数，当 i = 0 时，是当层第一个结点。*/
+    function leftView(tree) {
+        var result = []; // 结果
+        var queue = []; // 层次遍历用到队列
+        var size = 1; // 本层要打印的节点数 --根结点初始化
+        var child = 0;// 下层要打印的节点数。
+        queue.push(tree);
+        while (queue.length !== 0) {
+            for (var i = 0; i < size; i++) { // 本层要打印的节点个数
+                var node = queue.shift();
+                if (i == 0) {
+                    result.push(node.val);
+                }
+                if (node.left) {
+                    queue.push(node.left);
+                    child++;
+                }
+                if (node.right) {
+                    queue.push(node.right);
+                    child++;
+                }
+            }
+            size = child;
+            child=0;
+        }
+        return result;
+    }
+
+    console.log(leftView(tree)); // 1 2 4 7
+
+</script>
+
+</body>
+</html>

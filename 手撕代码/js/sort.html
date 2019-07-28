@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sort封装</title>
+</head>
+<body>
+<script>
+    Array.prototype._sort=function (func) {
+        var array=this;
+        if(func==undefined){  // 如果什么都不传，默认按照unicode编码 排序
+            for(var i=1;i<array.length;i++){
+                var flag=false;
+                for(var j=0;j<array.length-i;j++){
+                    var temp;
+                    if(String(array[j])>String(array[j+1])){
+                        flag=true;
+                        temp=array[j];
+                        array[j]=array[j+1];
+                        array[j+1]=temp;
+                    }
+                }
+                if(!flag){
+                    break;
+                }
+            }
+        }else {
+            if(typeof func==='function'){
+                for(var i=1;i<array.length;i++) {
+                    for (var j = 0; j < array.length - i; j++) {
+                        var val=func(array[j],array[j+1]); // a-b; 若 a 大于 b，则返回一个大于 0 的值。
+                        var temp;
+                        if(val>0){
+                            temp=array[j];
+                            array[j]=array[j+1];
+                            array[j+1]=temp;
+                        }
+                    }
+                }
+            }
+        }
+        return array;
+    }
+
+    var arr=[1,2,12,3333,6,4,5];
+   /* arr._sort();*/
+   arr._sort(function (a,b) {
+       return a-b;
+   })
+    console.log(arr)
+</script>
+
+</body>
+</html>

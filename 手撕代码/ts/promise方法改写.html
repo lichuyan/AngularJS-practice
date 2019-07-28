@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--Promise的静态方法有哪些-->
+<script>
+   //  Promise.all()接收一个数组为参数，当数组的所有Promise都为resolve的状态时，Promise.all()才会成功；
+   //  若有一个失败，都会被认为是失败的。举个小例子：
+    var p1=Promise.resolve('a');
+    var p2=Promise.resolve('b');
+    var p3=Promise.resolve('c');
+
+    Promise.all([p1,p2,p3]).then(res=>{
+        console.log(res)
+    });
+
+   // 自己写Promise.all 方法
+   Promise._all=(promises)=>{  // promises 是个数组，每个值都是promise实例
+       return new Promise((resolve,reject)=>{
+           // Promise.all方法的参数可以不是数组，但必须具有 Iterator 接口，且返回的每个成员都是 Promise 实例。
+           if(typeof promises[Symbol.iterator] != 'function' ){
+               reject('类型错误')
+           }
+           if(promises.length===0){
+               reject('error');
+           }else {
+               const targetArr = [];
+               let  index = 0;
+               for(let i=0;i<promises.length;i++){
+                   //通过Promise.resolve方法得到每个promise实例的结果
+                   Promise.resolve(promises[i])
+                       .then(value=>{
+                           index++; // 标记then走了几次，即几个成功的回调
+                           targetArr[i]=value;
+                           if(index==promises.length){
+                               resolve(targetArr)
+                           }
+                       })
+                       .catch(err=>{
+                           reject (err);
+                       })
+               }
+           }
+       })
+   };
+
+   var p1=Promise.resolve('a');
+   var p2=Promise.resolve('b');
+   var p3=Promise.resolve('c');
+   Promise._all([p1,p2,p3]).then(res=>{
+       console.log(res);
+   });
+
+
+
+   // 自己写Promise.race 方法  构成它的promise实例中先返回结果那个确定。
+    Promise._race=(promises=>{
+        return new Promise((resove,reject)=>{
+            for(var i=0;i<promises.length;i++){
+                Promise.resolve(promises[i])
+                    .then(data=>{
+                        resove(data);
+                        return
+                    })
+                    .catch(err=>{
+                        reject(err);
+                        return
+                    })
+            }
+        })
+    })
+
+   // 接收一个回调函数作为参数，不论promise是什么状态，该回调函数都一定会运行，用来关闭文件，或者关闭服务器
+   Promise.prototype._finally=function (callback) {
+       return this.then(value=>{
+           Promise.resolve(callback()).then(()=>value);
+       },error=>{
+           Promise.resolve(callback()).then(()=>value);
+       })
+   };
+
+    // 使用：
+   server.listen(0).then(function () {
+       // to do sth;
+   })._finally(server.stop);
+
+
+    console.log(Promise)
+</script>
+
+</body>
+</html>

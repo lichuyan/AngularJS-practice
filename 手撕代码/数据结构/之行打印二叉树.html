@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var tree = {
+        val: 1,
+        left: {
+            val: 2,
+            left: {
+                val: 4
+            }
+        },
+        right: {
+            val: 3,
+            left: {
+                val: 5,
+                left: {
+                    val: 7
+                },
+                right: {
+                    val: 8
+                }
+            },
+            right: {
+                val: 6
+            }
+        }
+    };
+    // 使用2个栈来交替存储，奇数栈和偶数栈
+    function print(pRoot) {
+        var result = [];
+        if (pRoot === null) {
+            return result;
+        }
+        var level=1; // 奇数层
+        var stack1=[]; //  奇数栈
+        var stack2=[]; //  偶数栈
+        
+        stack1.push(pRoot);
+        while (stack1.length !== 0 || stack2.length !== 0) {
+            var tmp = [];
+            // 奇数层打印； 从左到右
+            if ((level & 1) === 1) {
+                while (stack1.length !== 0) {
+                    var node =  stack1.pop();
+                    tmp.push(node.val);
+                    if (node.left !== null) stack2.push(node.left);
+                    if (node.right !== null) stack2.push(node.right);
+                }
+            } else {
+               /* 偶数层打印  右向左打印*/
+                while (stack2.length !== 0) {
+                    var node =  stack2.pop();
+                    tmp.push(node.val);
+                    if (node.right !== null) stack1.push(node.right);
+                    if (node.left !== null) stack1.push(node.left);
+                }
+            }
+            ++level;
+            result.push(tmp);
+        }
+        return result;
+    }
+    print(tree)
+</script>
+
+</body>
+</html>

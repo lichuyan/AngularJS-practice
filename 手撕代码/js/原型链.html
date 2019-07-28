@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Parent() {
+       this.name='parent';
+    }
+    function Child() {
+        Parent.call(this);
+        this.type='child';
+    }
+    Child.prototype=Object.create(Parent.prototype);
+    Child.prototype.constructor=Child;
+    var c=new Child();
+    console.log(c) //Child {name: "parent", type: "child"}
+
+</script>
+
+</body>
+</html>

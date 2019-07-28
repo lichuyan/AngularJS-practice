@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+    <style>
+        .container{
+            max-width: 800px;
+            margin:0 auto;
+        }
+        .container:after{
+            content:"";
+            display: block;
+            clear:both;
+        }
+        .container img{
+            width:50%;
+            height:260px;
+            float:left;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+    <img src="http://s4.sinaimg.cn/mw690/006uWPTUgy72CNFYNjB93&690" alt="1" data-src="http://img2.imgtn.bdimg.com/it/u=1088428253,1150170159&fm=200&gp=0.jpg">
+
+</div>
+
+<script>
+    function handle() {
+        const imgs = document.querySelectorAll('img');
+        for(var i=0;i<imgs.length;i++){
+            if(isInsight(imgs[i])){
+                loadImg(imgs[i])
+            }
+        }
+    }
+/*    如何判断 图片进入可视区域。
+1、设const clientHeight = window.innerHeight;来表示可视区域的高度。
+2、并设const bound = el.getBoundingClientRect();来表示图片到可视区域顶部距离；
+通过getBoundingClientRect()方法来获取元素的大小以及位置，
+这个方法返回一个名为ClientRect的DOMRect对象，包含了top、right、botton、left、width、height这些值。
+3、在bound.top<=clientHeight时，图片是在可视区域内的。*/
+
+    // 图片是否在可是区域
+    function isInsight(el) {
+        const clientHeight=window.innerHeight;
+        const bound=el.getBoundingClientRect(); // 元素在视窗的绝对位置
+        return bound.top <= clientHeight + 100;
+    }
+    // 加载图片
+    function loadImg(img) {
+        img.src = img.getAttribute('data-src');
+    }
+
+
+    // 优化--节流
+    function throttle(fn,delay) {
+        var preTime=new Date().getTime();
+        return function () {
+            var context=this;
+            var agrs=[].slice.call(arguments);
+            var nowTime=new Date().getTime();
+            if(nowTime-preTime>=delay){
+                fn.apply(context,agrs);
+                preTime=new Date().getTime();
+            }
+        }
+    }
+    window.addEventListener('scroll',throttle(handle,500));
+
+</script>
+</body>
+</html>

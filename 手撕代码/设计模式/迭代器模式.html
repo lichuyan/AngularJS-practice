@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var data=[1,2,34,4];
+    function each(data) {
+        let iterator=data[Symbol.iterator](); // 有一个Symbol.iterator的属性，
+        // 属性值是个函数，执行函数，返回一个遍历器；
+        console.log(iterator);
+        let item={done:false};
+        while (!item.done){
+            item=iterator.next();  // 遍历器对象有next方法。{value: 1, done: false}
+            console.log(item)
+            if(!item.done){
+                console.log(item.value);
+            }
+        }
+
+       /* 或者for of*/
+    }
+    each(data);
+</script>
+
+</body>
+</html>

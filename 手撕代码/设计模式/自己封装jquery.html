@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<script>
+    class jQuery{
+        constructor(selector){
+            this.demo =[].slice.call(document.querySelector(selector));
+            this.lenth=this.demo.lenth;
+            for(var i=0;i<this.lenth;i++){
+                this[i]=demo[i];
+            }
+            this.selector=selector;
+        }
+        append(node){
+
+        }
+        addClass(){
+            console.log('添加类');
+        }
+        html(){
+
+        }
+    }
+    window.$=function (selector) {
+        return new jQuery(selector); // 工厂模式
+    }
+    let $p=$('p'); // p标签
+    console.log($p);
+    console.log($p.addClass())
+</script>
+</body>
+</html>

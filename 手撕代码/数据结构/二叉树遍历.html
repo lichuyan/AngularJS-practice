@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>先序遍历和层次遍历</title>
+</head>
+<body>
+<script>
+    /*  先序遍历*/
+    var node = {
+        value: 1,
+        left: {
+            value: 2,
+            left: {
+                value: 3
+            },
+            right: {
+                value: 4
+            }
+        },
+        right: {
+            value: 5
+        }
+    }
+
+    function preOrder(node) {
+        if (node == null) {
+            return null;
+        }
+        console.log(node.value);
+        if (node.left) {
+            preOrder(node.left);
+        }
+        if (node.right) {
+            preOrder(node.right);
+        }
+    }
+
+    console.log(preOrder(node));
+
+    /*  层次遍历-----------队列*/
+    function levelOrder(node) {
+        var queue = [];
+        var data = [];
+        if (node == null) {
+            return data;
+        }
+        queue.push(node);
+        while (queue.length !== 0) {
+            var node = queue.shift();
+            data.push(node.value);
+            if (node.left !== null) {
+                queue.push(node.left);
+            }
+            if (node.right !== null) {
+                queue.push(node.right);
+            }
+        }
+        return data;
+    }
+    console.log(levelOrder(node))
+</script>
+
+</body>
+</html>

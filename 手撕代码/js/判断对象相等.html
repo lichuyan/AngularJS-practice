@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var obj = {a:'a'},obj1 = {b:'b'},obj2 = {a:'a'};
+    console.log(JSON.stringify(obj)===JSON.stringify(obj1)); // false
+    console.log(JSON.stringify(obj)===JSON.stringify(obj2)); // true
+</script>
+</body>
+</html>

@@ -6,61 +6,45 @@
 </head>
 <body>
 <script>
-    /*var lines=readline().split(" ");
-    var N= parseInt(lines[0]);
-    var start = parseInt(lines[1]);
-    var nums=lines.slice(2);
-    nums[N]=-1;
-    var count=0;
-    var position=N;
-    getResult(positon,nums,start-1);
+    var obj={
+        name:'lichuyan'
+    };
+    var obj2={
+        age:12,
+        tel:undefined
+    };
 
-    function  get(ss,start){
-        var mark=false;
-        for(var i=0;i<ss.length&&!mark;i++){
-            if(start===ss[i]){
-                mark=ture;
+    var obj3={
+        tel:123
+    };
+    obj2.__proto__=obj3;
+    obj.__proto__=obj2;
+    console.log(obj.tel);
+
+
+
+
+    console.log(obj.sex);// 原型链都找完，找不到返回 undefined
+
+    console.log(b) // 报错，未定义
+
+    function IsPopOrder(pushV, popV)
+    {
+        // write code here
+        if(pushV.length===0||popV.length===0){
+            return false;
+        }
+        var arr=[]; // 构造一个辅助栈
+        var j=0;
+        for(var i=0;i<pushV.length;i++){
+            arr.push(pushV[i]);
+            while (arr.length!==0&& arr[arr.length-1]===popV[j]) {
+                arr.pop();
+                j++;
             }
         }
-        return mark;
+        return arr.length===0?true:false;
     }
-    function getResult(positon,nums,start) {
-        var N=nums.length-1;
-        var m=0;
-        var result=[];
-        for(var i=0;i<N;i++){
-            result[i]=-1;
-        }
-        for(var i=0;i<N;i++){
-            if(nums[i]>Math.abs(positon-i)&&Math.abs(positon-i)){
-                result[m]=i;
-                m++;
-            }
-        }
-        count++;
-        var tempcont=count;
-        if(get(result,start)){
-
-        }else {
-            if(count>N){
-                count--;
-            }else {
-                for(var i=0;result.length&&result[i]>=0;i++){
-                    count=tempcont;
-                    getResult(result[i],nums,start)
-                }
-            }
-        }
-    }*/
-    var str= 'i am is a dog';
-    var s='is'
-    var reg=new RegExp('\\b'+s+'\\b','g');
-    var a=str.match(reg)
-    console.log(a)
-
-
-
-
 
 </script>
 </body>

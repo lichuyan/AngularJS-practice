@@ -37,33 +37,34 @@
 */
     class Pubsub {
         constructor() {
-            this.topics = {};
+            this.topics = {};// 订阅者---订阅的事件
         }
 
         subscribe(topic, fn) {  // 订阅者来这里订阅消息
-            if (!this.topics[topic]) {  // 已经订阅过
+            if (!this.topics[topic]) {   // 为了使用push ，让其为数组形式，
                 this.topics[topic] = [];
             }
             this.topics[topic].push(fn);
+            console.log( this.topics)
         }
 
         public(topic, ...agrs) {  // 发布者往这里发布消息
-            if (!this.topics[topic]) {  // 已经发布过
+            if (!this.topics[topic]) {  // 订阅者没有订阅过这个事件，直接返回
                 return;
             }
             for (let fn of   this.topics[topic]) {
-                fn(...agrs)
+                fn(...agrs); // 执行fn
             }
         }
     }
 
     var pubsub=new Pubsub();
 
-    pubsub.subscribe('test', function (a, b) {
+    pubsub.subscribe('test', function (a, b) {  // 先订阅消息
         console.log(a)
         console.log(b)
     })
-    pubsub.public('test', 1, 2);
+    pubsub.public('test', 1, 2); // 发布者发布消息
 
 
 </script>

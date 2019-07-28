@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*我们可以把整个圆环分成左右两部分；左右两个半圆都旋转，
+        比如先让右边半圆旋转再接上左边半圆然后左边半圆旋转，这样就可以实现了整个圆环的旋转，就是一个圆形进度条了*/
+        .circle_process{
+            position: relative;
+            width: 199px;
+            height : 200px;
+        }
+
+        .right{
+            width: 100px;
+            height: 200px;
+            position: absolute;
+            top:0;
+            overflow: hidden;
+            right:0;
+        }
+
+         .left{
+            width: 100px;
+            height: 200px;
+            position: absolute;
+            top:0;
+            overflow: hidden;
+            left:0;
+        }
+
+         /*画圆 */
+        .circle{
+            width: 160px;
+            height: 160px;
+            border:20px solid transparent;
+            border-radius: 50%;
+            position: absolute;
+            top:0;
+            transform : rotate(-135deg);
+        }
+        /*右边圆-----旋转起来*/
+        .circle_process .rightcircle{
+            border-top:20px solid lightblue;
+            border-right:20px solid lightblue;
+            right:0;
+            -webkit-animation: circle_right 5s linear infinite;
+        }
+
+        @-webkit-keyframes circle_right{
+            0%{
+                -webkit-transform: rotate(-135deg);
+            }
+            50%,100%{
+                -webkit-transform: rotate(45deg);
+            }
+
+        }
+
+        /*左边圆-----旋转起来*/
+        .circle_process .leftcircle{
+            border-bottom:20px solid lightblue;
+            border-left:20px solid lightblue;
+            left:0;
+            -webkit-animation: circle_left 5s linear infinite;
+        }
+
+        @-webkit-keyframes circle_left{
+            0%,50%{
+                -webkit-transform: rotate(-135deg);
+            }
+            100%{
+                -webkit-transform: rotate(45deg);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="circle_process">
+    <div class="right">
+        <div class="circle rightcircle"></div>
+    </div>
+    <div class="left">
+        <div class="circle leftcircle" ></div>
+    </div>
+</div>
+</body>
+</html>

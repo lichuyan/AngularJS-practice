@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .content{
+            font-size: 10px;
+            color: red;
+            -webkit-transform:scale(0.8);
+            /*设置形变原点*/
+            -webkit-transform-origin: 0 0;
+        }
+    </style>
+</head>
+<body>
+<div class="content" style="width: 120px" >
+    hello lichuyan
+</div>
+<script>
+    var dom=document.getElementsByClassName('content')[0];
+
+    console.log( dom.style.width); //1 120px
+
+  /*  console.log( dom.currentStyle.width); //2 报错
+*/
+    console.log(window.getComputedStyle(dom).width) // 3 120px
+
+    console.log(dom.getBoundingClientRect().width) // 4 --96
+
+    console.log(dom.offsetWidth ) // 5   --120
+
+
+
+    console.log(  obj.constructor===Object);
+    console.log(  obj instanceof Object);
+    console.log(  Object.prototype.toString.call(obj) );
+
+    var obj={
+    };
+
+    // 判断是空对象
+  /*  方法一：将json对象转化为json字符串，再判断该字符串是否为"{}"*/
+    console.log(JSON.stringify(obj)==='{}'); // true
+
+/*    方法二:for in 循环判断*/
+    var b=function () {
+        for(var key in obj){
+            return false;
+        }
+        return true;
+    }
+    console.log(b()) // true
+
+    // 方法三：Object.getOwnPropertyNames()方法
+    // 此方法是使用Object对象的getOwnPropertyNames方法，获取到对象中的属性名，
+    // 存到一个数组中，返回数组对象，我们可以通过判断数组的length来判断此对象是否为空
+    // 注意：此方法不兼容ie8，其余浏览器没有测试
+
+    var arr=[];
+    arr=Object.getOwnPropertyNames(obj);
+    console.log(arr);// []
+    console.log(arr.length===0); // true
+
+    // 方法四：使用ES6的Object.keys()方法
+    // 是ES6的新方法, 返回值也是对象中属性名组成的数组
+
+    var arr=[];
+    arr2=Object.keys(obj);
+    console.log(arr2);// []
+    console.log(arr2.length===0);// true
+
+
+
+</script>
+</body>
+</html>

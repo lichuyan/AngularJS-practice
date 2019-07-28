@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function getKey(index) {
+        var colCode='';
+        var key='A';
+        let loop=Math.floor(index/26);
+        if(loop>0){
+            colCode+=getKey(loop-1);
+        }
+        key=key+index%26;
+        colCode+=key;
+
+        return colCode;
+
+
+    }
+
+    console.log(getKey(56))
+</script>
+
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>node
+<script>
+    var tree = {
+        val: 1,
+        left: {
+            val: 2,
+            left: {
+                val: 4
+            }
+        },
+        right: {
+            val: 3,
+            left: {
+                val: 5,
+                left: {
+                    val: 7
+                },
+                right: {
+                    val: 8
+                }
+            },
+            right: {
+                val: 6
+            }
+        }
+    };
+    function findPath(root, expectNumber)
+    {
+        // write code here
+        var result = [];
+        if(root==null){
+            return result;
+        }
+        // 带记忆的dfs,所以用闭包。
+        dfs(root,expectNumber,[],0,result);
+        if(result.length!==0){
+            return true;
+        }
+        return result;
+    }
+    function dfs(root, expectNumber, path, currentSum, result){
+
+        currentSum +=root.val;
+        console.log(currentSum);
+        path.push(root.val);
+        if(currentSum==expectNumber&& root.left == null && root.right == null){
+            result.push(path.slice(0));
+        }
+
+        if (root.left != null) {
+            dfs(root.left, expectNumber, path, currentSum, result);
+        }
+
+        if (root.right != null) {
+            dfs(root.right, expectNumber, path, currentSum, result);
+        }
+        path.pop();
+    }
+    console.log(findPath(tree,10))
+</script>
+</body>
+</html>

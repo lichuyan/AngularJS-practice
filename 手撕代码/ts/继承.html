@@ -22,8 +22,8 @@
             this.tel=tel;
         }
         // 这里是改写了父类的方法
-        getName(){
-            return super.getName();
+        getName(){   // 重写方法
+            return super.getName();  //  调用父类普通函数
            /* return 'hell'+this.name*/
         }
     }
@@ -31,7 +31,7 @@
     var child=new Child('lichuyan',12,'123');
     console.log(child.name);
     console.log( child.tel);
-    console.log(child.getName())
+    console.log(child.getName());
 
 
 

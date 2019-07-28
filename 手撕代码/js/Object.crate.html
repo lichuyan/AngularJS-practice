@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+
+   Object.create=function (obj) {
+       var  newObj={};
+       newObj.__proto__=obj;
+       return  newObj;
+   }
+   var obj={
+       name:'lichuyan'
+   };
+   var obj2=Object.create(obj);
+   console.log(obj2.name)
+</script>
+
+</body>
+</html>

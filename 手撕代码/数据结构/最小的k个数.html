@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function findK(arr,k,start,end) {
+        if(start<end){
+            var result=[];
+            var position =quickSort(arr,start,end);
+            while (position !=k){
+                if (position > k ) {
+                    position = quickSort(arr, start, position-1);
+                } else {
+                    position = quickSort(arr, position+1, end);
+                }
+            }
+            return arr.slice(0,k);// 前闭后开
+        }
+    }
+    function quickSort(arr,start,end){
+        var temp=arr[start];
+        while (start<end){
+            while (start<end&&arr[end]>=temp){
+                end--;
+            }
+            arr[start]=arr[end];
+
+            while (start<end&&arr[start]<=temp){
+                start++;
+            }
+            arr[end]=arr[start];
+        }
+        arr[start]=temp;
+        return start;
+    }
+    var arr=[4,52,1,6,45,7,3,8];
+    console.log(  findK(arr,4,0,arr.length-1));
+
+</script>
+
+</body>
+</html>

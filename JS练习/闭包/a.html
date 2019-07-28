@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+   /* function isFirstLoad (){    //  查询是否是第一次输入函数
+        var _list = [];  // 通过闭包，让_list常驻内存。私有的变量，函数外部访问不到
+        return function (id){
+            if(_list.indexOf(id) >= 0){
+                return false;
+            }else{
+                _list.push(id);
+                return true;
+            }
+        };
+    }
+    var firstLoad = isFirstLoad();
+    console.log(firstLoad(10));//  true 第一次登陆
+    console.log(firstLoad(10));//  false 已经登陆过
+    console.log(firstLoad(20)); // true
+    console.log(_list); // _list is not define*/
+
+    var arr=[1,2,4,3,5,3,7,23];
+  /*  arr.sort();
+    console.log(arr); // [1, 2, 23, 3, 3, 4, 5, 7]*/
+
+    arr.sort(function (a,b) {  // 加回调函数后
+        return a-b;
+    });
+   console.log(arr)  // [1, 2, 3, 3, 4, 5, 7, 23]
+
+</script>
+</body>
+</html>

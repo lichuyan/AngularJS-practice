@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+ /*   const obj={x:'xx',y:2};
+    console.log(Object.values(obj));
+
+    const obj1 = { 10: 'xxx', 1: 'yyy', 3: 'zzz' };
+    console.log(Object.values(obj1));// ['yyy', 'zzz', 'xxx']
+
+
+    console.log('es8'.padStart(5));*/
+
+ // 用于深拷贝
+   var obj = {
+        arr: [111, 222],
+        obj: {key: '对象'},
+        a: () => {console.log('函数')},
+        date: new Date(),
+        reg: /正则/ig
+    };
+    var obj2=Object.getOwnPropertyDescriptors(obj);
+    console.log(obj2);
+
+    // 结尾逗号
+    function foo(param1,pram2,) {
+
+    }
+
+    foo('a','b',)
+
+
+</script>
+
+</body>
+</html>

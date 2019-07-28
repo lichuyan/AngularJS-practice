@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function add() {
+        var count=0;
+        return function () {
+            console.log(++count); // 使count常驻内存, 不会被垃圾回收机制回收；   ·
+        }
+    }
+    var s=add();
+    s();
+    s();
+    s();
+    console.log(Function)
+</script>
+
+</body>
+</html>

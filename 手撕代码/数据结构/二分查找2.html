@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function binyFind (arr,k) {
+        if(arr.length===0){
+            return false;
+        }
+        var low=0;
+        var high=arr.length;
+        var mid=(low+high)>>1;
+        while (low<high){
+            if(arr[mid]===k){
+                return mid;
+            }else {
+                if(arr[mid]>k){
+                    high=mid-1
+                }else {
+                    low=mid+1;
+                }
+            }
+        }
+        return false;
+    }
+
+    var arr=[1,2,3,4,5,6,7];
+    console.log(binyFind(arr,4))
+</script>
+
+</body>
+</html>

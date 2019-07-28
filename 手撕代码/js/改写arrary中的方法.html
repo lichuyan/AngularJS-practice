@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    // map
+    Array.prototype.myMap = function (fn, context) {
+        if (typeof fn !== "function") {
+            throw new TypeError(`${fn} is not a function`);
+        }
+        const array = this;
+        const resultArr = [];
+        console.log(context)
+
+        for (let i = 0; i < array.length; i++) {
+            // 迭代执行
+            let temp = fn.call(context, array[i], i, array); // 执行那个回调函数
+            resultArr.push(temp)
+        }
+        return resultArr;  // 返回一个数组
+    };
+    var arr = [1, 2, 3,4,5];
+    // 原map（）方法
+    /*arr.map((item,index,arr)=> {
+        console.log(item)
+    },arr);*/
+
+    // 现map（）方法
+
+    let newArr=arr.myMap((item, index, arr) => {
+       return item;
+    });
+
+    console.log(newArr);  // [1,2,3]
+  /*  ===============================================================================================================*/
+    // filter(); 过滤
+
+    Array.prototype.myFilter = function (fn, context) {
+        if (typeof fn !== "function") {
+            throw new TypeError(`${fn} is not a function`);
+        }
+
+        let arr = this;
+        let result = [];
+
+        for (let i = 0; i < arr.length; i++) {
+            // 迭代执行
+            let temp = fn.call(context, arr[i], i, arr); // false true true
+            if (temp) result.push(arr[i]);
+        }
+        return result;
+    };
+
+    var cont = arr.myFilter(function (item, index, arr) {
+        return item >= 2;
+    });
+
+    console.log(cont);// [2,3]
+
+
+    // 改写reduce方法
+     Array.prototype.myReduce=function (fn,base) {
+         let initArr=this;
+         let arr=initArr.concat();// 拷贝一份
+
+         if(base) arr.unshift(base);
+         let index;
+
+         while (arr.length>1){
+             index=initArr.length-arr.length+1;
+             var  temp=fn.call(null,arr[0],arr[1],index,initArr);
+             arr.splice(0,2,temp); //  从0开始，删除2项，后用newValue 代替
+             // 用splice实现替换--影响原数组
+         }
+         return temp;
+     };
+
+    const sum = arr.myReduce(function (prev, current,index,arr) {
+        return prev + current;
+    }, 0);
+    console.log(sum) // 6
+</script>
+
+</body>
+</html>

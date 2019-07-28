@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    /*遮罩层*/
+    #show{
+        display: none;
+    }
+    .overlay{
+        position:fixed;  /*相对于浏览器窗口*/
+        top: 0;right: 0;left: 0;bottom: 0;
+        background:rgba(0,0,0,0.8);
+    }
+    .lightbox{
+        position:absolute;  /*相对于父级元素（absolute relative）*/
+        top: 0;right: 0;left: 0;bottom: 0;
+        margin:auto;
+        z-index:1;
+        width: 100px;
+        height: 100px;
+        background-color: white;
+    }
+</style>
+<body>
+<ul id="ul">
+    <a href="">1</a>
+    <a href="">2</a>
+    <a href="">3</a>
+</ul>
+<div id="show" onclick="hide()">
+    <div class="overlay"></div>
+    <div class="lightbox">qq</div>
+</div >
+
+<script>
+    let ul=document.getElementById('ul');
+    let show=document.getElementById('show');
+    ul.addEventListener('click',function (e) { //代理
+        e.preventDefault(); // 取消默认
+        show.style.display='inline'
+    });
+    function hide() {
+        show.style.display='none'
+    }
+
+</script>
+
+</body>
+</html>

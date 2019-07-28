@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function findSum(data,sum) {
+        data.sort(function (a,b) {  // 排序
+            return a-b;
+        });
+        var result=[];
+        for(var i=0;i<data.length;i++){
+            // 优化 跳过
+            if(i>=1){
+                while (data[i]===data[i-1]){
+                    i++;
+                    continue;
+                }
+            }
+            var l=i+1;
+            var  r=data.length-1;
+            while (l<r){
+                if(data[i]+data[l]+data[r]===sum){
+                    var list=[];
+                    list.push(data[i]);
+                    list.push(data[l]);
+                    list.push(data[r]);
+                    result.push(list);
+                    l++; // 找出所有
+                    r--;
+                }else {
+                    if(data[i]+data[l]+data[r]>sum){
+                        r--;
+                    }else {
+                        l++;
+                    }
+                }
+            }
+        }
+        return result
+    }
+    var arr=[1,1,2,5,6,7,8,3,4];
+    console.log(findSum(arr,10));
+
+</script>
+
+</body>
+</html>

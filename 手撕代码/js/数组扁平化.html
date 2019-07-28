@@ -19,9 +19,11 @@
         }*/
 
         // reduce+递归
-        return arr.reduce((pre,next)=>{
+        var result=[];
+        result=arr.reduce((pre,next)=>{
             return  pre.concat(Array.isArray(next)? flat(next):next)
-        },[])
+        },[]);
+        return result;
 
         // some+es6 扩展运算符
        /* while (arr.some(item=>Array.isArray(item))){

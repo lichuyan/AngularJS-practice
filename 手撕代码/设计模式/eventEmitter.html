@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function Subject (){
+        this.listeners = {}
+    }
+    Subject.prototype = {
+        addListener:  function (eventname, callback) {
+            if (typeof callback !== 'function'){
+                throw new TypeError('"listener" argument must be a function')
+            }
+            if(this.listeners[eventname] === 'undefined'){
+                this.listeners[eventname] = []
+            }
+            this.listeners[eventname].push(callback)
+        },
+
+        removeListener: function (eventname){
+            if(typeof callback !== 'function'){
+                throw new TypeError('"listener" argument must be a function')
+            }
+            if(Array.isArray(this.listeners[eventname]) && this.listeners[eventname].length !== 0) {
+                var callbackList = this.listeners[eventName]
+                for (var i = 0, len=callbackList.length; i < len; i++) {
+                    if(callbackList[i] === callback) {
+                        this.listeners[eventName].splice(i,1)
+                    }
+                }
+            }
+        },
+
+        triggerEvent: function(eventName,...args) {
+            if(this.listeners[eventName]) {
+                for(var i=0, len=this.listeners[eventName].length; i<len; i++){
+                    this.listeners[eventName][i](...args)
+                }
+            }
+        }
+    }
+    var event = new Subject()
+    function hello() {
+        console.log('hello, there')
+    }
+    event.addListener('hello', hello)
+    event.triggerEvent('hello')     //    输出 hello, there
+    event.removeListener('hello', hello) // 取消监听
+    setTimeout(() => event.triggerEvent('hello'),1000) // 过了一秒什么也没输出
+</script>
+
+</body>
+</html>

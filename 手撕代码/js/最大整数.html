@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    const max = Number.MAX_SAFE_INTEGER;
+    console.log(max+1); // 9007199254740992
+    console.log(max+2); // 9007199254740992
+  /*  全局BigInt(number)函数可以用来将Number转换成BigInt。换句话说，BigInt(123) === 123n。
+  Number 的安全整数限制不适用于BigInt。因此，BigInt我们可以执行正确的整数运算而不必担心失去精度。
+   */
+    console.log( BigInt(Number.MAX_SAFE_INTEGER) + 2333331241232324n)
+
+
+    console.log(1234567890123456789 * 123);  // 151851850485185200000
+    console.log(1234567890123456789n * 123n)
+
+    var val=12345678901234567891234567890123456789;
+    console.log(val+val) // 2.4691357802469137e+67
+    console.log(BigInt(val)+BigInt(val)) // 24691357802469137028269944989614870548926755609250219191396441522176n
+
+    console.log(arr1)
+</script>
+
+</body>
+</html>
